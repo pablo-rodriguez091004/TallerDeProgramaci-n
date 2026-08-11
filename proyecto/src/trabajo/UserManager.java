@@ -50,10 +50,13 @@ public class UserManager {
      */
     public void createUser(String name, String email) {
         if (!validator.isValid(email)) {
+            // Se pide la razón EXACTA del fallo (cuál regla no se cumplió)
+            // en vez de un mensaje genérico de "email inválido".
+            String razon = validator.explainInvalid(email);
             // warn: es un error esperable causado por el usuario final,
             // no un fallo interno del sistema.
-            logger.warn("Intento de creación de usuario con email inválido: {}", email);
-            throw new ValidationException("Email inválido: " + email);
+            logger.warn("Intento de creación de usuario con email inválido: {} ({})", email, razon);
+            throw new ValidationException("Email inválido \"" + email + "\": " + razon);
         }
         try {
             repository.createUser(name, email);

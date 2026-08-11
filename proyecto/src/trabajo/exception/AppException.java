@@ -3,7 +3,6 @@ package trabajo.exception;
 /**
  * 
  * PUNTO 3 — Jerarquía de excepciones de dominio: NIVEL 1 (raíz)
- * ============================================================================
  * Raíz abstracta de TODA excepción de la aplicación.
  *
  * ¿Por qué abstracta? Para que nadie pueda hacer "new AppException(...)"
@@ -21,7 +20,6 @@ package trabajo.exception;
  * El errorCode es útil si luego expones una API REST: puedes mapear cada
  * código a un status HTTP (por ejemplo VALIDATION_ERROR -> 400,
  * ENTITY_NOT_FOUND -> 404) sin acoplar la excepción a la capa web.
- * ============================================================================
  */
 public abstract class AppException extends RuntimeException {
 

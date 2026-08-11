@@ -50,7 +50,24 @@ public class EmailValidator {
      * @param email correo a validar
      * @return true si cumple TODAS las reglas de negocio configuradas
      */
+
     public boolean isValid(String email) {
         return fullValidation.validate(email);
     }
+    public String explainInvalid(String email) {
+        if (!notBlank.validate(email)) {
+            return "el email está vacío o es nulo";
+        }
+        if (!hasAtSymbol.validate(email)) {
+            return "el email no contiene el símbolo @";
+        }
+        if (!hasValidLength.validate(email)) {
+            return "la longitud del email no está entre 5 y 100 caracteres";
+        }
+        if (!hasAllowedDomain.validate(email)) {
+            return "el dominio del email no está permitido (debe terminar en .com o .co)";
+        }
+        return null;
+    }
 }
+
