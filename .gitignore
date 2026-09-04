@@ -1,0 +1,20 @@
+target/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Node (si el microservicio Python usa algo aparte)
+node_modules/
+
+# VSCode
+.vscode/
+
+# Sistema - Windows
+Thumbs.db
+desktop.ini
+
+# Sistema - Mac/Linux
+.DS_Store
