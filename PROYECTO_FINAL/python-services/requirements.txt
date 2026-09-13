@@ -1,0 +1,11 @@
+# Este microservicio reutiliza el mismo backend (app factory, modelos y
+# conexión a base de datos), por lo que basta con instalar las mismas
+# dependencias del backend:
+#
+#   pip install -r ../backend/requirements.txt
+#
+# Se deja este archivo solo para referencia rápida:
+Flask==3.0.3
+Flask-SQLAlchemy==3.1.1
+psycopg2-binary==2.9.9
+python-dotenv==1.0.1
