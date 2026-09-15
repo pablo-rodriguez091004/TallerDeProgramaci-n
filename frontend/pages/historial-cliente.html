@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Mecánico - Mi historial</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <main class="pagina-contenido">
+    <h1>Mis vehículos</h1>
+    <p id="vehiculos-error" class="mensaje-error"></p>
+    <div id="lista-vehiculos" class="grid-servicios"></div>
+
+    <!-- Formulario de edición, oculto hasta que se clickee "Editar" en algún vehículo -->
+    <div id="bloque-editar-vehiculo" class="oculto">
+      <h2>Editar vehículo</h2>
+      <form id="form-editar-vehiculo">
+        <input type="hidden" id="edit-veh-id">
+
+        <label for="edit-veh-placa">Placa</label>
+        <input type="text" id="edit-veh-placa" required>
+
+        <label for="edit-veh-marca">Marca</label>
+        <input type="text" id="edit-veh-marca" required>
+
+        <label for="edit-veh-modelo">Modelo</label>
+        <input type="text" id="edit-veh-modelo" required>
+
+        <label for="edit-veh-anio">Año</label>
+        <input type="number" id="edit-veh-anio" required>
+
+        <button type="submit">Guardar cambios</button>
+        <button type="button" id="btn-cancelar-edicion">Cancelar</button>
+      </form>
+    </div>
+
+    <hr>
+
+    <h1>Mis citas</h1>
+    <p id="citas-error" class="mensaje-error"></p>
+    <div id="lista-citas" class="grid-servicios"></div>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/historial.js"></script>
+</body>
+</html>

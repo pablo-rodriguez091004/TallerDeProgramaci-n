@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Mecánico - Iniciar sesión</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <main class="auth-container">
+
+    <!-- ===== VISTA LOGIN ===== -->
+    <section id="vista-login">
+      <h1>Iniciar sesión</h1>
+      <form id="form-login">
+        <label for="login-email">Correo</label>
+        <input type="email" id="login-email" required>
+
+        <label for="login-password">Contraseña</label>
+        <input type="password" id="login-password" required>
+
+        <button type="submit">Ingresar</button>
+      </form>
+      <p id="login-error" class="mensaje-error"></p>
+      <p>¿No tenés cuenta? <a href="#" id="link-a-registro">Registrate</a></p>
+    </section>
+
+    <!-- ===== VISTA REGISTRO ===== -->
+    <section id="vista-registro" class="oculto">
+      <h1>Crear cuenta</h1>
+      <form id="form-registro">
+        <label for="reg-first-name">Primer nombre</label>
+        <input type="text" id="reg-first-name" required>
+
+        <label for="reg-middle-name">Segundo nombre (opcional)</label>
+        <input type="text" id="reg-middle-name">
+
+        <label for="reg-last-name">Primer apellido</label>
+        <input type="text" id="reg-last-name" required>
+
+        <label for="reg-second-last-name">Segundo apellido (opcional)</label>
+        <input type="text" id="reg-second-last-name">
+
+        <label for="reg-document">Número de documento</label>
+        <input type="text" id="reg-document" required>
+
+        <label for="reg-email">Correo</label>
+        <input type="email" id="reg-email" required>
+
+        <label for="reg-phone">Teléfono (opcional)</label>
+        <input type="tel" id="reg-phone">
+
+        <label for="reg-password">Contraseña</label>
+        <input type="password" id="reg-password" required>
+
+        <button type="submit">Registrarme</button>
+      </form>
+      <p id="registro-error" class="mensaje-error"></p>
+      <p id="registro-exito" class="mensaje-exito"></p>
+      <p>¿Ya tenés cuenta? <a href="#" id="link-a-login">Iniciar sesión</a></p>
+    </section>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

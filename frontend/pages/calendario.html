@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller Mecánico - Agendar cita</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <main class="pagina-contenido">
+    <h1>Agendar cita</h1>
+
+    <p id="calendario-info" class="mensaje-info"></p>
+
+    <form id="form-agendar">
+
+      <!-- Selector de vehículo existente -->
+      <div id="bloque-selector-vehiculo">
+        <label for="select-vehiculo">Vehículo</label>
+        <select id="select-vehiculo"></select>
+      </div>
+
+      <!-- Formulario de vehículo nuevo (oculto por defecto, se muestra si no hay vehículos) -->
+      <div id="bloque-nuevo-vehiculo" class="oculto">
+        <p>No tenés vehículos registrados. Registrá uno para continuar:</p>
+
+        <label for="veh-placa">Placa</label>
+        <input type="text" id="veh-placa" required>
+
+        <label for="veh-marca">Marca</label>
+        <input type="text" id="veh-marca" required>
+
+        <label for="veh-modelo">Modelo</label>
+        <input type="text" id="veh-modelo" required>
+
+        <label for="veh-anio">Año</label>
+        <input type="number" id="veh-anio" required>
+
+        <label for="veh-tipo">Tipo</label>
+        <select id="veh-tipo" required>
+          <option value="car">Carro</option>
+          <option value="motorcycle">Moto</option>
+          <option value="truck">Camión</option>
+          <option value="van">Van</option>
+        </select>
+
+        <label for="veh-combustible">Combustible</label>
+        <select id="veh-combustible" required>
+          <option value="gasoline">Gasolina</option>
+          <option value="diesel">Diésel</option>
+          <option value="electric">Eléctrico</option>
+          <option value="hybrid">Híbrido</option>
+        </select>
+
+        <label for="veh-transmision">Transmisión</label>
+        <select id="veh-transmision" required>
+          <option value="manual">Manual</option>
+          <option value="automatic">Automática</option>
+        </select>
+      </div>
+
+      <label for="input-fecha-hora">Fecha y hora</label>
+      <input type="datetime-local" id="input-fecha-hora" required>
+
+      <button type="submit">Confirmar cita</button>
+    </form>
+
+    <p id="agendar-error" class="mensaje-error"></p>
+    <p id="agendar-exito" class="mensaje-exito"></p>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/reservas.js"></script>
+</body>
+</html>
