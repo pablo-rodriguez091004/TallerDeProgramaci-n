@@ -12,7 +12,7 @@ Cuando se agenda una cita, el **motor de agendamiento** (`backend/utils/scheduli
 
 | Capa | Tecnología |
 |---|---|
-| Frontend | HTML / CSS / JavaScript vanilla (sin frameworks) — `127.0.0.1:5500` |
+| Frontend | HTML / CSS / JavaScript vanilla (sin frameworks) — `127.0.0.1:5500` (o Live Server) |
 | Backend | Flask 3 + Flask-SQLAlchemy + Flask-Migrate (Alembic) + Flask-Login (cookies) + Flask-CORS — `127.0.0.1:5000` |
 | Base de datos | PostgreSQL (`taller_mecanico`) |
 | Pruebas | pytest (integración) + GitHub Actions |
@@ -105,13 +105,13 @@ python app.py
 
 ### 3. Frontend
 
-Sírvelo desde `frontend/` en el **puerto 5500** y con host **127.0.0.1**. CORS solo acepta `http://127.0.0.1:5500` y la cookie de sesión depende de ese origen.
+Sírvelo con un servidor estático en el **puerto 5500 o 5501** (`127.0.0.1` o `localhost`). El backend acepta esos cuatro orígenes; puedes cambiarlos con la variable `CORS_ORIGINS` (lista separada por comas). **No abras `index.html` con doble clic** (`file://`): el navegador bloquea las peticiones a la API.
 
 ```bash
 cd frontend && python3 -m http.server 5500 --bind 127.0.0.1
 ```
 
-Abre `http://127.0.0.1:5500/index.html`. Con Live Server: clic derecho en `index.html` → *Open with Live Server*, y entra por `127.0.0.1`, no por `localhost`.
+Abre `http://127.0.0.1:5500/index.html` en Firefox o Chrome. Con Live Server de VSCode: clic derecho en `PROYECTO_FINAL/frontend/index.html` → *Open with Live Server* (si el 5500 está ocupado usa el 5501, p. ej. `http://127.0.0.1:5501/PROYECTO_FINAL/frontend/index.html`).
 
 ### Usuarios de prueba (contraseña `test1234`)
 

@@ -1,7 +1,12 @@
 // frontend/js/api.js
 // Wrapper centralizado de fetch. Ninguna otra página debe llamar fetch() directamente.
 
-const API_BASE_URL = 'http://127.0.0.1:5000';
+// Mismo host que la página (127.0.0.1 o localhost): si no coinciden, el
+// navegador trata la API como otro sitio y no envía la cookie de sesión.
+const API_HOST = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+  ? window.location.hostname
+  : '127.0.0.1';
+const API_BASE_URL = `http://${API_HOST}:5000`;
 
 /**
  * Función base. Arma la petición, maneja JSON y centraliza errores.

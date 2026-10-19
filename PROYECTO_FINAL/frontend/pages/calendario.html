@@ -3,74 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller Mecánico - Agendar cita</title>
+  <title>MecaTrack - Agendar cita</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232952cc'/%3E%3Cpath d='M19.6 8.4a5.3 5.3 0 0 0-7.2 7.2L4 24l4 4 8.4-8.4a5.3 5.3 0 0 0 7.2-7.2l-3.3 3.3-3.2-.8-.8-3.2z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
+  <header id="app-nav" class="navbar"></header>
+
   <main class="pagina-contenido">
-    <h1>Agendar cita</h1>
-
-    <p id="calendario-info" class="mensaje-info"></p>
-
-    <form id="form-agendar">
-
-      <!-- Selector de vehículo existente -->
-      <div id="bloque-selector-vehiculo">
-        <label for="select-vehiculo">Vehículo</label>
-        <select id="select-vehiculo"></select>
+    <div class="page-header">
+      <div>
+        <a href="catalogo.html" class="back-link">← Volver a servicios</a>
+        <h1>Agendar cita</h1>
+        <p id="calendario-info"></p>
       </div>
+    </div>
 
-      <!-- Formulario de vehículo nuevo (oculto por defecto, se muestra si no hay vehículos) -->
-      <div id="bloque-nuevo-vehiculo" class="oculto">
-        <p>No tenés vehículos registrados. Registrá uno para continuar:</p>
+    <div class="layout-reserva">
+      <section class="card" aria-labelledby="titulo-form">
+        <h2 id="titulo-form" class="sr-only">Datos de la cita</h2>
 
-        <label for="veh-placa">Placa</label>
-        <input type="text" id="veh-placa" required>
+        <form id="form-agendar">
 
-        <label for="veh-marca">Marca</label>
-        <input type="text" id="veh-marca" required>
+          <div class="form-section">
+            <h3 class="form-section-title"><span class="step">1</span>Tu vehículo</h3>
 
-        <label for="veh-modelo">Modelo</label>
-        <input type="text" id="veh-modelo" required>
+            <!-- Selector de vehículo existente -->
+            <div id="bloque-selector-vehiculo" class="field">
+              <label for="select-vehiculo">Vehículo</label>
+              <select id="select-vehiculo"></select>
+            </div>
 
-        <label for="veh-anio">Año</label>
-        <input type="number" id="veh-anio" required>
+            <!-- Formulario de vehículo nuevo (oculto por defecto, se muestra si no hay vehículos) -->
+            <div id="bloque-nuevo-vehiculo" class="oculto">
+              <p class="mensaje-info">Aún no tienes vehículos registrados. Registra uno para continuar.</p>
+              <div class="form-grid">
+                <div class="field">
+                  <label for="veh-placa">Placa</label>
+                  <input type="text" id="veh-placa" autocomplete="off" maxlength="10" required>
+                </div>
+                <div class="field">
+                  <label for="veh-marca">Marca</label>
+                  <input type="text" id="veh-marca" required>
+                </div>
+                <div class="field">
+                  <label for="veh-modelo">Modelo</label>
+                  <input type="text" id="veh-modelo" required>
+                </div>
+                <div class="field">
+                  <label for="veh-anio">Año</label>
+                  <input type="number" id="veh-anio" min="1950" max="2100" required>
+                </div>
+                <div class="field">
+                  <label for="veh-tipo">Tipo</label>
+                  <select id="veh-tipo" required>
+                    <option value="car">Carro</option>
+                    <option value="motorcycle">Moto</option>
+                    <option value="truck">Camión</option>
+                    <option value="van">Van</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="veh-combustible">Combustible</label>
+                  <select id="veh-combustible" required>
+                    <option value="gasoline">Gasolina</option>
+                    <option value="diesel">Diésel</option>
+                    <option value="electric">Eléctrico</option>
+                    <option value="hybrid">Híbrido</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="veh-transmision">Transmisión</label>
+                  <select id="veh-transmision" required>
+                    <option value="manual">Manual</option>
+                    <option value="automatic">Automática</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <label for="veh-tipo">Tipo</label>
-        <select id="veh-tipo" required>
-          <option value="car">Carro</option>
-          <option value="motorcycle">Moto</option>
-          <option value="truck">Camión</option>
-          <option value="van">Van</option>
-        </select>
+          <div class="form-section">
+            <h3 class="form-section-title"><span class="step">2</span>Fecha y hora</h3>
+            <div class="field">
+              <label for="input-fecha-hora">¿Cuándo quieres traer tu vehículo?</label>
+              <input type="datetime-local" id="input-fecha-hora" required aria-describedby="ayuda-fecha">
+              <span id="ayuda-fecha" class="field-hint">Si no hay bahía o mecánico libre a esa hora, te pediremos otra.</span>
+            </div>
+          </div>
 
-        <label for="veh-combustible">Combustible</label>
-        <select id="veh-combustible" required>
-          <option value="gasoline">Gasolina</option>
-          <option value="diesel">Diésel</option>
-          <option value="electric">Eléctrico</option>
-          <option value="hybrid">Híbrido</option>
-        </select>
+          <p id="agendar-error" class="mensaje-error" role="alert"></p>
+          <p id="agendar-exito" class="mensaje-exito" role="status"></p>
 
-        <label for="veh-transmision">Transmisión</label>
-        <select id="veh-transmision" required>
-          <option value="manual">Manual</option>
-          <option value="automatic">Automática</option>
-        </select>
-      </div>
+          <div class="form-actions">
+            <button type="submit" id="btn-confirmar">Confirmar cita</button>
+            <a class="btn btn-secundario" href="catalogo.html">Cancelar</a>
+          </div>
+        </form>
+      </section>
 
-      <label for="input-fecha-hora">Fecha y hora</label>
-      <input type="datetime-local" id="input-fecha-hora" required>
-
-      <button type="submit">Confirmar cita</button>
-    </form>
-
-    <p id="agendar-error" class="mensaje-error"></p>
-    <p id="agendar-exito" class="mensaje-exito"></p>
+      <aside class="card resumen-servicio" aria-labelledby="resumen-titulo">
+        <span class="card-subtitle">Resumen</span>
+        <h2 id="resumen-titulo" class="card-title">Servicio seleccionado</h2>
+        <div id="resumen-servicio-detalle">
+          <div class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Cargando servicio…</div>
+        </div>
+      </aside>
+    </div>
   </main>
 
   <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/nav.js"></script>
   <script src="../js/reservas.js"></script>
 </body>
 </html>

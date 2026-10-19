@@ -3,47 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller Mecánico - Mi historial</title>
+  <title>MecaTrack - Mi historial</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232952cc'/%3E%3Cpath d='M19.6 8.4a5.3 5.3 0 0 0-7.2 7.2L4 24l4 4 8.4-8.4a5.3 5.3 0 0 0 7.2-7.2l-3.3 3.3-3.2-.8-.8-3.2z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
+  <header id="app-nav" class="navbar"></header>
+
   <main class="pagina-contenido">
-    <h1>Mis vehículos</h1>
-    <p id="vehiculos-error" class="mensaje-error"></p>
-    <div id="lista-vehiculos" class="grid-servicios"></div>
-
-    <!-- Formulario de edición, oculto hasta que se clickee "Editar" en algún vehículo -->
-    <div id="bloque-editar-vehiculo" class="oculto">
-      <h2>Editar vehículo</h2>
-      <form id="form-editar-vehiculo">
-        <input type="hidden" id="edit-veh-id">
-
-        <label for="edit-veh-placa">Placa</label>
-        <input type="text" id="edit-veh-placa" required>
-
-        <label for="edit-veh-marca">Marca</label>
-        <input type="text" id="edit-veh-marca" required>
-
-        <label for="edit-veh-modelo">Modelo</label>
-        <input type="text" id="edit-veh-modelo" required>
-
-        <label for="edit-veh-anio">Año</label>
-        <input type="number" id="edit-veh-anio" required>
-
-        <button type="submit">Guardar cambios</button>
-        <button type="button" id="btn-cancelar-edicion">Cancelar</button>
-      </form>
+    <div class="page-header">
+      <div>
+        <h1>Mi historial</h1>
+        <p>Tus vehículos, tus citas y el estado de tus pagos.</p>
+      </div>
+      <a class="btn" href="catalogo.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Agendar nueva cita
+      </a>
     </div>
 
-    <hr>
+    <!-- ===== VEHÍCULOS ===== -->
+    <section class="section" aria-labelledby="titulo-vehiculos">
+      <div class="section-header">
+        <h2 id="titulo-vehiculos" class="section-title">Mis vehículos <span id="count-vehiculos" class="count">–</span></h2>
+      </div>
+      <p id="vehiculos-error" class="mensaje-error" role="alert"></p>
+      <div id="lista-vehiculos" class="grid-cards">
+        <div class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Cargando vehículos…</div>
+      </div>
 
-    <h1>Mis citas</h1>
-    <p id="citas-error" class="mensaje-error"></p>
-    <div id="lista-citas" class="grid-servicios"></div>
+      <!-- Formulario de edición, oculto hasta que se clickee "Editar" en algún vehículo -->
+      <div id="bloque-editar-vehiculo" class="card oculto">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Editar vehículo</h3>
+            <p class="card-subtitle">La placa no se puede cambiar.</p>
+          </div>
+        </div>
+        <form id="form-editar-vehiculo">
+          <input type="hidden" id="edit-veh-id">
+          <div class="form-grid">
+            <div class="field">
+              <label for="edit-veh-placa">Placa</label>
+              <input type="text" id="edit-veh-placa" readonly>
+            </div>
+            <div class="field">
+              <label for="edit-veh-marca">Marca</label>
+              <input type="text" id="edit-veh-marca" required>
+            </div>
+            <div class="field">
+              <label for="edit-veh-modelo">Modelo</label>
+              <input type="text" id="edit-veh-modelo" required>
+            </div>
+            <div class="field">
+              <label for="edit-veh-anio">Año</label>
+              <input type="number" id="edit-veh-anio" min="1950" max="2100" required>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit">Guardar cambios</button>
+            <button type="button" id="btn-cancelar-edicion" class="btn-secundario">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== CITAS ===== -->
+    <section class="section" aria-labelledby="titulo-citas">
+      <div class="section-header">
+        <h2 id="titulo-citas" class="section-title">Mis citas <span id="count-citas" class="count">–</span></h2>
+      </div>
+      <p id="citas-error" class="mensaje-error" role="alert"></p>
+      <div id="lista-citas" class="grid-cards">
+        <div class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Cargando citas…</div>
+      </div>
+    </section>
+
+    <!-- ===== PAGOS ===== -->
+    <section class="section" aria-labelledby="titulo-pagos">
+      <div class="section-header">
+        <h2 id="titulo-pagos" class="section-title">Pagos <span id="count-pagos" class="count">–</span></h2>
+      </div>
+      <div id="lista-pagos">
+        <div class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Cargando pagos…</div>
+      </div>
+    </section>
   </main>
 
   <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/nav.js"></script>
   <script src="../js/historial.js"></script>
 </body>
 </html>

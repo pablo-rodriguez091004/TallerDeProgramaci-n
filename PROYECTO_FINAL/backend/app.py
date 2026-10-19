@@ -7,7 +7,7 @@ def create_app(config_object=Config):
     app = Flask(__name__)
     app.config.from_object(config_object)
 
-    CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5500"])
+    CORS(app, supports_credentials=True, origins=app.config['CORS_ORIGINS'])
 
     db.init_app(app)
     login_manager.init_app(app)
