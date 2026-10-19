@@ -3,18 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller Mecánico - Panel del mecánico</title>
+  <title>MecaTrack - Mis citas</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232952cc'/%3E%3Cpath d='M19.6 8.4a5.3 5.3 0 0 0-7.2 7.2L4 24l4 4 8.4-8.4a5.3 5.3 0 0 0 7.2-7.2l-3.3 3.3-3.2-.8-.8-3.2z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
+  <header id="app-nav" class="navbar"></header>
+
   <main class="pagina-contenido">
-    <h1>Mis citas asignadas</h1>
-    <p id="citas-error" class="mensaje-error"></p>
-    <div id="lista-citas"></div>
+    <div class="page-header">
+      <div>
+        <h1>Mis citas asignadas</h1>
+        <p>Actualiza el estado de cada cita y registra el avance del servicio con los repuestos usados.</p>
+      </div>
+    </div>
+
+    <div id="resumen-mecanico" class="stats" aria-label="Resumen de tus citas"></div>
+
+    <p id="citas-error" class="mensaje-error" role="alert"></p>
+    <div id="lista-citas" class="section">
+      <div class="loading" role="status"><span class="spinner" aria-hidden="true"></span>Cargando tus citas…</div>
+    </div>
   </main>
 
   <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/nav.js"></script>
   <script src="../js/dashboard-empleado.js"></script>
 </body>
 </html>

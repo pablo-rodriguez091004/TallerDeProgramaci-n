@@ -13,11 +13,50 @@ const selectVehiculo = document.getElementById('select-vehiculo');
 const errorEl = document.getElementById('agendar-error');
 const exitoEl = document.getElementById('agendar-exito');
 
+const resumenEl = document.getElementById('resumen-servicio-detalle');
+const botonConfirmar = document.getElementById('btn-confirmar');
+const inputFecha = document.getElementById('input-fecha-hora');
+
 if (!serviceId) {
-  infoEl.textContent = 'No se especificó un servicio. Volvé al catálogo y elegí uno.';
+  infoEl.textContent = 'No se especificó un servicio. Vuelve al catálogo y elige uno.';
 } else {
-  infoEl.textContent = `Agendando servicio #${serviceId}`;
+  infoEl.textContent = 'Elige tu vehículo y la fecha. Te asignamos bahía y mecánico al confirmar.';
 }
+
+// No permitir elegir una fecha pasada en el selector (formato YYYY-MM-DDTHH:MM local).
+const ahora = new Date();
+ahora.setMinutes(ahora.getMinutes() - ahora.getTimezoneOffset());
+inputFecha.min = ahora.toISOString().slice(0, 16);
+
+// Resumen del servicio elegido (mismo endpoint público del catálogo).
+async function cargarResumenServicio() {
+  if (!serviceId) {
+    resumenEl.innerHTML = estadoVacio({ icon: 'llave', titulo: 'Sin servicio', texto: 'Elige un servicio del catálogo.',
+      accion: { href: 'catalogo.html', texto: 'Ver servicios' } });
+    return;
+  }
+  try {
+    const servicios = await apiGet('/services');
+    const servicio = servicios.find(s => String(s.service_id) === String(serviceId));
+    if (!servicio) {
+      resumenEl.innerHTML = '<p class="mensaje-error">Este servicio ya no está disponible.</p>';
+      return;
+    }
+    const deposito = Math.round(servicio.base_price * 0.3);
+    resumenEl.innerHTML = `
+      <p class="card-title">${esc(servicio.service_name)}</p>
+      <p class="servicio-descripcion">${esc(servicio.description || '')}</p>
+      <ul class="meta-list resumen-meta">
+        <li>${icono('reloj')}Duración estimada: <strong>${servicio.estimated_duration_minutes} min</strong></li>
+        <li>${icono('tarjeta')}Depósito al agendar: <strong>${esc(pesos(deposito))}</strong></li>
+      </ul>
+      <p class="precio-servicio resumen-precio">${esc(pesos(servicio.base_price))}<small>Precio base del servicio</small></p>`;
+  } catch (error) {
+    resumenEl.innerHTML = `<p class="mensaje-error">${esc(error.message)}</p>`;
+  }
+}
+
+cargarResumenServicio();
 
 // Todos los inputs required dentro del bloque de vehículo nuevo
 const camposNuevoVehiculo = bloqueNuevoVehiculo.querySelectorAll('input, select');
@@ -60,9 +99,11 @@ document.getElementById('form-agendar').addEventListener('submit', async (e) => 
   exitoEl.textContent = '';
 
   if (!serviceId) {
-    errorEl.textContent = 'Falta el servicio. Volvé al catálogo.';
+    errorEl.textContent = 'Falta el servicio. Vuelve al catálogo.';
     return;
   }
+
+  botonConfirmar.disabled = true;
 
   try {
     let vehicleId;
@@ -94,14 +135,17 @@ document.getElementById('form-agendar').addEventListener('submit', async (e) => 
       scheduled_start: fechaHora,
     });
 
-    exitoEl.textContent = `Cita confirmada. Depósito a pagar: $${cita.deposit_amount}`;
+    exitoEl.innerHTML = `Cita agendada para el ${esc(fechaLarga(cita.scheduled_start))} a las ${esc(hora(cita.scheduled_start))}. `
+      + `Paga el depósito de <strong>${esc(pesos(cita.deposit_amount))}</strong> en <a href="historial-cliente.html">tu historial</a> para confirmarla.`;
     document.getElementById('form-agendar').reset();
 
   } catch (error) {
     if (error.status === 409) {
-      errorEl.textContent = 'No hay disponibilidad en ese horario. Probá con otra fecha u hora.';
+      errorEl.textContent = 'No hay disponibilidad en ese horario. Prueba con otra fecha u hora.';
     } else {
       errorEl.textContent = error.message;
     }
+  } finally {
+    botonConfirmar.disabled = false;
   }
 });

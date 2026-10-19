@@ -4,20 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MecaTrack - Panel del dueño</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232952cc'/%3E%3Cpath d='M19.6 8.4a5.3 5.3 0 0 0-7.2 7.2L4 24l4 4 8.4-8.4a5.3 5.3 0 0 0 7.2-7.2l-3.3 3.3-3.2-.8-.8-3.2z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 
-  <main class="pagina-contenido pagina-admin">
-    <header class="admin-header">
-      <div>
-        <h1>Panel del dueño</h1>
-        <p id="admin-negocio" class="detalle-servicio"></p>
-      </div>
-      <button id="btn-logout" class="btn-secundario">Cerrar sesión</button>
-    </header>
+  <header id="app-nav" class="navbar"></header>
 
-    <p id="admin-error" class="mensaje-error"></p>
+  <main class="pagina-contenido pagina-admin">
+    <div class="page-header">
+      <div>
+        <h1>Panel del taller</h1>
+        <p id="admin-negocio">Gestión de citas, bahías, repuestos, servicios y mecánicos</p>
+      </div>
+    </div>
+
+    <p id="admin-error" class="mensaje-error" role="alert"></p>
 
     <nav class="tabs" role="tablist">
       <button class="tab activo" data-seccion="citas" role="tab">Citas</button>
@@ -32,18 +37,22 @@
       <div id="resumen-citas" class="resumen"></div>
 
       <div class="filtros">
-        <label for="filtro-estado">Estado</label>
-        <select id="filtro-estado">
-          <option value="">Todos</option>
-          <option value="pending">Pendiente</option>
-          <option value="confirmed">Confirmada</option>
-          <option value="in_progress">En proceso</option>
-          <option value="completed">Completada</option>
-          <option value="cancelled">Cancelada</option>
-        </select>
-        <label for="filtro-fecha">Fecha</label>
-        <input type="date" id="filtro-fecha">
-        <button type="button" id="btn-limpiar-filtros" class="btn-secundario">Limpiar</button>
+        <div>
+          <label for="filtro-estado">Estado</label>
+          <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option value="pending">Pendiente</option>
+            <option value="confirmed">Confirmada</option>
+            <option value="in_progress">En proceso</option>
+            <option value="completed">Completada</option>
+            <option value="cancelled">Cancelada</option>
+          </select>
+        </div>
+        <div>
+          <label for="filtro-fecha">Fecha</label>
+          <input type="date" id="filtro-fecha">
+        </div>
+        <button type="button" id="btn-limpiar-filtros" class="btn-secundario">Limpiar filtros</button>
       </div>
 
       <div class="tabla-scroll">
@@ -173,10 +182,12 @@
       </div>
     </section>
 
-    <p id="admin-exito" class="mensaje-exito"></p>
+    <p id="admin-exito" class="mensaje-exito" role="status"></p>
   </main>
 
   <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/nav.js"></script>
   <script src="../js/dashboard-admin.js"></script>
 </body>
 </html>

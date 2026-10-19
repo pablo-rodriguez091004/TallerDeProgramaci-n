@@ -14,17 +14,7 @@ const NOMBRES_ESTADO_BAHIA = { available: 'Disponible', under_maintenance: 'En m
 let usuarioActual = null;
 let todasLasCitas = [];
 
-// --- Utilidades ---
-
-// Escapa texto antes de meterlo en innerHTML (evita inyección de HTML/JS
-// con datos que escribió otro usuario, como nombres o descripciones).
-function esc(valor) {
-  return String(valor ?? '').replace(/[&<>"']/g, c => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-  }[c]));
-}
-
-const formatoPesos = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+// --- Utilidades (esc y formatoPesos vienen de ui.js) ---
 
 function mostrarError(error) {
   adminExitoEl.textContent = '';
@@ -45,13 +35,9 @@ function badge(texto, tipo) {
 // --- Sesión y pestañas ---
 
 async function verificarSesion() {
-  try {
-    usuarioActual = await apiGet('/auth/me');
-  } catch (error) {
-    window.location.href = '../index.html';
-    return false;
-  }
-  if (!['owner', 'admin'].includes(usuarioActual.role)) {
+  // sesionActual (nav.js) ya pidió /auth/me; es null si no hay sesión.
+  usuarioActual = await sesionActual;
+  if (!usuarioActual || !['owner', 'admin'].includes(usuarioActual.role)) {
     window.location.href = '../index.html';
     return false;
   }
@@ -66,11 +52,7 @@ async function verificarSesion() {
   return true;
 }
 
-document.getElementById('btn-logout').addEventListener('click', async () => {
-  try { await apiPost('/auth/logout', {}); } catch (_) { /* la sesión ya no existía */ }
-  sessionStorage.clear();
-  window.location.href = '../index.html';
-});
+// El botón de cerrar sesión lo dibuja nav.js en la barra superior.
 
 const CARGADORES = {
   citas: cargarCitas,
