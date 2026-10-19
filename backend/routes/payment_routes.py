@@ -1,10 +1,8 @@
 from datetime import datetime
 from flask import Blueprint, request, jsonify
 from flask_login import current_user
-from db.conexion import db
-from models.payment_model import Payment
-from models.appointment_model import Appointment
 from middlewares.auth_middleware import role_required
+from repositories import base_repository, appointment_repository, payment_repository
 
 payment_bp = Blueprint('payments', __name__)
 
@@ -12,14 +10,16 @@ payment_bp = Blueprint('payments', __name__)
 @payment_bp.route('/appointment/<int:appointment_id>', methods=['GET'])
 @role_required('client', 'mechanic', 'admin', 'owner')
 def list_payments_for_appointment(appointment_id):
-    appointment = Appointment.query.get(appointment_id)
+    appointment = appointment_repository.get_by_id(appointment_id)
     if not appointment:
         return jsonify({'error': 'Cita no encontrada'}), 404
 
     if current_user.role == 'client' and appointment.client_user_id != current_user.user_id:
         return jsonify({'error': 'No tienes permiso para ver estos pagos'}), 403
+    if current_user.role == 'mechanic' and appointment.mechanic_user_id != current_user.user_id:
+        return jsonify({'error': 'No tienes permiso para ver estos pagos'}), 403
 
-    payments = Payment.query.filter_by(appointment_id=appointment_id).all()
+    payments = payment_repository.list_by_appointment(appointment_id)
     return jsonify([_serialize_payment(p) for p in payments]), 200
 
 
@@ -32,11 +32,11 @@ def pay(payment_id):
     cita pasa automaticamente a 'confirmed' - asi el deposito es lo que
     confirma la cita, como se definio en la logica de negocio del proyecto.
     """
-    payment = Payment.query.get(payment_id)
+    payment = payment_repository.get_by_id(payment_id)
     if not payment:
         return jsonify({'error': 'Pago no encontrado'}), 404
 
-    appointment = Appointment.query.get(payment.appointment_id)
+    appointment = payment.appointment
 
     if current_user.role == 'client' and appointment.client_user_id != current_user.user_id:
         return jsonify({'error': 'No tienes permiso para pagar esto'}), 403
@@ -45,14 +45,18 @@ def pay(payment_id):
         return jsonify({'error': 'Este pago ya fue completado'}), 400
 
     data = request.get_json(silent=True) or {}
-    payment.payment_method = data.get('payment_method', payment.payment_method)
+    metodo_pago = data.get('payment_method', payment.payment_method)
+    if metodo_pago not in ('cash', 'card', 'transfer'):
+        return jsonify({'error': 'Método de pago inválido'}), 400
+
+    payment.payment_method = metodo_pago
     payment.status = 'completed'
     payment.paid_at = datetime.utcnow()
-    db.session.commit()
 
     if payment.payment_type == 'deposit' and appointment.status == 'pending':
         appointment.status = 'confirmed'
-        db.session.commit()
+
+    base_repository.commit()
 
     return jsonify({'message': 'Pago registrado (simulado)', 'payment_id': payment.payment_id}), 200
 

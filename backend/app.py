@@ -1,16 +1,17 @@
-from flask import Flask
+from flask import Flask, jsonify
 from config import Config
-from db.conexion import db, login_manager
+from db.conexion import db, login_manager, migrate
 from flask_cors import CORS
 
-def create_app():
+def create_app(config_object=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config_object)
 
     CORS(app, supports_credentials=True, origins=["http://127.0.0.1:5500"])
 
     db.init_app(app)
     login_manager.init_app(app)
+    migrate.init_app(app, db)
 
     from models.user_model import User
     from models.business_model import Business
@@ -43,8 +44,14 @@ def create_app():
     app.register_blueprint(payment_bp, url_prefix='/payments')
     app.register_blueprint(tracking_bp, url_prefix='/tracking')
 
+    @login_manager.unauthorized_handler
+    def unauthorized():
+        return jsonify({'error': 'Debes iniciar sesión para acceder a este recurso'}), 401
+
     return app
 
+
+# 'flask --app app db ...' (Flask-Migrate) encuentra create_app() solo.
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)

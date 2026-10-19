@@ -9,7 +9,10 @@ class Service(db.Model):
     description = db.Column(db.Text, nullable=True)
     estimated_duration_minutes = db.Column(db.Integer, nullable=False)
     base_price = db.Column(db.Integer, nullable=False)
-    status = db.Column(db.String(20), nullable=False, default='active')
+    status = db.Column(db.String(20), nullable=False, default='active', server_default='active')
+
+    business = db.relationship('Business', back_populates='services')
+    appointments = db.relationship('Appointment', back_populates='service')
 
     __table_args__ = (
         db.CheckConstraint("status IN ('active', 'inactive')", name='check_service_status'),

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MecaTrack - Panel del dueño</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <main class="pagina-contenido pagina-admin">
+    <header class="admin-header">
+      <div>
+        <h1>Panel del dueño</h1>
+        <p id="admin-negocio" class="detalle-servicio"></p>
+      </div>
+      <button id="btn-logout" class="btn-secundario">Cerrar sesión</button>
+    </header>
+
+    <p id="admin-error" class="mensaje-error"></p>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab activo" data-seccion="citas" role="tab">Citas</button>
+      <button class="tab" data-seccion="bahias" role="tab">Bahías</button>
+      <button class="tab" data-seccion="repuestos" role="tab">Repuestos</button>
+      <button class="tab" data-seccion="servicios" role="tab">Servicios</button>
+      <button class="tab" data-seccion="mecanicos" role="tab">Mecánicos</button>
+    </nav>
+
+    <!-- ===== CITAS (vista global) ===== -->
+    <section id="seccion-citas" class="seccion-admin">
+      <div id="resumen-citas" class="resumen"></div>
+
+      <div class="filtros">
+        <label for="filtro-estado">Estado</label>
+        <select id="filtro-estado">
+          <option value="">Todos</option>
+          <option value="pending">Pendiente</option>
+          <option value="confirmed">Confirmada</option>
+          <option value="in_progress">En proceso</option>
+          <option value="completed">Completada</option>
+          <option value="cancelled">Cancelada</option>
+        </select>
+        <label for="filtro-fecha">Fecha</label>
+        <input type="date" id="filtro-fecha">
+        <button type="button" id="btn-limpiar-filtros" class="btn-secundario">Limpiar</button>
+      </div>
+
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead>
+            <tr>
+              <th>#</th><th>Fecha</th><th>Cliente</th><th>Vehículo</th><th>Servicio</th>
+              <th>Mecánico</th><th>Bahía</th><th>Estado</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="tabla-citas"></tbody>
+        </table>
+      </div>
+      <p id="citas-vacio" class="detalle-servicio oculto">No hay citas para este filtro.</p>
+    </section>
+
+    <!-- ===== BAHÍAS ===== -->
+    <section id="seccion-bahias" class="seccion-admin oculto">
+      <form id="form-bahia" class="form-inline">
+        <div>
+          <label for="bahia-numero">Número / nombre</label>
+          <input type="text" id="bahia-numero" placeholder="Bahia 3" required>
+        </div>
+        <label class="check-inline"><input type="checkbox" id="bahia-elevador"> Tiene elevador</label>
+        <button type="submit">Agregar bahía</button>
+      </form>
+
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr><th>Bahía</th><th>Elevador</th><th>Estado</th></tr></thead>
+          <tbody id="tabla-bahias"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== REPUESTOS ===== -->
+    <section id="seccion-repuestos" class="seccion-admin oculto">
+      <form id="form-repuesto" class="form-inline">
+        <div>
+          <label for="repuesto-nombre">Nombre</label>
+          <input type="text" id="repuesto-nombre" required>
+        </div>
+        <div>
+          <label for="repuesto-precio">Precio unitario</label>
+          <input type="number" id="repuesto-precio" min="0" required>
+        </div>
+        <div>
+          <label for="repuesto-stock">Stock</label>
+          <input type="number" id="repuesto-stock" min="0" value="0" required>
+        </div>
+        <button type="submit">Agregar repuesto</button>
+      </form>
+
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr><th>Repuesto</th><th>Precio</th><th>Stock</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="tabla-repuestos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== SERVICIOS ===== -->
+    <section id="seccion-servicios" class="seccion-admin oculto">
+      <form id="form-servicio" class="form-inline">
+        <div>
+          <label for="servicio-nombre">Nombre</label>
+          <input type="text" id="servicio-nombre" required>
+        </div>
+        <div>
+          <label for="servicio-descripcion">Descripción</label>
+          <input type="text" id="servicio-descripcion">
+        </div>
+        <div>
+          <label for="servicio-duracion">Duración (min)</label>
+          <input type="number" id="servicio-duracion" min="5" step="5" required>
+        </div>
+        <div>
+          <label for="servicio-precio">Precio base</label>
+          <input type="number" id="servicio-precio" min="0" required>
+        </div>
+        <button type="submit">Agregar servicio</button>
+      </form>
+
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr><th>Servicio</th><th>Descripción</th><th>Duración</th><th>Precio</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="tabla-servicios"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== MECÁNICOS ===== -->
+    <section id="seccion-mecanicos" class="seccion-admin oculto">
+      <form id="form-mecanico" class="form-inline">
+        <div>
+          <label for="mec-nombre">Nombre</label>
+          <input type="text" id="mec-nombre" required>
+        </div>
+        <div>
+          <label for="mec-apellido">Apellido</label>
+          <input type="text" id="mec-apellido" required>
+        </div>
+        <div>
+          <label for="mec-documento">Documento</label>
+          <input type="text" id="mec-documento" required>
+        </div>
+        <div>
+          <label for="mec-email">Correo</label>
+          <input type="email" id="mec-email" required>
+        </div>
+        <div>
+          <label for="mec-telefono">Teléfono</label>
+          <input type="tel" id="mec-telefono">
+        </div>
+        <div>
+          <label for="mec-password">Contraseña inicial</label>
+          <input type="password" id="mec-password" minlength="6" required>
+        </div>
+        <button type="submit">Crear mecánico</button>
+      </form>
+
+      <div class="tabla-scroll">
+        <table class="tabla">
+          <thead><tr><th>Nombre</th><th>Correo</th><th>Teléfono</th><th>Estado</th><th></th></tr></thead>
+          <tbody id="tabla-mecanicos"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p id="admin-exito" class="mensaje-exito"></p>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/dashboard-admin.js"></script>
+</body>
+</html>

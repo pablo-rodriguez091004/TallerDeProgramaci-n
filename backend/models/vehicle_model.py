@@ -17,6 +17,9 @@ class Vehicle(db.Model):
     fuel_type = db.Column(db.String(20), nullable=False)
     transmission_type = db.Column(db.String(20), nullable=False)
 
+    owner = db.relationship('User', back_populates='vehicles')
+    appointments = db.relationship('Appointment', back_populates='vehicle')
+
     __table_args__ = (
         db.CheckConstraint("vehicle_type IN ('car', 'motorcycle', 'truck', 'van')", name='check_vehicle_type'),
         db.CheckConstraint("fuel_type IN ('gasoline', 'diesel', 'electric', 'hybrid')", name='check_fuel_type'),

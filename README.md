@@ -1,119 +1,173 @@
-# Sistema de Reservas y Control de Aforo
+# MecaTrack
 
-Proyecto de la materia [nombre de la materia]. Sistema genérico de reservas para pequeñas y medianas empresas colombianas (canchas, salones de eventos, coworking, consultorios, etc.).
+Sistema de gestión de citas y seguimiento para un taller mecánico. Proyecto final individual de **Taller de Programación**.
 
-## Stack tecnológico
+- **Clientes:** se registran, agregan sus vehículos, consultan el catálogo, agendan citas, pagan el depósito (simulado) y siguen el estado de su servicio.
+- **Mecánicos:** ven las citas que tienen asignadas, cambian su estado y registran cada paso del servicio (con los repuestos usados, que se descuentan del inventario).
+- **Dueño (owner):** tiene una vista global de las citas y gestiona bahías, repuestos, servicios y mecánicos.
 
-- **Frontend:** HTML / CSS / JavaScript (vanilla, sin frameworks)
-- **Backend:** Python + Flask
-- **Base de datos:** PostgreSQL
-- **Microservicio auxiliar:** Python (reportes y tareas programadas)
+Cuando se agenda una cita, el **motor de agendamiento** (`backend/utils/scheduling_engine.py`) asigna solo una bahía y un mecánico libres, sin que se crucen los horarios.
 
-## Estructura del proyecto
+## Stack
+
+| Capa | Tecnología |
+|---|---|
+| Frontend | HTML / CSS / JavaScript vanilla (sin frameworks) — `127.0.0.1:5500` |
+| Backend | Flask 3 + Flask-SQLAlchemy + Flask-Migrate (Alembic) + Flask-Login (cookies) + Flask-CORS — `127.0.0.1:5000` |
+| Base de datos | PostgreSQL (`taller_mecanico`) |
+| Pruebas | pytest (integración) + GitHub Actions |
+
+## Estructura
 
 ```
 PROYECTO_FINAL/
-├── backend/            # API en Flask
-├── frontend/           # Interfaz vanilla
-├── database/           # Scripts SQL
-├── python-services/    # Reportes y jobs programados
-├── docs/               # Documentación y diagramas
-└── README.md
+├── backend/
+│   ├── app.py                 # app factory (create_app)
+│   ├── config.py              # Config / TestConfig
+│   ├── db/conexion.py         # db, login_manager, migrate
+│   ├── models/                # 10 modelos SQLAlchemy con relationship()
+│   ├── repositories/          # capa de acceso a datos (CRUD y consultas)
+│   ├── routes/                # 9 blueprints (solo HTTP: validan y llaman repositorios)
+│   ├── middlewares/           # role_required (control de acceso por rol)
+│   ├── utils/scheduling_engine.py
+│   ├── migrations/            # Alembic: esquema inicial (= schema.sql) + índices
+│   └── tests/                 # pruebas de integración (pytest)
+├── frontend/
+│   ├── index.html             # login / registro
+│   ├── pages/                 # catálogo, calendario, historial, panel mecánico, panel dueño
+│   ├── js/                    # un archivo por página + api.js (wrapper de fetch)
+│   └── css/styles.css
+├── database/                  # schema.sql y seed.sql
+├── scripts/start-backend.sh
+└── docs/
 ```
 
-## Requisitos previos
+## Puesta en marcha
+
+### Requisitos
 
 - Python 3.10 o superior
-- PostgreSQL instalado localmente
-- Git
-- VSCode (recomendado, con extensión Live Server para el frontend)
+- PostgreSQL corriendo en `127.0.0.1:5432`
+- Un servidor estático para el frontend (Live Server de VSCode o `python3 -m http.server`)
 
-## Instalación del backend
+### 1. Base de datos
 
-### 1. Ubicarse en la carpeta backend
+Si la base todavía no existe, créala y cárgala con **una** de estas dos opciones:
+
+```bash
+createdb -h 127.0.0.1 -U postgres taller_mecanico
+
+# Opción A: con migraciones (recomendada)
+./scripts/start-backend.sh --migrate          # crea las tablas con Alembic
+psql -h 127.0.0.1 -U postgres -d taller_mecanico -f database/seed.sql
+
+# Opción B: con el script SQL
+psql -h 127.0.0.1 -U postgres -d taller_mecanico -f database/schema.sql
+psql -h 127.0.0.1 -U postgres -d taller_mecanico -f database/seed.sql
+```
+
+> **¿Tu base ya existía (creada con `schema.sql`)?** Sus tablas coinciden con la migración inicial (`26b91cd3e584`). Para que Alembic lo sepa y luego aplique la segunda migración (índices), ejecuta una sola vez:
+> ```bash
+> cd backend
+> venv/bin/flask --app app db stamp 26b91cd3e584   # marca la base como "en la migración inicial"
+> venv/bin/flask --app app db upgrade              # aplica 6a4f4ff49bfe (índices)
+> ```
+
+> `seed.sql` trae `password_hash` de ejemplo que no sirven para iniciar sesión. Los usuarios de prueba deben tener la contraseña `test1234` (hash generado con `werkzeug.security.generate_password_hash`).
+
+### 2. Backend
+
+```bash
+./scripts/start-backend.sh
+```
+
+La primera vez, el script crea `backend/venv`, instala las dependencias y copia `.env.example` a `.env`. Edita `backend/.env`:
+
+```
+SECRET_KEY=una-clave-aleatoria
+DATABASE_URL=postgresql://postgres:TU_CONTRASENA@127.0.0.1:5432/taller_mecanico
+```
+
+Luego vuelve a ejecutar el script. La API queda en `http://127.0.0.1:5000`.
+
+<details>
+<summary>Arranque manual (sin el script / Windows)</summary>
 
 ```bash
 cd backend
-```
-
-### 2. Crear entorno virtual
-
-**Fedora / Linux / Mac:**
-```bash
-python3 -m venv venv
-```
-
-**Windows (CMD o PowerShell):**
-```bash
 python -m venv venv
-```
-
-### 3. Activar el entorno virtual
-
-**Fedora / Linux / Mac:**
-```bash
-source venv/bin/activate
-```
-
-**Windows (CMD):**
-```bash
-venv\Scripts\activate.bat
-```
-
-**Windows (PowerShell):**
-```bash
-venv\Scripts\Activate.ps1
-```
-
-> Si en PowerShell aparece un error de "ejecución de scripts deshabilitada", correr una vez:
-> `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
-
-### 4. Instalar dependencias
-
-```bash
+source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
-
-### 5. Configurar variables de entorno
-
-Copiar el archivo de ejemplo y completar con los datos locales de cada uno:
-
-**Fedora / Linux / Mac:**
-```bash
-cp .env.example .env
-```
-
-**Windows:**
-```bash
-copy .env.example .env
-```
-
-Editar `.env` con las credenciales de tu PostgreSQL local.
-
-### 6. Levantar el servidor
-
-```bash
+cp .env.example .env              # Windows: copy .env.example .env
 python app.py
 ```
+</details>
 
-El servidor debería quedar corriendo en `http://localhost:5000`
+### 3. Frontend
 
-## Frontend
+Sírvelo desde `frontend/` en el **puerto 5500** y con host **127.0.0.1**. CORS solo acepta `http://127.0.0.1:5500` y la cookie de sesión depende de ese origen.
 
-No requiere instalación. Abrir `frontend/index.html` con la extensión **Live Server** de VSCode (clic derecho → "Open with Live Server") para tener recarga automática.
+```bash
+cd frontend && python3 -m http.server 5500 --bind 127.0.0.1
+```
 
-## Base de datos
+Abre `http://127.0.0.1:5500/index.html`. Con Live Server: clic derecho en `index.html` → *Open with Live Server*, y entra por `127.0.0.1`, no por `localhost`.
 
-Los scripts de creación de tablas están en `database/schema.sql`. Ejecutarlos contra tu instancia local de PostgreSQL antes de levantar el backend.
+### Usuarios de prueba (contraseña `test1234`)
 
-## Convenciones del equipo
+| Rol | Correo | Entra a |
+|---|---|---|
+| Dueño | carlos.owner@tallermecanico.com | `pages/dashboard-admin.html` |
+| Mecánico | andres.mecanico@tallermecanico.com | `pages/dashboard-empleado.html` |
+| Cliente | laura.cliente@gmail.com | `pages/catalogo.html` |
 
-- Nombres de archivos siempre en **minúsculas** y con **guion bajo** (`auth_routes.py`, no `Auth_Routes.py`) — importante porque Linux distingue mayúsculas/minúsculas y Windows no.
-- Ramas de trabajo: `feature/nombre-del-modulo` (ej. `feature/backend-auth`, `feature/frontend-calendario`)
-- Los Pull Requests van hacia `develop`, no directo a `main`.
+## Pruebas
 
-## Notas para equipo con sistemas operativos mixtos (Fedora / Windows)
+Las pruebas de integración corren contra una base **aparte**, `taller_mecanico_test`, y nunca tocan `taller_mecanico`: `conftest.py` aborta si el nombre de la base no termina en `_test`. El esquema se crea con la migración de Alembic, así que las pruebas también comprueban que la migración esté bien.
 
-- El archivo `.gitattributes` en la raíz normaliza los saltos de línea (LF) para evitar conflictos falsos en Git entre Windows y Linux/Mac.
-- Nunca subir la carpeta `venv/` ni el archivo `.env` al repositorio (ya están en `.gitignore`).
+```bash
+createdb -h 127.0.0.1 -U postgres taller_mecanico_test   # solo la primera vez
+cd backend
+venv/bin/pip install -r requirements-dev.txt
+venv/bin/python -m pytest
+```
 
+Para usar otra base, define `TEST_DATABASE_URL`.
+
+| Prueba | Qué verifica |
+|---|---|
+| `test_login_and_role_based_access` | login/logout, 401 sin sesión, 403 por rol, el dueño crea bahías |
+| `test_booking_flow_assigns_resources_and_deposit_confirms` | se asignan bahía y mecánico, se calculan depósito (30 %) y saldo, pagar el depósito confirma la cita, el listado no tiene N+1 (`joinedload`, ≤ 2 SELECT) |
+| `test_scheduling_conflict_returns_409_and_cancel_frees_slot` | un cruce de horario da 409, `[inicio, fin)` permite citas seguidas, cancelar libera la franja, una bahía en mantenimiento no se asigna |
+
+GitHub Actions ejecuta las pruebas con un servicio PostgreSQL en cada push o PR que toque `PROYECTO_FINAL/backend/**` (ver `.github/workflows/mecatrack-tests.yml` en la raíz del repositorio).
+
+## Migraciones (Flask-Migrate)
+
+| Revisión | Descripción |
+|---|---|
+| `26b91cd3e584` | Esquema inicial: las 10 tablas, equivalente a `database/schema.sql` |
+| `6a4f4ff49bfe` | Índices para el motor de agendamiento (bahía/mecánico + horario) y para las FK de pagos y seguimiento |
+
+```bash
+cd backend
+venv/bin/flask --app app db migrate -m "descripcion"   # tras cambiar un modelo
+venv/bin/flask --app app db upgrade                    # aplicar
+venv/bin/flask --app app db downgrade                  # revertir la última
+```
+
+## API (resumen)
+
+| Recurso | Endpoints |
+|---|---|
+| Auth | `POST /auth/register`, `POST /auth/login`, `POST /auth/logout`, `GET /auth/me` |
+| Vehículos | `GET/POST /vehicles`, `GET/PUT/DELETE /vehicles/<id>` |
+| Servicios | `GET /services` (público), `GET /services/manage`, `POST /services`, `PUT/DELETE /services/<id>` |
+| Bahías | `GET/POST /bays`, `PUT /bays/<id>` |
+| Repuestos | `GET /parts[?include_inactive=1]`, `POST /parts`, `PUT /parts/<id>` |
+| Negocio | `GET/PUT /businesses/mine`, `GET/POST /businesses/mechanics`, `PUT /businesses/mechanics/<id>` |
+| Citas | `GET/POST /appointments`, `GET/DELETE /appointments/<id>`, `PUT /appointments/<id>/status` |
+| Pagos | `GET /payments/appointment/<id>`, `POST /payments/<id>/pay` |
+| Seguimiento | `GET/POST /tracking/appointment/<id>` |
+
+Los errores siempre responden `{"error": "mensaje"}` con el código HTTP correspondiente (400, 401, 403, 404, 409).
