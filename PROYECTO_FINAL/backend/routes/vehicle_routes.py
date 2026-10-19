@@ -1,8 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import current_user
-from db.conexion import db
-from models.vehicle_model import Vehicle
 from middlewares.auth_middleware import role_required
+from repositories import base_repository, vehicle_repository
 
 vehicle_bp = Blueprint('vehicles', __name__)
 
@@ -10,17 +9,17 @@ vehicle_bp = Blueprint('vehicles', __name__)
 @vehicle_bp.route('', methods=['POST'])
 @role_required('client')
 def create_vehicle():
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
 
     required_fields = ['license_plate', 'brand', 'model', 'year', 'vehicle_type', 'fuel_type', 'transmission_type']
     for field in required_fields:
         if field not in data or data[field] in (None, ''):
             return jsonify({'error': f'El campo {field} es obligatorio'}), 400
 
-    if Vehicle.query.filter_by(license_plate=data['license_plate']).first():
+    if vehicle_repository.get_by_plate(data['license_plate']):
         return jsonify({'error': 'Esa placa ya está registrada'}), 409
 
-    vehicle = Vehicle(
+    vehicle = vehicle_repository.create(
         owner_user_id=current_user.user_id,
         license_plate=data['license_plate'],
         brand=data['brand'],
@@ -34,9 +33,7 @@ def create_vehicle():
         fuel_type=data['fuel_type'],
         transmission_type=data['transmission_type']
     )
-
-    db.session.add(vehicle)
-    db.session.commit()
+    base_repository.commit()
 
     return jsonify({'message': 'Vehículo registrado', 'vehicle_id': vehicle.vehicle_id}), 201
 
@@ -44,14 +41,14 @@ def create_vehicle():
 @vehicle_bp.route('', methods=['GET'])
 @role_required('client')
 def list_my_vehicles():
-    vehicles = Vehicle.query.filter_by(owner_user_id=current_user.user_id).all()
+    vehicles = vehicle_repository.list_by_owner(current_user.user_id)
     return jsonify([_serialize_vehicle(v) for v in vehicles]), 200
 
 
 @vehicle_bp.route('/<int:vehicle_id>', methods=['GET'])
 @role_required('client', 'mechanic', 'admin', 'owner')
 def get_vehicle(vehicle_id):
-    vehicle = Vehicle.query.get(vehicle_id)
+    vehicle = vehicle_repository.get_by_id(vehicle_id)
     if not vehicle:
         return jsonify({'error': 'Vehículo no encontrado'}), 404
 
@@ -64,33 +61,37 @@ def get_vehicle(vehicle_id):
 @vehicle_bp.route('/<int:vehicle_id>', methods=['PUT'])
 @role_required('client')
 def update_vehicle(vehicle_id):
-    vehicle = Vehicle.query.get(vehicle_id)
+    vehicle = vehicle_repository.get_by_id(vehicle_id)
     if not vehicle:
         return jsonify({'error': 'Vehículo no encontrado'}), 404
     if vehicle.owner_user_id != current_user.user_id:
         return jsonify({'error': 'No tienes permiso para editar este vehículo'}), 403
 
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
     editable_fields = ['brand', 'model', 'year', 'color', 'vehicle_type', 'mileage', 'fuel_type', 'transmission_type']
     for field in editable_fields:
         if field in data:
             setattr(vehicle, field, data[field])
 
-    db.session.commit()
+    base_repository.commit()
     return jsonify({'message': 'Vehículo actualizado'}), 200
 
 
 @vehicle_bp.route('/<int:vehicle_id>', methods=['DELETE'])
 @role_required('client')
 def delete_vehicle(vehicle_id):
-    vehicle = Vehicle.query.get(vehicle_id)
+    vehicle = vehicle_repository.get_by_id(vehicle_id)
     if not vehicle:
         return jsonify({'error': 'Vehículo no encontrado'}), 404
     if vehicle.owner_user_id != current_user.user_id:
         return jsonify({'error': 'No tienes permiso para eliminar este vehículo'}), 403
 
-    db.session.delete(vehicle)
-    db.session.commit()
+    # Las citas historicas referencian al vehiculo por FK: no se puede borrar.
+    if vehicle_repository.has_appointments(vehicle_id):
+        return jsonify({'error': 'Este vehículo tiene citas registradas y no se puede eliminar'}), 409
+
+    vehicle_repository.delete(vehicle)
+    base_repository.commit()
     return jsonify({'message': 'Vehículo eliminado'}), 200
 
 

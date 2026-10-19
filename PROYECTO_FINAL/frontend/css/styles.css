@@ -124,3 +124,192 @@ button:hover {
 .btn-agendar:hover {
   background-color: #1d4ed8;
 }
+
+/* ===== Panel del dueño (dashboard-admin) ===== */
+
+.pagina-admin {
+  max-width: 1150px;
+  width: 100%;
+  align-self: flex-start;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-secundario {
+  background-color: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.btn-secundario:hover {
+  background-color: #eff6ff;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin: 1.5rem 0 1rem;
+  border-bottom: 2px solid #e5e7eb;
+  overflow-x: auto;
+}
+
+.tab {
+  margin: 0;
+  background: none;
+  color: #4b5563;
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  background-color: #eff6ff;
+}
+
+.tab.activo {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+  font-weight: 600;
+}
+
+.seccion-admin {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tarjeta-resumen {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tarjeta-resumen span {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.tarjeta-resumen strong {
+  font-size: 1.5rem;
+}
+
+.filtros,
+.form-inline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+}
+
+.filtros label {
+  margin-top: 0;
+}
+
+.form-inline > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-inline label {
+  margin-top: 0;
+}
+
+.form-inline button,
+.filtros button {
+  margin-top: 0;
+}
+
+.check-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  padding-bottom: 0.5rem;
+}
+
+select {
+  padding: 0.45rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: white;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla th,
+.tabla td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+
+.tabla th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.tabla td.acciones {
+  white-space: nowrap;
+}
+
+.input-tabla {
+  width: 100%;
+  min-width: 80px;
+  max-width: 220px;
+  padding: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.fila-inactiva td {
+  color: #9ca3af;
+}
+
+.btn-chico {
+  margin-top: 0;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-ok { background: #dcfce7; color: #166534; }
+.badge-apagado { background: #f3f4f6; color: #6b7280; }
+.badge-alerta { background: #fef3c7; color: #92400e; }
