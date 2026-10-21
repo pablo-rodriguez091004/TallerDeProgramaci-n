@@ -1,0 +1,48 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "pricing": {
+    "input_usd_per_1m": 0.3,
+    "output_usd_per_1m": 2.5,
+    "tier": "Paid tier (Standard)",
+    "source_url": "https://ai.google.dev/gemini-api/docs/pricing",
+    "accessed": "2026-10-20",
+    "page_last_updated": "2026-10-19"
+  },
+  "assumptions": {
+    "queries_per_day": 50,
+    "days_per_month": 30,
+    "monthly_calls": 1500,
+    "token_source": "averages of the real calls in evidence/prompt_eval/results.json",
+    "one_llm_call_per_query": true,
+    "retries_not_billed_extra": true
+  },
+  "by_technique": {
+    "zero_shot": {
+      "avg_input_tokens": 356.3,
+      "avg_output_tokens": 75.5,
+      "avg_thinking_tokens": 0,
+      "cost_per_call_usd": 0.00029564,
+      "cost_per_1000_calls_usd": 0.2956,
+      "monthly_cost_usd": 0.4435,
+      "precision_top1": 0.9
+    },
+    "few_shot": {
+      "avg_input_tokens": 790.3,
+      "avg_output_tokens": 81.3,
+      "avg_thinking_tokens": 0,
+      "cost_per_call_usd": 0.00044034,
+      "cost_per_1000_calls_usd": 0.4403,
+      "monthly_cost_usd": 0.6605,
+      "precision_top1": 0.9
+    },
+    "cot": {
+      "avg_input_tokens": 425.3,
+      "avg_output_tokens": 184,
+      "avg_thinking_tokens": 0,
+      "cost_per_call_usd": 0.00058759,
+      "cost_per_1000_calls_usd": 0.5876,
+      "monthly_cost_usd": 0.8814,
+      "precision_top1": 0.9
+    }
+  }
+}
