@@ -21,3 +21,6 @@ desktop.ini
 # Archivos de prueba locales
 cookies.txt
 .pytest_cache/
+
+# Reporte JUnit que genera el CI
+pytest-report.xml
