@@ -16,4 +16,5 @@ class Service(db.Model):
 
     __table_args__ = (
         db.CheckConstraint("status IN ('active', 'inactive')", name='check_service_status'),
+        db.UniqueConstraint('business_id', 'service_name', name='uq_services_business_service_name'),
     )
