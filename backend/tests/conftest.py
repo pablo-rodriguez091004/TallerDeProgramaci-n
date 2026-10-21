@@ -92,6 +92,17 @@ def seed(app):
     yield
 
 
+@pytest.fixture(autouse=True)
+def block_real_llm(monkeypatch):
+    """Ninguna prueba puede llamar al LLM real (el CI no tiene key y cuesta cuota)."""
+    from services import llm_client
+
+    def _fail(*args, **kwargs):
+        raise AssertionError('A test tried to call the real LLM; mock llm_client._call_model')
+
+    monkeypatch.setattr(llm_client, '_call_model', _fail)
+
+
 @pytest.fixture
 def login(app):
     """Devuelve un test_client con la sesion (cookie) del usuario indicado."""

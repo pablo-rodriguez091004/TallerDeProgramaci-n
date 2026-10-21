@@ -30,6 +30,15 @@ class Config:
     OPENAPI_SWAGGER_UI_URL = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/'
     OPENAPI_SWAGGER_UI_CONFIG = {'displayRequestDuration': True, 'tryItOutEnabled': True}
 
+    # Asistente IA (/api/v1/ai). La key y el modelo vienen SOLO de backend/.env;
+    # sin ellos el endpoint responde 503 (ai_not_configured).
+    GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
+    GEMINI_MODEL = os.environ.get('GEMINI_MODEL')
+    AI_TIMEOUT_SECONDS = float(os.environ.get('AI_TIMEOUT_SECONDS', 20))
+    AI_MAX_RETRIES = int(os.environ.get('AI_MAX_RETRIES', 2))
+    AI_RETRY_BASE_SECONDS = float(os.environ.get('AI_RETRY_BASE_SECONDS', 1))
+    AI_MAX_CALLS_PER_HOUR = int(os.environ.get('AI_MAX_CALLS_PER_HOUR', 20))
+
 
 def _default_test_database_url():
     """
@@ -51,4 +60,8 @@ class TestConfig(Config):
     """
     TESTING = True
     SECRET_KEY = 'test-secret-key'
+    # El LLM se simula en las pruebas: nunca se usa la key real ni hay esperas.
+    GEMINI_API_KEY = 'test-key'
+    GEMINI_MODEL = 'test-model'
+    AI_RETRY_BASE_SECONDS = 0
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or _default_test_database_url()
