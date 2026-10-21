@@ -1,0 +1,1351 @@
+{
+  "metadata": {
+    "started_at_utc": "2026-10-21T03:06:00+00:00",
+    "finished_at_utc": "2026-10-21T03:09:00+00:00",
+    "provider": "Google Gemini API (google-genai SDK)",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.2,
+    "cases": 10,
+    "techniques": [
+      "zero_shot",
+      "few_shot",
+      "cot"
+    ],
+    "delay_between_calls_s": 5.0,
+    "metric_definitions": {
+      "precision_top1": "cases where the expected service is the first suggestion / total cases",
+      "hit_rate_top3": "cases where the expected service is among the suggestions / total cases",
+      "retrieval_recall": "cases where the expected service was in the RAG context / total cases",
+      "latency_ms": "end-to-end time of the provider call, retries included"
+    },
+    "catalog": [
+      {
+        "service_id": 1,
+        "service_name": "Cambio de aceite"
+      },
+      {
+        "service_id": 2,
+        "service_name": "Alineacion y balanceo"
+      },
+      {
+        "service_id": 3,
+        "service_name": "Cambio de pastillas de freno"
+      },
+      {
+        "service_id": 4,
+        "service_name": "Rectificación de discos de freno"
+      },
+      {
+        "service_id": 5,
+        "service_name": "Revisión de suspensión"
+      },
+      {
+        "service_id": 6,
+        "service_name": "Sincronización de motor"
+      },
+      {
+        "service_id": 7,
+        "service_name": "Diagnóstico con escáner"
+      },
+      {
+        "service_id": 8,
+        "service_name": "Revisión de batería y sistema eléctrico"
+      },
+      {
+        "service_id": 9,
+        "service_name": "Mantenimiento de aire acondicionado"
+      },
+      {
+        "service_id": 10,
+        "service_name": "Revisión de embrague"
+      },
+      {
+        "service_id": 11,
+        "service_name": "Mantenimiento del sistema de refrigeración"
+      },
+      {
+        "service_id": 12,
+        "service_name": "Cambio de correa de distribución"
+      }
+    ]
+  },
+  "summary": {
+    "zero_shot": {
+      "calls": 10,
+      "successful_calls": 10,
+      "hits_top1": 9,
+      "precision_top1": 0.9,
+      "hit_rate_top3": 0.9,
+      "retrieval_recall": 0.9,
+      "hallucinated_ids_discarded": 0,
+      "avg_input_tokens": 356.3,
+      "avg_output_tokens": 75.5,
+      "avg_thinking_tokens": 0,
+      "avg_latency_ms": 1000,
+      "max_latency_ms": 1341
+    },
+    "few_shot": {
+      "calls": 10,
+      "successful_calls": 10,
+      "hits_top1": 9,
+      "precision_top1": 0.9,
+      "hit_rate_top3": 0.9,
+      "retrieval_recall": 0.9,
+      "hallucinated_ids_discarded": 0,
+      "avg_input_tokens": 790.3,
+      "avg_output_tokens": 81.3,
+      "avg_thinking_tokens": 0,
+      "avg_latency_ms": 1277.6,
+      "max_latency_ms": 2848
+    },
+    "cot": {
+      "calls": 10,
+      "successful_calls": 10,
+      "hits_top1": 9,
+      "precision_top1": 0.9,
+      "hit_rate_top3": 0.9,
+      "retrieval_recall": 0.9,
+      "hallucinated_ids_discarded": 0,
+      "avg_input_tokens": 425.3,
+      "avg_output_tokens": 184,
+      "avg_thinking_tokens": 0,
+      "avg_latency_ms": 1240.8,
+      "max_latency_ms": 1545
+    }
+  },
+  "results": [
+    {
+      "case_id": 1,
+      "technique": "zero_shot",
+      "description": "Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado",
+      "expected_service_id": 2,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 7,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        2
+      ],
+      "suggestions": [
+        {
+          "service_id": 2,
+          "service_name": "Alineacion y balanceo",
+          "base_price": 120000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "El vehículo se desvía hacia un lado y presenta desgaste irregular en las llantas delanteras, lo que indica un problema de alineación."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        2
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 317,
+      "output_tokens": 77,
+      "thinking_tokens": 0,
+      "latency_ms": 877,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n\nCUSTOMER DESCRIPTION: Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 2,\n      \"confidence\": \"high\",\n      \"reason\": \"El vehículo se desvía hacia un lado y presenta desgaste irregular en las llantas delanteras, lo que indica un problema de alineación.\"\n    }\n  ],\n  \"notes\": \"\"\n}"
+    },
+    {
+      "case_id": 1,
+      "technique": "few_shot",
+      "description": "Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado",
+      "expected_service_id": 2,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 8,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        2
+      ],
+      "suggestions": [
+        {
+          "service_id": 2,
+          "service_name": "Alineacion y balanceo",
+          "base_price": 120000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "Que el carro se desvie y las llantas se gasten de un solo lado indica un problema de alineacion."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        2
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Problemas de alineacion pueden afectar la estabilidad y el control del vehiculo, por lo que es recomendable revisarlo.",
+      "reasoning": null,
+      "input_tokens": 751,
+      "output_tokens": 96,
+      "thinking_tokens": 0,
+      "latency_ms": 2848,
+      "attempts": 2,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n\nCUSTOMER DESCRIPTION: Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 2,\n      \"confidence\": \"high\",\n      \"reason\": \"Que el carro se desvie y las llantas se gasten de un solo lado indica un problema de alineacion.\"\n    }\n  ],\n  \"notes\": \"Problemas de alineacion pueden afectar la estabilidad y el control del vehiculo, por lo que es recomendable revisarlo.\"\n}"
+    },
+    {
+      "case_id": 1,
+      "technique": "cot",
+      "description": "Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado",
+      "expected_service_id": 2,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 9,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        2
+      ],
+      "suggestions": [
+        {
+          "service_id": 2,
+          "service_name": "Alineacion y balanceo",
+          "base_price": 120000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "Corrige la desviación hacia la derecha y previene el desgaste irregular de las llantas."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        2
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "No se aprecian riesgos inminentes de seguridad grave, pero se recomienda realizar el servicio pronto para evitar daños prematuros en las llantas.",
+      "reasoning": "1. El sistema afectado es la dirección y la suspensión del vehículo, específicamente la geometría de las llantas delanteras. 2. Las posibles causas son un desajuste en los ángulos de dirección (alineación) que hace que el carro se cargue hacia un lado y un desbalanceo en el peso de las ruedas que genera desgaste irregular. 3. El único servicio del catálogo que aborda directamente este problema es 'Alineacion y balanceo'.",
+      "input_tokens": 386,
+      "output_tokens": 175,
+      "thinking_tokens": 0,
+      "latency_ms": 1333,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n\nCUSTOMER DESCRIPTION: Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"1. El sistema afectado es la dirección y la suspensión del vehículo, específicamente la geometría de las llantas delanteras. 2. Las posibles causas son un desajuste en los ángulos de dirección (alineación) que hace que el carro se cargue hacia un lado y un desbalanceo en el peso de las ruedas que genera desgaste irregular. 3. El único servicio del catálogo que aborda directamente este problema es 'Alineacion y balanceo'.\", \"suggestions\": [{\"service_id\": 2, \"confidence\": \"high\", \"reason\": \"Corrige la desviación hacia la derecha y previene el desgaste irregular de las llantas.\"}], \"notes\": \"No se aprecian riesgos inminentes de seguridad grave, pero se recomienda realizar el servicio pronto para evitar daños prematuros en las llantas.\"}"
+    },
+    {
+      "case_id": 2,
+      "technique": "zero_shot",
+      "description": "Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare",
+      "expected_service_id": 3,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 10,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        3
+      ],
+      "suggestions": [
+        {
+          "service_id": 3,
+          "service_name": "Cambio de pastillas de freno",
+          "base_price": 180000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "El ruido metálico al frenar indica que las pastillas de freno están completamente gastadas."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Existe un riesgo crítico para la seguridad debido a la falla en el sistema de frenos. Debe evitar conducir el vehículo hasta que sea reparado.",
+      "reasoning": null,
+      "input_tokens": 380,
+      "output_tokens": 96,
+      "thinking_tokens": 0,
+      "latency_ms": 1301,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 3,\n      \"confidence\": \"high\",\n      \"reason\": \"El ruido metálico al frenar indica que las pastillas de freno están completamente gastadas.\"\n    }\n  ],\n  \"notes\": \"Existe un riesgo crítico para la seguridad debido a la falla en el sistema de frenos. Debe evitar conducir el vehículo hasta que sea reparado.\"\n}"
+    },
+    {
+      "case_id": 2,
+      "technique": "few_shot",
+      "description": "Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare",
+      "expected_service_id": 3,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 11,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        3
+      ],
+      "suggestions": [
+        {
+          "service_id": 3,
+          "service_name": "Cambio de pastillas de freno",
+          "base_price": 180000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "El sonido metálico al raspar al frenar y el pedal más hondo indican pastillas de freno gastadas."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Un problema con los frenos es un riesgo grave de seguridad; se recomienda no conducir el vehículo hasta revisarlo.",
+      "reasoning": null,
+      "input_tokens": 814,
+      "output_tokens": 95,
+      "thinking_tokens": 0,
+      "latency_ms": 935,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 3,\n      \"confidence\": \"high\",\n      \"reason\": \"El sonido metálico al raspar al frenar y el pedal más hondo indican pastillas de freno gastadas.\"\n    }\n  ],\n  \"notes\": \"Un problema con los frenos es un riesgo grave de seguridad; se recomienda no conducir el vehículo hasta revisarlo.\"\n}"
+    },
+    {
+      "case_id": 2,
+      "technique": "cot",
+      "description": "Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare",
+      "expected_service_id": 3,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 12,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        3,
+        4
+      ],
+      "suggestions": [
+        {
+          "service_id": 3,
+          "service_name": "Cambio de pastillas de freno",
+          "base_price": 180000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "El ruido metálico indica que las pastillas de freno están completamente gastadas y necesitan reemplazo."
+        },
+        {
+          "service_id": 4,
+          "service_name": "Rectificación de discos de freno",
+          "base_price": 220000,
+          "estimated_duration_minutes": 120,
+          "confidence": "medium",
+          "reason": "El raspado metálico pudo haber dañado los discos y requerir rectificación."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "¡Atención! Hay un riesgo de seguridad crítico debido a la falla en el sistema de frenos. Se recomienda no conducir el vehículo hasta que sea reparado.",
+      "reasoning": "El problema describe un ruido metálico al frenar y un pedal de freno que se hunde más de lo normal. (1) El sistema afectado es el sistema de frenos. (2) La causa más probable es el desgaste total de las pastillas de freno, llegando al metal, lo que también afecta los discos. (3) Los servicios del catálogo que abordan esto son el cambio de pastillas de freno y la rectificación de discos de freno.",
+      "input_tokens": 449,
+      "output_tokens": 213,
+      "thinking_tokens": 0,
+      "latency_ms": 1329,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"El problema describe un ruido metálico al frenar y un pedal de freno que se hunde más de lo normal. (1) El sistema afectado es el sistema de frenos. (2) La causa más probable es el desgaste total de las pastillas de freno, llegando al metal, lo que también afecta los discos. (3) Los servicios del catálogo que abordan esto son el cambio de pastillas de freno y la rectificación de discos de freno.\", \"suggestions\": [{\"service_id\": 3, \"confidence\": \"high\", \"reason\": \"El ruido metálico indica que las pastillas de freno están completamente gastadas y necesitan reemplazo.\"}, {\"service_id\": 4, \"confidence\": \"medium\", \"reason\": \"El raspado metálico pudo haber dañado los discos y requerir rectificación.\"}], \"notes\": \"¡Atención! Hay un riesgo de seguridad crítico debido a la falla en el sistema de frenos. Se recomienda no conducir el vehículo hasta que sea reparado.\"}"
+    },
+    {
+      "case_id": 3,
+      "technique": "zero_shot",
+      "description": "Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota",
+      "expected_service_id": 4,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 13,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        4
+      ],
+      "suggestions": [
+        {
+          "service_id": 4,
+          "service_name": "Rectificación de discos de freno",
+          "base_price": 220000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "La vibración al frenar es típicamente un síntoma de discos de freno alabeados."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        2,
+        6,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "El problema con los frenos representa un riesgo importante para la seguridad y debe ser atendido de inmediato.",
+      "reasoning": null,
+      "input_tokens": 428,
+      "output_tokens": 69,
+      "thinking_tokens": 0,
+      "latency_ms": 881,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 4, \"confidence\": \"high\", \"reason\": \"La vibración al frenar es típicamente un síntoma de discos de freno alabeados.\"}], \"notes\": \"El problema con los frenos representa un riesgo importante para la seguridad y debe ser atendido de inmediato.\"}"
+    },
+    {
+      "case_id": 3,
+      "technique": "few_shot",
+      "description": "Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota",
+      "expected_service_id": 4,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 14,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        4,
+        3
+      ],
+      "suggestions": [
+        {
+          "service_id": 4,
+          "service_name": "Rectificación de discos de freno",
+          "base_price": 220000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "La vibracion al frenar, especialmente en bajada, indica que los discos de freno pueden estar alabeados."
+        },
+        {
+          "service_id": 3,
+          "service_name": "Cambio de pastillas de freno",
+          "base_price": 180000,
+          "estimated_duration_minutes": 90,
+          "confidence": "medium",
+          "reason": "Conviene revisar las pastillas de freno junto con los discos para asegurar un frenado adecuado."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        2,
+        6,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Un problema en el sistema de frenos representa un riesgo de seguridad importante, especialmente en bajadas prolongadas.",
+      "reasoning": null,
+      "input_tokens": 862,
+      "output_tokens": 143,
+      "thinking_tokens": 0,
+      "latency_ms": 1941,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 4,\n      \"confidence\": \"high\",\n      \"reason\": \"La vibracion al frenar, especialmente en bajada, indica que los discos de freno pueden estar alabeados.\"\n    },\n    {\n      \"service_id\": 3,\n      \"confidence\": \"medium\",\n      \"reason\": \"Conviene revisar las pastillas de freno junto con los discos para asegurar un frenado adecuado.\"\n    }\n  ],\n  \"notes\": \"Un problema en el sistema de frenos representa un riesgo de seguridad importante, especialmente en bajadas prolongadas.\"\n}"
+    },
+    {
+      "case_id": 3,
+      "technique": "cot",
+      "description": "Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota",
+      "expected_service_id": 4,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 15,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        4,
+        3
+      ],
+      "suggestions": [
+        {
+          "service_id": 4,
+          "service_name": "Rectificación de discos de freno",
+          "base_price": 220000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "La vibración al frenar en bajada indica discos de freno alabeados que requieren rectificación."
+        },
+        {
+          "service_id": 3,
+          "service_name": "Cambio de pastillas de freno",
+          "base_price": 180000,
+          "estimated_duration_minutes": 90,
+          "confidence": "medium",
+          "reason": "Es recomendable revisar y posiblemente cambiar las pastillas de freno junto con el trabajo en los discos."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        3,
+        4,
+        2,
+        6,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Existe un riesgo de seguridad importante debido a la falla en el sistema de frenos al descender pendientes. Se recomienda reparar antes de volver a conducir en zonas montañosas.",
+      "reasoning": "(1) El sistema afectado es el sistema de frenos y la dirección del vehículo. (2) Los síntomas de vibración en el timón al frenar, especialmente en bajada (descenso prolongado), son típicamente causados por discos de freno alabeados o deformados por calor, y también pueden estar relacionados con el desgaste de las pastillas de freno. (3) De acuerdo con el catálogo, los servicios que abordan estas causas son la rectificación de discos de freno y el cambio de pastillas de freno.",
+      "input_tokens": 497,
+      "output_tokens": 270,
+      "thinking_tokens": 0,
+      "latency_ms": 1545,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[3] Cambio de pastillas de freno - Reemplazo de pastillas de freno y revision del liquido de frenos\n[4] Rectificación de discos de freno - Rectificado o cambio de discos de freno alabeados que causan vibracion al frenar\n[2] Alineacion y balanceo - Alineacion de llantas y balanceo\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"reasoning\": \"(1) El sistema afectado es el sistema de frenos y la dirección del vehículo. (2) Los síntomas de vibración en el timón al frenar, especialmente en bajada (descenso prolongado), son típicamente causados por discos de freno alabeados o deformados por calor, y también pueden estar relacionados con el desgaste de las pastillas de freno. (3) De acuerdo con el catálogo, los servicios que abordan estas causas son la rectificación de discos de freno y el cambio de pastillas de freno.\",\n  \"suggestions\": [\n    {\n      \"service_id\": 4,\n      \"confidence\": \"high\",\n      \"reason\": \"La vibración al frenar en bajada indica discos de freno alabeados que requieren rectificación.\"\n    },\n    {\n      \"service_id\": 3,\n      \"confidence\": \"medium\",\n      \"reason\": \"Es recomendable revisar y posiblemente cambiar las pastillas de freno junto con el trabajo en los discos.\"\n    }\n  ],\n  \"notes\": \"Existe un riesgo de seguridad importante debido a la falla en el sistema de frenos al descender pendientes. Se recomienda reparar antes de volver a conducir en zonas montañosas.\"\n}"
+    },
+    {
+      "case_id": 4,
+      "technique": "zero_shot",
+      "description": "En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante",
+      "expected_service_id": 5,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 16,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        5
+      ],
+      "suggestions": [
+        {
+          "service_id": 5,
+          "service_name": "Revisión de suspensión",
+          "base_price": 250000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "El rebote excesivo y el golpe seco al pasar resaltos indican un desgaste en la suspensión y los amortiguadores delanteros."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        5
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Los problemas en la suspensión pueden comprometer la estabilidad del vehículo, por lo que se recomienda revisarlo pronto.",
+      "reasoning": null,
+      "input_tokens": 319,
+      "output_tokens": 97,
+      "thinking_tokens": 0,
+      "latency_ms": 899,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n\nCUSTOMER DESCRIPTION: En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 5,\n      \"confidence\": \"high\",\n      \"reason\": \"El rebote excesivo y el golpe seco al pasar resaltos indican un desgaste en la suspensión y los amortiguadores delanteros.\"\n    }\n  ],\n  \"notes\": \"Los problemas en la suspensión pueden comprometer la estabilidad del vehículo, por lo que se recomienda revisarlo pronto.\"\n}"
+    },
+    {
+      "case_id": 4,
+      "technique": "few_shot",
+      "description": "En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante",
+      "expected_service_id": 5,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 17,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        5
+      ],
+      "suggestions": [
+        {
+          "service_id": 5,
+          "service_name": "Revisión de suspensión",
+          "base_price": 250000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "El rebote excesivo y el golpe seco al pasar resaltos indican desgaste en los componentes de la suspension."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        5
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Un problema en la suspension puede afectar la estabilidad del vehiculo, por lo que se recomienda revisarlo pronto.",
+      "reasoning": null,
+      "input_tokens": 753,
+      "output_tokens": 92,
+      "thinking_tokens": 0,
+      "latency_ms": 916,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n\nCUSTOMER DESCRIPTION: En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 5,\n      \"confidence\": \"high\",\n      \"reason\": \"El rebote excesivo y el golpe seco al pasar resaltos indican desgaste en los componentes de la suspension.\"\n    }\n  ],\n  \"notes\": \"Un problema en la suspension puede afectar la estabilidad del vehiculo, por lo que se recomienda revisarlo pronto.\"\n}"
+    },
+    {
+      "case_id": 4,
+      "technique": "cot",
+      "description": "En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante",
+      "expected_service_id": 5,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 18,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        5
+      ],
+      "suggestions": [
+        {
+          "service_id": 5,
+          "service_name": "Revisión de suspensión",
+          "base_price": 250000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "Este servicio revisa y cambia amortiguadores y bujes, solucionando el rebote y el golpe seco en la parte delantera."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        5
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Se recomienda realizar esta revisión pronto, ya que el desgaste en la suspensión puede afectar la estabilidad y el frenado del vehículo.",
+      "reasoning": "1. El sistema afectado es la suspensión delantera del vehículo. 2. Los síntomas de rebotar varias veces en los reductores de velocidad y el golpe seco indican que los amortiguadores delanteros han perdido su capacidad de amortiguación o hay desgaste en los componentes de la suspensión como bujes o terminales. 3. El único servicio del catálogo que aborda esta falla es la Revisión de suspensión (service_id 5).",
+      "input_tokens": 388,
+      "output_tokens": 178,
+      "thinking_tokens": 0,
+      "latency_ms": 1182,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n\nCUSTOMER DESCRIPTION: En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"1. El sistema afectado es la suspensión delantera del vehículo. 2. Los síntomas de rebotar varias veces en los reductores de velocidad y el golpe seco indican que los amortiguadores delanteros han perdido su capacidad de amortiguación o hay desgaste en los componentes de la suspensión como bujes o terminales. 3. El único servicio del catálogo que aborda esta falla es la Revisión de suspensión (service_id 5).\", \"suggestions\": [{\"service_id\": 5, \"confidence\": \"high\", \"reason\": \"Este servicio revisa y cambia amortiguadores y bujes, solucionando el rebote y el golpe seco en la parte delantera.\"}], \"notes\": \"Se recomienda realizar esta revisión pronto, ya que el desgaste en la suspensión puede afectar la estabilidad y el frenado del vehículo.\"}"
+    },
+    {
+      "case_id": 5,
+      "technique": "zero_shot",
+      "description": "Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas",
+      "expected_service_id": 6,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 19,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        6
+      ],
+      "suggestions": [
+        {
+          "service_id": 6,
+          "service_name": "Sincronización de motor",
+          "base_price": 280000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "Este servicio incluye limpieza de inyectores y ajuste de mezcla, lo que soluciona el alto consumo de gasolina y la falta de fuerza."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 319,
+      "output_tokens": 55,
+      "thinking_tokens": 0,
+      "latency_ms": 1023,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 6, \"confidence\": \"high\", \"reason\": \"Este servicio incluye limpieza de inyectores y ajuste de mezcla, lo que soluciona el alto consumo de gasolina y la falta de fuerza.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 5,
+      "technique": "few_shot",
+      "description": "Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas",
+      "expected_service_id": 6,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 20,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        6
+      ],
+      "suggestions": [
+        {
+          "service_id": 6,
+          "service_name": "Sincronización de motor",
+          "base_price": 280000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "El alto consumo de gasolina y la falta de fuerza en subidas indican que la sincronizacion del motor puede estar fallando."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 753,
+      "output_tokens": 51,
+      "thinking_tokens": 0,
+      "latency_ms": 941,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 6, \"confidence\": \"high\", \"reason\": \"El alto consumo de gasolina y la falta de fuerza en subidas indican que la sincronizacion del motor puede estar fallando.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 5,
+      "technique": "cot",
+      "description": "Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas",
+      "expected_service_id": 6,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 21,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        6
+      ],
+      "suggestions": [
+        {
+          "service_id": 6,
+          "service_name": "Sincronización de motor",
+          "base_price": 280000,
+          "estimated_duration_minutes": 120,
+          "confidence": "high",
+          "reason": "La sincronización de motor soluciona el alto consumo de combustible y la pérdida de fuerza al optimizar la inyección y el encendido."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "No se aprecian riesgos de seguridad inmediatos como fallas en frenos o dirección, pero se recomienda realizar el servicio pronto para evitar daños mayores en el motor.",
+      "reasoning": "1. El sistema afectado es el sistema de inyección y encendido del motor, el cual controla la mezcla de aire y combustible. 2. Las posibles causas del alto consumo de gasolina y la falta de fuerza en subidas son bujías desgastadas o inyectores sucios que impieren una combustión eficiente. 3. El servicio de sincronización de motor del catálogo incluye el cambio de bujías, limpieza de inyectores y ajuste de la mezcla, abordando directamente estas causas.",
+      "input_tokens": 388,
+      "output_tokens": 222,
+      "thinking_tokens": 0,
+      "latency_ms": 1443,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"reasoning\": \"1. El sistema afectado es el sistema de inyección y encendido del motor, el cual controla la mezcla de aire y combustible. 2. Las posibles causas del alto consumo de gasolina y la falta de fuerza en subidas son bujías desgastadas o inyectores sucios que impieren una combustión eficiente. 3. El servicio de sincronización de motor del catálogo incluye el cambio de bujías, limpieza de inyectores y ajuste de la mezcla, abordando directamente estas causas.\",\n  \"suggestions\": [\n    {\n      \"service_id\": 6,\n      \"confidence\": \"high\",\n      \"reason\": \"La sincronización de motor soluciona el alto consumo de combustible y la pérdida de fuerza al optimizar la inyección y el encendido.\"\n    }\n  ],\n  \"notes\": \"No se aprecian riesgos de seguridad inmediatos como fallas en frenos o dirección, pero se recomienda realizar el servicio pronto para evitar daños mayores en el motor.\"\n}"
+    },
+    {
+      "case_id": 6,
+      "technique": "zero_shot",
+      "description": "Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal",
+      "expected_service_id": 7,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 22,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        7
+      ],
+      "suggestions": [
+        {
+          "service_id": 7,
+          "service_name": "Diagnóstico con escáner",
+          "base_price": 90000,
+          "estimated_duration_minutes": 45,
+          "confidence": "high",
+          "reason": "La luz amarilla en el tablero con forma de motor indica que la computadora ha registrado un código de falla que debe ser leído con escáner."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        7,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "No representa un riesgo inminente para la seguridad, pero se recomienda realizar el diagnóstico pronto para evitar daños mayores.",
+      "reasoning": null,
+      "input_tokens": 372,
+      "output_tokens": 79,
+      "thinking_tokens": 0,
+      "latency_ms": 929,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[7] Diagnóstico con escáner - Lectura de codigos de falla de la computadora del vehiculo (check engine)\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 7, \"confidence\": \"high\", \"reason\": \"La luz amarilla en el tablero con forma de motor indica que la computadora ha registrado un código de falla que debe ser leído con escáner.\"}], \"notes\": \"No representa un riesgo inminente para la seguridad, pero se recomienda realizar el diagnóstico pronto para evitar daños mayores.\"}"
+    },
+    {
+      "case_id": 6,
+      "technique": "few_shot",
+      "description": "Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal",
+      "expected_service_id": 7,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 23,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        7
+      ],
+      "suggestions": [
+        {
+          "service_id": 7,
+          "service_name": "Diagnóstico con escáner",
+          "base_price": 90000,
+          "estimated_duration_minutes": 45,
+          "confidence": "high",
+          "reason": "La luz amarilla con forma de motor indica que se requiere una lectura de codigos de falla con escaner."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        7,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 806,
+      "output_tokens": 49,
+      "thinking_tokens": 0,
+      "latency_ms": 784,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[7] Diagnóstico con escáner - Lectura de codigos de falla de la computadora del vehiculo (check engine)\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 7, \"confidence\": \"high\", \"reason\": \"La luz amarilla con forma de motor indica que se requiere una lectura de codigos de falla con escaner.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 6,
+      "technique": "cot",
+      "description": "Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal",
+      "expected_service_id": 7,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 24,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        7
+      ],
+      "suggestions": [
+        {
+          "service_id": 7,
+          "service_name": "Diagnóstico con escáner",
+          "base_price": 90000,
+          "estimated_duration_minutes": 45,
+          "confidence": "high",
+          "reason": "Es necesario realizar una lectura de códigos para identificar la causa exacta por la cual se encendió la luz de check engine."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        7,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": "(1) El sistema afectado es el motor o la gestión electrónica del vehículo, indicado por la luz amarilla de 'check engine'. (2) Las causas pueden ir desde un sensor defectuoso hasta fallas menores en las emisiones o sistema de combustible, aunque el carro marche normal. (3) El servicio en el catálogo que aborda directamente esta falla es el diagnóstico con escáner para leer los códigos de la computadora.",
+      "input_tokens": 441,
+      "output_tokens": 140,
+      "thinking_tokens": 0,
+      "latency_ms": 1210,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[7] Diagnóstico con escáner - Lectura de codigos de falla de la computadora del vehiculo (check engine)\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"(1) El sistema afectado es el motor o la gestión electrónica del vehículo, indicado por la luz amarilla de 'check engine'. (2) Las causas pueden ir desde un sensor defectuoso hasta fallas menores en las emisiones o sistema de combustible, aunque el carro marche normal. (3) El servicio en el catálogo que aborda directamente esta falla es el diagnóstico con escáner para leer los códigos de la computadora.\", \"suggestions\": [{\"service_id\": 7, \"confidence\": \"high\", \"reason\": \"Es necesario realizar una lectura de códigos para identificar la causa exacta por la cual se encendió la luz de check engine.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 7,
+      "technique": "zero_shot",
+      "description": "Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera",
+      "expected_service_id": 8,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 25,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        8
+      ],
+      "suggestions": [
+        {
+          "service_id": 8,
+          "service_name": "Revisión de batería y sistema eléctrico",
+          "base_price": 100000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "El problema al dar arranque y el sonido de clic indican una falla en la batería o en el sistema eléctrico."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 345,
+      "output_tokens": 48,
+      "thinking_tokens": 0,
+      "latency_ms": 895,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 8, \"confidence\": \"high\", \"reason\": \"El problema al dar arranque y el sonido de clic indican una falla en la batería o en el sistema eléctrico.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 7,
+      "technique": "few_shot",
+      "description": "Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera",
+      "expected_service_id": 8,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 26,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        8
+      ],
+      "suggestions": [
+        {
+          "service_id": 8,
+          "service_name": "Revisión de batería y sistema eléctrico",
+          "base_price": 100000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "El síntoma de hacer clic al intentar dar arranque y tener que empujar el carro indica un fallo en la batería, el motor de arranque o el alternador."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Un problema con el sistema de arranque puede dejarlo varado en cualquier momento; se recomienda revisarlo a la brevedad.",
+      "reasoning": null,
+      "input_tokens": 779,
+      "output_tokens": 106,
+      "thinking_tokens": 0,
+      "latency_ms": 1134,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 8,\n      \"confidence\": \"high\",\n      \"reason\": \"El síntoma de hacer clic al intentar dar arranque y tener que empujar el carro indica un fallo en la batería, el motor de arranque o el alternador.\"\n    }\n  ],\n  \"notes\": \"Un problema con el sistema de arranque puede dejarlo varado en cualquier momento; se recomienda revisarlo a la brevedad.\"\n}"
+    },
+    {
+      "case_id": 7,
+      "technique": "cot",
+      "description": "Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera",
+      "expected_service_id": 8,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 27,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        8
+      ],
+      "suggestions": [
+        {
+          "service_id": 8,
+          "service_name": "Revisión de batería y sistema eléctrico",
+          "base_price": 100000,
+          "estimated_duration_minutes": 60,
+          "confidence": "high",
+          "reason": "El síntoma de hacer clic al intentar encender y requerir empuje indica un problema en la batería o el sistema de arranque."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        8,
+        10
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "No se aprecian riesgos inminentes de seguridad vial, pero se recomienda revisar el sistema eléctrico pronto para evitar quedar varado.",
+      "reasoning": "1. El sistema afectado es el sistema eléctrico y de arranque, específicamente la batería o el motor de arranque dado que el vehículo solo hace un sonido de 'clic' al intentar encender y requirió ser empujado.\n2. Las causas posibles son una batería descargada o defectuosa, un alternador que no carga adecuadamente, o fallas en el motor de arranque.\n3. El servicio del catálogo que aborda directamente estas causas es la 'Revisión de batería y sistema eléctrico' (servicio_id 8).",
+      "input_tokens": 414,
+      "output_tokens": 198,
+      "thinking_tokens": 0,
+      "latency_ms": 1250,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n[10] Revisión de embrague - Ajuste o cambio del kit de embrague (disco, prensa y balinera)\n\nCUSTOMER DESCRIPTION: Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"1. El sistema afectado es el sistema eléctrico y de arranque, específicamente la batería o el motor de arranque dado que el vehículo solo hace un sonido de 'clic' al intentar encender y requirió ser empujado.\\n2. Las causas posibles son una batería descargada o defectuosa, un alternador que no carga adecuadamente, o fallas en el motor de arranque.\\n3. El servicio del catálogo que aborda directamente estas causas es la 'Revisión de batería y sistema eléctrico' (servicio_id 8).\", \"suggestions\": [{\"service_id\": 8, \"confidence\": \"high\", \"reason\": \"El síntoma de hacer clic al intentar encender y requerir empuje indica un problema en la batería o el sistema de arranque.\"}], \"notes\": \"No se aprecian riesgos inminentes de seguridad vial, pero se recomienda revisar el sistema eléctrico pronto para evitar quedar varado.\"}"
+    },
+    {
+      "case_id": 8,
+      "technique": "zero_shot",
+      "description": "El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo",
+      "expected_service_id": 9,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 28,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        9
+      ],
+      "suggestions": [
+        {
+          "service_id": 9,
+          "service_name": "Mantenimiento de aire acondicionado",
+          "base_price": 200000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "El problema de que el aire no enfría y solo sale a temperatura ambiente se soluciona con el mantenimiento del sistema de aire acondicionado."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        9,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 353,
+      "output_tokens": 77,
+      "thinking_tokens": 0,
+      "latency_ms": 920,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 9,\n      \"confidence\": \"high\",\n      \"reason\": \"El problema de que el aire no enfría y solo sale a temperatura ambiente se soluciona con el mantenimiento del sistema de aire acondicionado.\"\n    }\n  ],\n  \"notes\": \"\"\n}"
+    },
+    {
+      "case_id": 8,
+      "technique": "few_shot",
+      "description": "El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo",
+      "expected_service_id": 9,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 29,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        9
+      ],
+      "suggestions": [
+        {
+          "service_id": 9,
+          "service_name": "Mantenimiento de aire acondicionado",
+          "base_price": 200000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "La falta de refrigeración en el aire acondicionado suele indicar la necesidad de recarga de gas o limpieza."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        9,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": null,
+      "input_tokens": 787,
+      "output_tokens": 47,
+      "thinking_tokens": 0,
+      "latency_ms": 1330,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [{\"service_id\": 9, \"confidence\": \"high\", \"reason\": \"La falta de refrigeración en el aire acondicionado suele indicar la necesidad de recarga de gas o limpieza.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 8,
+      "technique": "cot",
+      "description": "El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo",
+      "expected_service_id": 9,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 30,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        9
+      ],
+      "suggestions": [
+        {
+          "service_id": 9,
+          "service_name": "Mantenimiento de aire acondicionado",
+          "base_price": 200000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "La recarga de gas y limpieza del sistema solucionará la falta de enfriamiento."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        9,
+        6
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "",
+      "reasoning": "(1) El sistema afectado es el aire acondicionado del vehículo. (2) Las posibles causas son la falta de gas refrigerante, obstrucción en el evaporador o suciedad en el filtro de cabina. (3) El servicio [9] Mantenimiento de aire acondicionado aborda directamente la recarga de gas y la limpieza necesaria para solucionar este problema.",
+      "input_tokens": 422,
+      "output_tokens": 121,
+      "thinking_tokens": 0,
+      "latency_ms": 837,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n\nCUSTOMER DESCRIPTION: El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"(1) El sistema afectado es el aire acondicionado del vehículo. (2) Las posibles causas son la falta de gas refrigerante, obstrucción en el evaporador o suciedad en el filtro de cabina. (3) El servicio [9] Mantenimiento de aire acondicionado aborda directamente la recarga de gas y la limpieza necesaria para solucionar este problema.\", \"suggestions\": [{\"service_id\": 9, \"confidence\": \"high\", \"reason\": \"La recarga de gas y limpieza del sistema solucionará la falta de enfriamiento.\"}], \"notes\": \"\"}"
+    },
+    {
+      "case_id": 9,
+      "technique": "zero_shot",
+      "description": "Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado",
+      "expected_service_id": 10,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 31,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [],
+      "suggestions": [],
+      "hit_top1": false,
+      "hit_top3": false,
+      "retrieval_hit": false,
+      "retrieval_candidates": [
+        6,
+        8
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "Los síntomas descritos (el motor sube de revoluciones pero el carro no avanza y huele a quemado) indican un problema con el embrague o cloche, el cual no está incluido en el catálogo actual de servicios.",
+      "reasoning": null,
+      "input_tokens": 350,
+      "output_tokens": 57,
+      "thinking_tokens": 0,
+      "latency_ms": 934,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n\nCUSTOMER DESCRIPTION: Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [], \"notes\": \"Los síntomas descritos (el motor sube de revoluciones pero el carro no avanza y huele a quemado) indican un problema con el embrague o cloche, el cual no está incluido en el catálogo actual de servicios.\"}"
+    },
+    {
+      "case_id": 9,
+      "technique": "few_shot",
+      "description": "Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado",
+      "expected_service_id": 10,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 32,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [],
+      "suggestions": [],
+      "hit_top1": false,
+      "hit_top3": false,
+      "retrieval_hit": false,
+      "retrieval_candidates": [
+        6,
+        8
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "El problema descrito sugiere un desgaste en el embrague o cloche, pero el catálogo actual no incluye servicios para transmisión o embrague.",
+      "reasoning": null,
+      "input_tokens": 784,
+      "output_tokens": 36,
+      "thinking_tokens": 0,
+      "latency_ms": 921,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n\nCUSTOMER DESCRIPTION: Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"suggestions\": [], \"notes\": \"El problema descrito sugiere un desgaste en el embrague o cloche, pero el catálogo actual no incluye servicios para transmisión o embrague.\"}"
+    },
+    {
+      "case_id": 9,
+      "technique": "cot",
+      "description": "Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado",
+      "expected_service_id": 10,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 33,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [],
+      "suggestions": [],
+      "hit_top1": false,
+      "hit_top3": false,
+      "retrieval_hit": false,
+      "retrieval_candidates": [
+        6,
+        8
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "No tenemos un servicio en nuestro catálogo actual para reparar problemas de embrague o transmisión, que es lo que su carro parece necesitar. Le recomendamos acudir a un taller especializado en embragues.",
+      "reasoning": "(1) El sistema afectado es la transmisión y el embrague, ya que el motor sube de revoluciones pero el vehículo no avanza adecuadamente al acelerar. (2) La causa más probable es el desgaste del embrague (clutch), lo cual también explica el olor a quemado. (3) Ninguno de los servicios del catálogo actual (Sincronización de motor ni Revisión de batería y sistema eléctrico) aborda problemas de transmisión o embrague.",
+      "input_tokens": 419,
+      "output_tokens": 148,
+      "thinking_tokens": 0,
+      "latency_ms": 1144,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[6] Sincronización de motor - Cambio de bujias, limpieza de inyectores y ajuste de la mezcla aire-combustible\n[8] Revisión de batería y sistema eléctrico - Prueba de bateria, alternador y motor de arranque\n\nCUSTOMER DESCRIPTION: Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"(1) El sistema afectado es la transmisión y el embrague, ya que el motor sube de revoluciones pero el vehículo no avanza adecuadamente al acelerar. (2) La causa más probable es el desgaste del embrague (clutch), lo cual también explica el olor a quemado. (3) Ninguno de los servicios del catálogo actual (Sincronización de motor ni Revisión de batería y sistema eléctrico) aborda problemas de transmisión o embrague.\", \"suggestions\": [], \"notes\": \"No tenemos un servicio en nuestro catálogo actual para reparar problemas de embrague o transmisión, que es lo que su carro parece necesitar. Le recomendamos acudir a un taller especializado en embragues.\"}"
+    },
+    {
+      "case_id": 10,
+      "technique": "zero_shot",
+      "description": "La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde",
+      "expected_service_id": 11,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 34,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        11
+      ],
+      "suggestions": [
+        {
+          "service_id": 11,
+          "service_name": "Mantenimiento del sistema de refrigeración",
+          "base_price": 170000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "El sobrecalentamiento y la fuga de líquido verde indican un fallo directo en el sistema de refrigeración."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        11,
+        5,
+        9
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "¡Atención! Existe un riesgo grave de seguridad debido al sobrecalentamiento del motor. No conduzca el vehículo para evitar daños mayores.",
+      "reasoning": null,
+      "input_tokens": 380,
+      "output_tokens": 100,
+      "thinking_tokens": 0,
+      "latency_ms": 1341,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[11] Mantenimiento del sistema de refrigeración - Cambio de refrigerante y revision de radiador, termostato y mangueras\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n\nCUSTOMER DESCRIPTION: La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 11,\n      \"confidence\": \"high\",\n      \"reason\": \"El sobrecalentamiento y la fuga de líquido verde indican un fallo directo en el sistema de refrigeración.\"\n    }\n  ],\n  \"notes\": \"¡Atención! Existe un riesgo grave de seguridad debido al sobrecalentamiento del motor. No conduzca el vehículo para evitar daños mayores.\"\n}"
+    },
+    {
+      "case_id": 10,
+      "technique": "few_shot",
+      "description": "La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde",
+      "expected_service_id": 11,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 35,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        11
+      ],
+      "suggestions": [
+        {
+          "service_id": 11,
+          "service_name": "Mantenimiento del sistema de refrigeración",
+          "base_price": 170000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "La temperatura alta en trancones y el charco de líquido verde indican una fuga o fallo en el sistema de refrigeración."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        11,
+        5,
+        9
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "El vehículo presenta un riesgo de seguridad por sobrecalentamiento del motor; es recomendable no conducirlo hasta revisarlo.",
+      "reasoning": null,
+      "input_tokens": 814,
+      "output_tokens": 98,
+      "thinking_tokens": 0,
+      "latency_ms": 1026,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nThe following solved examples show the expected answer. They use an example catalog; for the real request use ONLY the real CATALOG CONTEXT below.\n\nExample 1\nCATALOG CONTEXT:\n[101] Cambio de pastillas de freno - Reemplazo de pastillas de freno\n[102] Alineacion y balanceo - Alineacion de llantas y balanceo\nCUSTOMER DESCRIPTION: Cuando freno se escucha un chillido metalico en las ruedas de adelante\nANSWER: {\"suggestions\": [{\"service_id\": 101, \"confidence\": \"high\", \"reason\": \"El chillido metalico al frenar suele indicar pastillas gastadas.\"}], \"notes\": \"Un problema de frenos es un riesgo de seguridad; conviene revisarlo pronto.\"}\n\nExample 2\nCATALOG CONTEXT:\n[103] Diagnostico con escaner - Lectura de codigos de falla de la computadora\n[104] Sincronizacion de motor - Bujias, inyectores y ajuste de mezcla\n[105] Cambio de aceite - Cambio de aceite y filtro\nCUSTOMER DESCRIPTION: Se prendio la luz de check engine y el carro tiembla cuando esta prendido sin acelerar\nANSWER: {\"suggestions\": [{\"service_id\": 103, \"confidence\": \"high\", \"reason\": \"La luz de check engine requiere leer los codigos de falla para saber la causa.\"}, {\"service_id\": 104, \"confidence\": \"medium\", \"reason\": \"El temblor en minimo puede deberse a bujias o inyectores en mal estado.\"}], \"notes\": \"\"}\n\nExample 3\nCATALOG CONTEXT:\n[105] Cambio de aceite - Cambio de aceite y filtro\n[106] Revision de embrague - Ajuste o cambio del kit de embrague\nCUSTOMER DESCRIPTION: Quiero polarizar los vidrios del carro\nANSWER: {\"suggestions\": [], \"notes\": \"El catalogo del taller no incluye polarizado de vidrios.\"}\n\nNow the real request.\n\nCATALOG CONTEXT:\n[11] Mantenimiento del sistema de refrigeración - Cambio de refrigerante y revision de radiador, termostato y mangueras\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n\nCUSTOMER DESCRIPTION: La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde\n\nAnswer with this JSON shape:\n{\"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\n  \"suggestions\": [\n    {\n      \"service_id\": 11,\n      \"confidence\": \"high\",\n      \"reason\": \"La temperatura alta en trancones y el charco de líquido verde indican una fuga o fallo en el sistema de refrigeración.\"\n    }\n  ],\n  \"notes\": \"El vehículo presenta un riesgo de seguridad por sobrecalentamiento del motor; es recomendable no conducirlo hasta revisarlo.\"\n}"
+    },
+    {
+      "case_id": 10,
+      "technique": "cot",
+      "description": "La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde",
+      "expected_service_id": 11,
+      "status": "success",
+      "error": null,
+      "ai_call_id": 36,
+      "model": "gemini-3.5-flash-lite",
+      "suggested_service_ids": [
+        11
+      ],
+      "suggestions": [
+        {
+          "service_id": 11,
+          "service_name": "Mantenimiento del sistema de refrigeración",
+          "base_price": 170000,
+          "estimated_duration_minutes": 90,
+          "confidence": "high",
+          "reason": "Atiende el sobrecalentamiento y la fuga de líquido refrigerante."
+        }
+      ],
+      "hit_top1": true,
+      "hit_top3": true,
+      "retrieval_hit": true,
+      "retrieval_candidates": [
+        11,
+        5,
+        9
+      ],
+      "retrieval_fallback": false,
+      "discarded_service_ids": [],
+      "notes": "El vehículo presenta un riesgo alto de seguridad por sobrecalentamiento (riesgo de daños graves en el motor), por lo que se recomienda no conducirlo hasta que sea revisado.",
+      "reasoning": "1. El sistema afectado es el de refrigeración, evidenciado por el aumento de la temperatura hasta el nivel rojo y el charco de líquido refrigerante verde debajo del vehículo. 2. Las posibles causas son una fuga en el radiador, mangueras o termostato, o una falla en la disipación del calor. 3. El servicio del catálogo que aborda directamente esto es el mantenimiento del sistema de refrigeración.",
+      "input_tokens": 449,
+      "output_tokens": 175,
+      "thinking_tokens": 0,
+      "latency_ms": 1135,
+      "attempts": 1,
+      "prompt": "[SYSTEM]\nYou are the service advisor of MecaTrack, a car repair workshop in Colombia.\nA customer describes a problem with their vehicle in their own words, usually in Spanish.\nYour job is to recommend which services from the workshop catalog they should book.\n\nRules:\n1. Recommend ONLY services listed in the CATALOG CONTEXT, identified by their exact service_id.\n2. Never invent services, prices or durations. Do not write prices or durations at all:\n   the system adds them from the database.\n3. Recommend at most 3 services, the most likely first. If no listed service fits,\n   return an empty \"suggestions\" list and explain why in \"notes\".\n4. If the description suggests a safety risk (brakes, steering, overheating), say so in \"notes\".\n5. Write \"reason\" and \"notes\" in the same language as the customer's description.\n6. Answer with one JSON object and nothing else.\n\n[USER]\nCATALOG CONTEXT:\n[11] Mantenimiento del sistema de refrigeración - Cambio de refrigerante y revision de radiador, termostato y mangueras\n[5] Revisión de suspensión - Revision y cambio de amortiguadores, bujes, terminales y rotulas\n[9] Mantenimiento de aire acondicionado - Recarga de gas refrigerante, limpieza del evaporador y cambio del filtro de cabina\n\nCUSTOMER DESCRIPTION: La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde\n\nThink step by step before choosing. First write your analysis in \"reasoning\":\n(1) which vehicle system is most likely affected, (2) the possible causes,\n(3) which services of the CATALOG CONTEXT address those causes. Then give the suggestions.\nAnswer with this JSON shape:\n{\"reasoning\": \"<your step-by-step analysis>\", \"suggestions\": [{\"service_id\": <integer from the CATALOG CONTEXT>, \"confidence\": \"high\" | \"medium\" | \"low\", \"reason\": \"<one short sentence>\"}], \"notes\": \"<short note, or empty string>\"}",
+      "response": "{\"reasoning\": \"1. El sistema afectado es el de refrigeración, evidenciado por el aumento de la temperatura hasta el nivel rojo y el charco de líquido refrigerante verde debajo del vehículo. 2. Las posibles causas son una fuga en el radiador, mangueras o termostato, o una falla en la disipación del calor. 3. El servicio del catálogo que aborda directamente esto es el mantenimiento del sistema de refrigeración.\", \"suggestions\": [{\"service_id\": 11, \"confidence\": \"high\", \"reason\": \"Atiende el sobrecalentamiento y la fuga de líquido refrigerante.\"}], \"notes\": \"El vehículo presenta un riesgo alto de seguridad por sobrecalentamiento (riesgo de daños graves en el motor), por lo que se recomienda no conducirlo hasta que sea revisado.\"}"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {"id": 1, "description": "Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado", "expected_service_id": 2, "expected_service_name": "Alineacion y balanceo"},
+  {"id": 2, "description": "Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare", "expected_service_id": 3, "expected_service_name": "Cambio de pastillas de freno"},
+  {"id": 3, "description": "Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota", "expected_service_id": 4, "expected_service_name": "Rectificación de discos de freno"},
+  {"id": 4, "description": "En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante", "expected_service_id": 5, "expected_service_name": "Revisión de suspensión"},
+  {"id": 5, "description": "Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas", "expected_service_id": 6, "expected_service_name": "Sincronización de motor"},
+  {"id": 6, "description": "Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal", "expected_service_id": 7, "expected_service_name": "Diagnóstico con escáner"},
+  {"id": 7, "description": "Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera", "expected_service_id": 8, "expected_service_name": "Revisión de batería y sistema eléctrico"},
+  {"id": 8, "description": "El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo", "expected_service_id": 9, "expected_service_name": "Mantenimiento de aire acondicionado"},
+  {"id": 9, "description": "Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado", "expected_service_id": 10, "expected_service_name": "Revisión de embrague"},
+  {"id": 10, "description": "La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde", "expected_service_id": 11, "expected_service_name": "Mantenimiento del sistema de refrigeración"}
+]
