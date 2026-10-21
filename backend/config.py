@@ -24,6 +24,11 @@ class Config:
     API_TITLE = 'MecaTrack API'
     API_VERSION = 'v1'
     OPENAPI_VERSION = '3.0.3'
+    OPENAPI_URL_PREFIX = '/'
+    OPENAPI_JSON_PATH = 'openapi.json'          # -> GET /openapi.json
+    OPENAPI_SWAGGER_UI_PATH = '/docs'           # -> GET /docs
+    OPENAPI_SWAGGER_UI_URL = 'https://cdn.jsdelivr.net/npm/swagger-ui-dist@5.17.14/'
+    OPENAPI_SWAGGER_UI_CONFIG = {'displayRequestDuration': True, 'tryItOutEnabled': True}
 
 
 def _default_test_database_url():
