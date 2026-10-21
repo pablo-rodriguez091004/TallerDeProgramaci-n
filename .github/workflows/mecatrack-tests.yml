@@ -4,12 +4,19 @@ on:
   push:
     paths:
       - 'PROYECTO_FINAL/backend/**'
+      - 'PROYECTO_FINAL/scripts/export_openapi.py'
+      - 'PROYECTO_FINAL/docs/openapi.json'
       - '.github/workflows/mecatrack-tests.yml'
   pull_request:
     paths:
       - 'PROYECTO_FINAL/backend/**'
+      - 'PROYECTO_FINAL/scripts/export_openapi.py'
+      - 'PROYECTO_FINAL/docs/openapi.json'
       - '.github/workflows/mecatrack-tests.yml'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   tests:
@@ -35,7 +42,14 @@ jobs:
         working-directory: PROYECTO_FINAL/backend
 
     env:
+      # Las pruebas usan SIEMPRE la base *_test (conftest.py aborta si no).
       TEST_DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/taller_mecanico_test
+      # create_app() exige una URL aunque la exportacion del spec no consulte la base.
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/taller_mecanico_test
+      SECRET_KEY: ci-only-secret
+      # Sin key del LLM a proposito: las pruebas de /api/v1/ai lo simulan (mock)
+      # y nunca deben llamar al proveedor real.
+      GEMINI_API_KEY: ''
 
     steps:
       - uses: actions/checkout@v4
@@ -50,4 +64,16 @@ jobs:
         run: pip install -r requirements-dev.txt
 
       - name: Ejecutar pruebas
-        run: python -m pytest
+        run: python -m pytest --junitxml=pytest-report.xml
+
+      - name: Validar OpenAPI y verificar que docs/openapi.json este actualizado
+        run: |
+          python ../scripts/export_openapi.py
+          git diff --exit-code -- ../docs/openapi.json
+
+      - name: Publicar reporte de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report
+          path: PROYECTO_FINAL/backend/pytest-report.xml
