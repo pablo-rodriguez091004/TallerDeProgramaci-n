@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from config import Config
 from db.conexion import db, login_manager, migrate
 from flask_cors import CORS
+from api.errors import ApiError, error_response, is_api_request
 
 def create_app(config_object=Config):
     app = Flask(__name__)
@@ -44,8 +45,15 @@ def create_app(config_object=Config):
     app.register_blueprint(payment_bp, url_prefix='/payments')
     app.register_blueprint(tracking_bp, url_prefix='/tracking')
 
+    # API REST v1 documentada con OpenAPI (flask-smorest). Va despues de los
+    # blueprints antiguos y no los modifica.
+    from api import init_api
+    init_api(app)
+
     @login_manager.unauthorized_handler
     def unauthorized():
+        if is_api_request():
+            return error_response(ApiError(401, 'unauthorized', 'Authentication required: log in via POST /auth/login'))
         return jsonify({'error': 'Debes iniciar sesión para acceder a este recurso'}), 401
 
     return app

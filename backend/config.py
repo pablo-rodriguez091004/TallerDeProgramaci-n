@@ -20,6 +20,11 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     CORS_ORIGINS = [o.strip() for o in os.environ.get('CORS_ORIGINS', DEFAULT_CORS_ORIGINS).split(',') if o.strip()]
 
+    # OpenAPI / flask-smorest
+    API_TITLE = 'MecaTrack API'
+    API_VERSION = 'v1'
+    OPENAPI_VERSION = '3.0.3'
+
 
 def _default_test_database_url():
     """
