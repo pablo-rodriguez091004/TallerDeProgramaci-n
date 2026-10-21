@@ -1,0 +1,192 @@
+ai_call_id,created_at,source,user_id,technique,model,status,input_tokens,output_tokens,thinking_tokens,latency_ms,attempts,description,response,error_message
+1,2026-10-21 03:00:12,api,3,zero_shot,,not_configured,,,,,1,El carro vibra cuando freno en bajada,,GEMINI_API_KEY and GEMINI_MODEL must be set in backend/.env
+2,2026-10-21 03:00:12,api,3,few_shot,,not_configured,,,,,1,El carro vibra cuando freno en bajada,,GEMINI_API_KEY and GEMINI_MODEL must be set in backend/.env
+3,2026-10-21 03:00:12,api,3,cot,,not_configured,,,,,1,El carro vibra cuando freno en bajada,,GEMINI_API_KEY and GEMINI_MODEL must be set in backend/.env
+4,2026-10-21 03:00:34,api,3,zero_shot,gemini-3.5-flash-lite,success,383,95,0,1021,1,El carro vibra cuando freno en bajada,"{""suggestions"": [{""service_id"": 4, ""confidence"": ""high"", ""reason"": ""La vibración al frenar indica un problema probable en los discos de freno.""}, {""service_id"": 3, ""confidence"": ""medium"", ""reason"": ""Es recomendable revisar las pastillas de freno junto con los discos.""}], ""notes"": ""La vibración al frenar representa un riesgo para la seguridad vial y debe atenderse con prontitud.""}",
+5,2026-10-21 03:00:35,api,3,few_shot,gemini-3.5-flash-lite,success,817,141,0,1406,1,El carro vibra cuando freno en bajada,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 4,
+      ""confidence"": ""high"",
+      ""reason"": ""La vibración al frenar, especialmente en bajada, suele ser síntoma de discos de freno alabeados.""
+    },
+    {
+      ""service_id"": 3,
+      ""confidence"": ""medium"",
+      ""reason"": ""Es recomendable revisar el estado de las pastillas de freno cuando se presentan vibraciones.""
+    }
+  ],
+  ""notes"": ""Un problema con los frenos representa un riesgo de seguridad importante; le sugerimos no demorar la revisión.""
+}",
+6,2026-10-21 03:00:37,api,3,cot,gemini-3.5-flash-lite,success,452,180,0,1653,1,El carro vibra cuando freno en bajada,"{""reasoning"": ""(1) El sistema afectado es el sistema de frenos. (2) La vibración al frenar, especialmente en bajada, indica que los discos de freno pueden estar alabeados por exceso de temperatura y desgaste, o que las pastillas necesitan atención. (3) Los servicios de rectificación de discos y cambio de pastillas del catálogo abordan directamente este problema."", ""suggestions"": [{""service_id"": 4, ""confidence"": ""high"", ""reason"": ""Corrige la vibración causada por discos de freno alabeados.""}, {""service_id"": 3, ""confidence"": ""medium"", ""reason"": ""Reemplaza las pastillas de freno que podrían estar gastadas.""}], ""notes"": ""Existe un riesgo potencial para la seguridad debido a una falla en el sistema de frenos. Se recomienda revisar el vehículo de inmediato.""}",
+7,2026-10-21 03:06:00,eval,,zero_shot,gemini-3.5-flash-lite,success,317,77,0,877,1,Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 2,
+      ""confidence"": ""high"",
+      ""reason"": ""El vehículo se desvía hacia un lado y presenta desgaste irregular en las llantas delanteras, lo que indica un problema de alineación.""
+    }
+  ],
+  ""notes"": """"
+}",
+8,2026-10-21 03:06:08,eval,,few_shot,gemini-3.5-flash-lite,success,751,96,0,2848,2,Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 2,
+      ""confidence"": ""high"",
+      ""reason"": ""Que el carro se desvie y las llantas se gasten de un solo lado indica un problema de alineacion.""
+    }
+  ],
+  ""notes"": ""Problemas de alineacion pueden afectar la estabilidad y el control del vehiculo, por lo que es recomendable revisarlo.""
+}",
+9,2026-10-21 03:06:15,eval,,cot,gemini-3.5-flash-lite,success,386,175,0,1333,1,Cuando suelto el timón el carro se va solito hacia la derecha y las llantas de adelante se están gastando por un solo lado,"{""reasoning"": ""1. El sistema afectado es la dirección y la suspensión del vehículo, específicamente la geometría de las llantas delanteras. 2. Las posibles causas son un desajuste en los ángulos de dirección (alineación) que hace que el carro se cargue hacia un lado y un desbalanceo en el peso de las ruedas que genera desgaste irregular. 3. El único servicio del catálogo que aborda directamente este problema es 'Alineacion y balanceo'."", ""suggestions"": [{""service_id"": 2, ""confidence"": ""high"", ""reason"": ""Corrige la desviación hacia la derecha y previene el desgaste irregular de las llantas.""}], ""notes"": ""No se aprecian riesgos inminentes de seguridad grave, pero se recomienda realizar el servicio pronto para evitar daños prematuros en las llantas.""}",
+10,2026-10-21 03:06:21,eval,,zero_shot,gemini-3.5-flash-lite,success,380,96,0,1301,1,Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 3,
+      ""confidence"": ""high"",
+      ""reason"": ""El ruido metálico al frenar indica que las pastillas de freno están completamente gastadas.""
+    }
+  ],
+  ""notes"": ""Existe un riesgo crítico para la seguridad debido a la falla en el sistema de frenos. Debe evitar conducir el vehículo hasta que sea reparado.""
+}",
+11,2026-10-21 03:06:27,eval,,few_shot,gemini-3.5-flash-lite,success,814,95,0,935,1,Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 3,
+      ""confidence"": ""high"",
+      ""reason"": ""El sonido metálico al raspar al frenar y el pedal más hondo indican pastillas de freno gastadas.""
+    }
+  ],
+  ""notes"": ""Un problema con los frenos es un riesgo grave de seguridad; se recomienda no conducir el vehículo hasta revisarlo.""
+}",
+12,2026-10-21 03:06:33,eval,,cot,gemini-3.5-flash-lite,success,449,213,0,1329,1,Al pisar el freno suena como un metal raspando y cada vez tengo que pisar más hondo para que pare,"{""reasoning"": ""El problema describe un ruido metálico al frenar y un pedal de freno que se hunde más de lo normal. (1) El sistema afectado es el sistema de frenos. (2) La causa más probable es el desgaste total de las pastillas de freno, llegando al metal, lo que también afecta los discos. (3) Los servicios del catálogo que abordan esto son el cambio de pastillas de freno y la rectificación de discos de freno."", ""suggestions"": [{""service_id"": 3, ""confidence"": ""high"", ""reason"": ""El ruido metálico indica que las pastillas de freno están completamente gastadas y necesitan reemplazo.""}, {""service_id"": 4, ""confidence"": ""medium"", ""reason"": ""El raspado metálico pudo haber dañado los discos y requerir rectificación.""}], ""notes"": ""¡Atención! Hay un riesgo de seguridad crítico debido a la falla en el sistema de frenos. Se recomienda no conducir el vehículo hasta que sea reparado.""}",
+13,2026-10-21 03:06:39,eval,,zero_shot,gemini-3.5-flash-lite,success,428,69,0,881,1,"Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota","{""suggestions"": [{""service_id"": 4, ""confidence"": ""high"", ""reason"": ""La vibración al frenar es típicamente un síntoma de discos de freno alabeados.""}], ""notes"": ""El problema con los frenos representa un riesgo importante para la seguridad y debe ser atendido de inmediato.""}",
+14,2026-10-21 03:06:46,eval,,few_shot,gemini-3.5-flash-lite,success,862,143,0,1941,1,"Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota","{
+  ""suggestions"": [
+    {
+      ""service_id"": 4,
+      ""confidence"": ""high"",
+      ""reason"": ""La vibracion al frenar, especialmente en bajada, indica que los discos de freno pueden estar alabeados.""
+    },
+    {
+      ""service_id"": 3,
+      ""confidence"": ""medium"",
+      ""reason"": ""Conviene revisar las pastillas de freno junto con los discos para asegurar un frenado adecuado.""
+    }
+  ],
+  ""notes"": ""Un problema en el sistema de frenos representa un riesgo de seguridad importante, especialmente en bajadas prolongadas.""
+}",
+15,2026-10-21 03:06:53,eval,,cot,gemini-3.5-flash-lite,success,497,270,0,1545,1,"Bajando de La Calera el timón tiembla muchísimo cada vez que freno, en plano casi no se nota","{
+  ""reasoning"": ""(1) El sistema afectado es el sistema de frenos y la dirección del vehículo. (2) Los síntomas de vibración en el timón al frenar, especialmente en bajada (descenso prolongado), son típicamente causados por discos de freno alabeados o deformados por calor, y también pueden estar relacionados con el desgaste de las pastillas de freno. (3) De acuerdo con el catálogo, los servicios que abordan estas causas son la rectificación de discos de freno y el cambio de pastillas de freno."",
+  ""suggestions"": [
+    {
+      ""service_id"": 4,
+      ""confidence"": ""high"",
+      ""reason"": ""La vibración al frenar en bajada indica discos de freno alabeados que requieren rectificación.""
+    },
+    {
+      ""service_id"": 3,
+      ""confidence"": ""medium"",
+      ""reason"": ""Es recomendable revisar y posiblemente cambiar las pastillas de freno junto con el trabajo en los discos.""
+    }
+  ],
+  ""notes"": ""Existe un riesgo de seguridad importante debido a la falla en el sistema de frenos al descender pendientes. Se recomienda reparar antes de volver a conducir en zonas montañosas.""
+}",
+16,2026-10-21 03:06:59,eval,,zero_shot,gemini-3.5-flash-lite,success,319,97,0,899,1,En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 5,
+      ""confidence"": ""high"",
+      ""reason"": ""El rebote excesivo y el golpe seco al pasar resaltos indican un desgaste en la suspensión y los amortiguadores delanteros.""
+    }
+  ],
+  ""notes"": ""Los problemas en la suspensión pueden comprometer la estabilidad del vehículo, por lo que se recomienda revisarlo pronto.""
+}",
+17,2026-10-21 03:07:04,eval,,few_shot,gemini-3.5-flash-lite,success,753,92,0,916,1,En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 5,
+      ""confidence"": ""high"",
+      ""reason"": ""El rebote excesivo y el golpe seco al pasar resaltos indican desgaste en los componentes de la suspension.""
+    }
+  ],
+  ""notes"": ""Un problema en la suspension puede afectar la estabilidad del vehiculo, por lo que se recomienda revisarlo pronto.""
+}",
+18,2026-10-21 03:07:11,eval,,cot,gemini-3.5-flash-lite,success,388,178,0,1182,1,En los policías acostados el carro rebota varias veces y se oye un golpe seco en la parte de adelante,"{""reasoning"": ""1. El sistema afectado es la suspensión delantera del vehículo. 2. Los síntomas de rebotar varias veces en los reductores de velocidad y el golpe seco indican que los amortiguadores delanteros han perdido su capacidad de amortiguación o hay desgaste en los componentes de la suspensión como bujes o terminales. 3. El único servicio del catálogo que aborda esta falla es la Revisión de suspensión (service_id 5)."", ""suggestions"": [{""service_id"": 5, ""confidence"": ""high"", ""reason"": ""Este servicio revisa y cambia amortiguadores y bujes, solucionando el rebote y el golpe seco en la parte delantera.""}], ""notes"": ""Se recomienda realizar esta revisión pronto, ya que el desgaste en la suspensión puede afectar la estabilidad y el frenado del vehículo.""}",
+19,2026-10-21 03:07:17,eval,,zero_shot,gemini-3.5-flash-lite,success,319,55,0,1023,1,Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas,"{""suggestions"": [{""service_id"": 6, ""confidence"": ""high"", ""reason"": ""Este servicio incluye limpieza de inyectores y ajuste de mezcla, lo que soluciona el alto consumo de gasolina y la falta de fuerza.""}], ""notes"": """"}",
+20,2026-10-21 03:07:23,eval,,few_shot,gemini-3.5-flash-lite,success,753,51,0,941,1,Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas,"{""suggestions"": [{""service_id"": 6, ""confidence"": ""high"", ""reason"": ""El alto consumo de gasolina y la falta de fuerza en subidas indican que la sincronizacion del motor puede estar fallando.""}], ""notes"": """"}",
+21,2026-10-21 03:07:29,eval,,cot,gemini-3.5-flash-lite,success,388,222,0,1443,1,Está gastando mucha más gasolina que antes y se siente sin fuerza en las subidas,"{
+  ""reasoning"": ""1. El sistema afectado es el sistema de inyección y encendido del motor, el cual controla la mezcla de aire y combustible. 2. Las posibles causas del alto consumo de gasolina y la falta de fuerza en subidas son bujías desgastadas o inyectores sucios que impieren una combustión eficiente. 3. El servicio de sincronización de motor del catálogo incluye el cambio de bujías, limpieza de inyectores y ajuste de la mezcla, abordando directamente estas causas."",
+  ""suggestions"": [
+    {
+      ""service_id"": 6,
+      ""confidence"": ""high"",
+      ""reason"": ""La sincronización de motor soluciona el alto consumo de combustible y la pérdida de fuerza al optimizar la inyección y el encendido.""
+    }
+  ],
+  ""notes"": ""No se aprecian riesgos de seguridad inmediatos como fallas en frenos o dirección, pero se recomienda realizar el servicio pronto para evitar daños mayores en el motor.""
+}",
+22,2026-10-21 03:07:35,eval,,zero_shot,gemini-3.5-flash-lite,success,372,79,0,929,1,"Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal","{""suggestions"": [{""service_id"": 7, ""confidence"": ""high"", ""reason"": ""La luz amarilla en el tablero con forma de motor indica que la computadora ha registrado un código de falla que debe ser leído con escáner.""}], ""notes"": ""No representa un riesgo inminente para la seguridad, pero se recomienda realizar el diagnóstico pronto para evitar daños mayores.""}",
+23,2026-10-21 03:07:41,eval,,few_shot,gemini-3.5-flash-lite,success,806,49,0,784,1,"Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal","{""suggestions"": [{""service_id"": 7, ""confidence"": ""high"", ""reason"": ""La luz amarilla con forma de motor indica que se requiere una lectura de codigos de falla con escaner.""}], ""notes"": """"}",
+24,2026-10-21 03:07:47,eval,,cot,gemini-3.5-flash-lite,success,441,140,0,1210,1,"Se encendió una luz amarilla con forma de motor en el tablero, pero el carro anda normal","{""reasoning"": ""(1) El sistema afectado es el motor o la gestión electrónica del vehículo, indicado por la luz amarilla de 'check engine'. (2) Las causas pueden ir desde un sensor defectuoso hasta fallas menores en las emisiones o sistema de combustible, aunque el carro marche normal. (3) El servicio en el catálogo que aborda directamente esta falla es el diagnóstico con escáner para leer los códigos de la computadora."", ""suggestions"": [{""service_id"": 7, ""confidence"": ""high"", ""reason"": ""Es necesario realizar una lectura de códigos para identificar la causa exacta por la cual se encendió la luz de check engine.""}], ""notes"": """"}",
+25,2026-10-21 03:07:53,eval,,zero_shot,gemini-3.5-flash-lite,success,345,48,0,895,1,Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera,"{""suggestions"": [{""service_id"": 8, ""confidence"": ""high"", ""reason"": ""El problema al dar arranque y el sonido de clic indican una falla en la batería o en el sistema eléctrico.""}], ""notes"": """"}",
+26,2026-10-21 03:07:59,eval,,few_shot,gemini-3.5-flash-lite,success,779,106,0,1134,1,Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 8,
+      ""confidence"": ""high"",
+      ""reason"": ""El síntoma de hacer clic al intentar dar arranque y tener que empujar el carro indica un fallo en la batería, el motor de arranque o el alternador.""
+    }
+  ],
+  ""notes"": ""Un problema con el sistema de arranque puede dejarlo varado en cualquier momento; se recomienda revisarlo a la brevedad.""
+}",
+27,2026-10-21 03:08:05,eval,,cot,gemini-3.5-flash-lite,success,414,198,0,1250,1,Por las mañanas le doy arranque y solo hace clic clic; ayer tocó empujarlo para que prendiera,"{""reasoning"": ""1. El sistema afectado es el sistema eléctrico y de arranque, específicamente la batería o el motor de arranque dado que el vehículo solo hace un sonido de 'clic' al intentar encender y requirió ser empujado.\n2. Las causas posibles son una batería descargada o defectuosa, un alternador que no carga adecuadamente, o fallas en el motor de arranque.\n3. El servicio del catálogo que aborda directamente estas causas es la 'Revisión de batería y sistema eléctrico' (servicio_id 8)."", ""suggestions"": [{""service_id"": 8, ""confidence"": ""high"", ""reason"": ""El síntoma de hacer clic al intentar encender y requerir empuje indica un problema en la batería o el sistema de arranque.""}], ""notes"": ""No se aprecian riesgos inminentes de seguridad vial, pero se recomienda revisar el sistema eléctrico pronto para evitar quedar varado.""}",
+28,2026-10-21 03:08:11,eval,,zero_shot,gemini-3.5-flash-lite,success,353,77,0,920,1,"El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo","{
+  ""suggestions"": [
+    {
+      ""service_id"": 9,
+      ""confidence"": ""high"",
+      ""reason"": ""El problema de que el aire no enfría y solo sale a temperatura ambiente se soluciona con el mantenimiento del sistema de aire acondicionado.""
+    }
+  ],
+  ""notes"": """"
+}",
+29,2026-10-21 03:08:18,eval,,few_shot,gemini-3.5-flash-lite,success,787,47,0,1330,1,"El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo","{""suggestions"": [{""service_id"": 9, ""confidence"": ""high"", ""reason"": ""La falta de refrigeración en el aire acondicionado suele indicar la necesidad de recarga de gas o limpieza.""}], ""notes"": """"}",
+30,2026-10-21 03:08:23,eval,,cot,gemini-3.5-flash-lite,success,422,121,0,837,1,"El aire ya no enfría nada, solo sale aire al clima del ambiente aunque lo ponga al máximo","{""reasoning"": ""(1) El sistema afectado es el aire acondicionado del vehículo. (2) Las posibles causas son la falta de gas refrigerante, obstrucción en el evaporador o suciedad en el filtro de cabina. (3) El servicio [9] Mantenimiento de aire acondicionado aborda directamente la recarga de gas y la limpieza necesaria para solucionar este problema."", ""suggestions"": [{""service_id"": 9, ""confidence"": ""high"", ""reason"": ""La recarga de gas y limpieza del sistema solucionará la falta de enfriamiento.""}], ""notes"": """"}",
+31,2026-10-21 03:08:29,eval,,zero_shot,gemini-3.5-flash-lite,success,350,57,0,934,1,"Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado","{""suggestions"": [], ""notes"": ""Los síntomas descritos (el motor sube de revoluciones pero el carro no avanza y huele a quemado) indican un problema con el embrague o cloche, el cual no está incluido en el catálogo actual de servicios.""}",
+32,2026-10-21 03:08:35,eval,,few_shot,gemini-3.5-flash-lite,success,784,36,0,921,1,"Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado","{""suggestions"": [], ""notes"": ""El problema descrito sugiere un desgaste en el embrague o cloche, pero el catálogo actual no incluye servicios para transmisión o embrague.""}",
+33,2026-10-21 03:08:41,eval,,cot,gemini-3.5-flash-lite,success,419,148,0,1144,1,"Cuando acelero en tercera el motor sube de revoluciones pero el carro casi no avanza, y huele a quemado","{""reasoning"": ""(1) El sistema afectado es la transmisión y el embrague, ya que el motor sube de revoluciones pero el vehículo no avanza adecuadamente al acelerar. (2) La causa más probable es el desgaste del embrague (clutch), lo cual también explica el olor a quemado. (3) Ninguno de los servicios del catálogo actual (Sincronización de motor ni Revisión de batería y sistema eléctrico) aborda problemas de transmisión o embrague."", ""suggestions"": [], ""notes"": ""No tenemos un servicio en nuestro catálogo actual para reparar problemas de embrague o transmisión, que es lo que su carro parece necesitar. Le recomendamos acudir a un taller especializado en embragues.""}",
+34,2026-10-21 03:08:48,eval,,zero_shot,gemini-3.5-flash-lite,success,380,100,0,1341,1,La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 11,
+      ""confidence"": ""high"",
+      ""reason"": ""El sobrecalentamiento y la fuga de líquido verde indican un fallo directo en el sistema de refrigeración.""
+    }
+  ],
+  ""notes"": ""¡Atención! Existe un riesgo grave de seguridad debido al sobrecalentamiento del motor. No conduzca el vehículo para evitar daños mayores.""
+}",
+35,2026-10-21 03:08:54,eval,,few_shot,gemini-3.5-flash-lite,success,814,98,0,1026,1,La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde,"{
+  ""suggestions"": [
+    {
+      ""service_id"": 11,
+      ""confidence"": ""high"",
+      ""reason"": ""La temperatura alta en trancones y el charco de líquido verde indican una fuga o fallo en el sistema de refrigeración.""
+    }
+  ],
+  ""notes"": ""El vehículo presenta un riesgo de seguridad por sobrecalentamiento del motor; es recomendable no conducirlo hasta revisarlo.""
+}",
+36,2026-10-21 03:09:00,eval,,cot,gemini-3.5-flash-lite,success,449,175,0,1135,1,La aguja de temperatura se sube hasta el rojo en los trancones y debajo del carro queda un charco verde,"{""reasoning"": ""1. El sistema afectado es el de refrigeración, evidenciado por el aumento de la temperatura hasta el nivel rojo y el charco de líquido refrigerante verde debajo del vehículo. 2. Las posibles causas son una fuga en el radiador, mangueras o termostato, o una falla en la disipación del calor. 3. El servicio del catálogo que aborda directamente esto es el mantenimiento del sistema de refrigeración."", ""suggestions"": [{""service_id"": 11, ""confidence"": ""high"", ""reason"": ""Atiende el sobrecalentamiento y la fuga de líquido refrigerante.""}], ""notes"": ""El vehículo presenta un riesgo alto de seguridad por sobrecalentamiento (riesgo de daños graves en el motor), por lo que se recomienda no conducirlo hasta que sea revisado.""}",
+37,2026-10-21 03:17:40,api,1,cot,gemini-3.5-flash-lite,success,485,217,0,1318,1,Siento olor dulce dentro del carro y la temperatura sube cuando hay trancon,"{""reasoning"": ""(1) El sistema afectado es el sistema de refrigeración del motor y posiblemente el núcleo de calefacción del aire acondicionado. (2) El olor dulce suele ser indicio de una fuga de líquido refrigerante (anticongelante) en el habitáculo o en el motor, lo cual también explica que la temperatura suba durante los atascos (trancones) debido a la falta de eficiencia en la disipación del calor o nivel bajo de refrigerante. (3) El servicio en el catálogo que aborda directamente esto es el mantenimiento del sistema de refrigeración."", ""suggestions"": [{""service_id"": 11, ""confidence"": ""high"", ""reason"": ""Este servicio revisa el radiador, termostato, mangueras y realiza el cambio de refrigerante para solucionar el problema de temperatura y posibles fugas.""}], ""notes"": ""Existe un riesgo de seguridad por posible sobrecalentamiento del motor (safety risk: overheating), por lo que se recomienda no seguir conduciendo hasta revisar el sistema de refrigeración.""}",
+38,2026-10-21 03:19:44,api,1,cot,gemini-3.5-flash-lite,success,485,234,0,1508,1,Siento olor dulce dentro del carro y la temperatura sube cuando hay trancon,"{
+  ""reasoning"": ""1. El sistema afectado es el sistema de refrigeración del motor, evidenciado por el aumento de la temperatura en tráfico pesado. Adicionalmente, el olor dulce dentro del carro es una señal clásica de una fuga de líquido refrigerante (anticongelante) proveniente del núcleo del calefactor o de mangueras cercanas. 2. Las posibles causas son una fuga en el radiador, mangueras o termostato defectuoso, y una posible fuga en el sistema de calefacción interior. 3. El servicio del catálogo que atiende directamente este problema es el mantenimiento del sistema de refrigeración."",
+  ""suggestions"": [
+    {
+      ""service_id"": 11,
+      ""confidence"": ""high"",
+      ""reason"": ""El aumento de temperatura y el olor dulce indican una falla y posible fuga en el sistema de refrigeración.""
+    }
+  ],
+  ""notes"": ""Existe un riesgo crítico de seguridad (sobrecalentamiento del motor). Se recomienda no conducir el vehículo hasta que sea revisado para evitar daños graves al motor.""
+}",
