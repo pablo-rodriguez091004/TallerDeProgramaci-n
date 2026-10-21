@@ -1,0 +1,32 @@
+# Salida de pytest - MecaTrack (Guia 5)
+# Fecha:   2026-10-20 21:50:15 -05
+# Commit:  776e54a
+# Python:  Python 3.14.8
+# Comando: cd backend && venv/bin/python -m pytest -v -p no:warnings
+
+============================= test session starts ==============================
+platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0 -- /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend
+configfile: pytest.ini
+testpaths: tests
+collecting ... collected 16 items
+
+tests/test_api_v1_services.py::test_post_creates_service_and_get_reads_it PASSED [  6%]
+tests/test_api_v1_services.py::test_get_unknown_id_returns_404_with_error_format PASSED [ 12%]
+tests/test_api_v1_services.py::test_post_invalid_body_returns_422_with_field_details PASSED [ 18%]
+tests/test_api_v1_services.py::test_list_is_public_and_filters_by_status PASSED [ 25%]
+tests/test_api_v1_services.py::test_write_endpoints_require_owner_or_admin PASSED [ 31%]
+tests/test_api_v1_services.py::test_duplicate_name_returns_409_case_insensitive PASSED [ 37%]
+tests/test_api_v1_services.py::test_put_replaces_service_and_validates PASSED [ 43%]
+tests/test_api_v1_services.py::test_delete_returns_204_404_and_409_when_booked PASSED [ 50%]
+tests/test_api_v1_services.py::test_unknown_api_route_uses_error_format_but_legacy_routes_do_not PASSED [ 56%]
+tests/test_integration.py::test_login_and_role_based_access PASSED       [ 62%]
+tests/test_integration.py::test_booking_flow_assigns_resources_and_deposit_confirms PASSED [ 68%]
+tests/test_integration.py::test_scheduling_conflict_returns_409_and_cancel_frees_slot PASSED [ 75%]
+tests/test_openapi.py::test_spec_is_valid_openapi_3 PASSED               [ 81%]
+tests/test_openapi.py::test_every_operation_has_summary_description_and_examples PASSED [ 87%]
+tests/test_openapi.py::test_every_schema_field_has_description_and_example PASSED [ 93%]
+tests/test_openapi.py::test_swagger_ui_is_served PASSED                  [100%]
+
+============================== 16 passed in 5.70s ==============================
