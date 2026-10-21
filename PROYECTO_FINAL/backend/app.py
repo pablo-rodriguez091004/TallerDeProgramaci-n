@@ -24,6 +24,7 @@ def create_app(config_object=Config):
     from models.part_model import Part
     from models.service_tracking_model import ServiceTracking
     from models.service_tracking_parts_model import ServiceTrackingPart
+    from models.ai_call_model import AiCall
 
     from routes.auth_routes import auth_bp
     from routes.vehicle_routes import vehicle_bp

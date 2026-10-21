@@ -116,5 +116,7 @@ def init_api(app):
         api.spec.path(rule=rules[path], operations=operations)
 
     from api.v1.services import blp as services_blp
+    from api.v1.ai import blp as ai_blp
 
     api.register_blueprint(services_blp, url_prefix='/api/v1/services')
+    api.register_blueprint(ai_blp, url_prefix='/api/v1/ai')
