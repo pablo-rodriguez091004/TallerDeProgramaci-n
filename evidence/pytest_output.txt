@@ -1,6 +1,6 @@
 # Salida de pytest - MecaTrack (Guia 5)
-# Fecha:   2026-10-20 22:03:42 -05
-# Commit:  ae4756e
+# Fecha:   2026-10-20 22:30:20 -05
+# Commit:  48f3b74
 # Python:  Python 3.14.8
 # Comando: cd backend && venv/bin/python -m pytest -v -p no:warnings
 
@@ -45,4 +45,4 @@ tests/test_openapi.py::test_every_operation_has_summary_description_and_examples
 tests/test_openapi.py::test_every_schema_field_has_description_and_example PASSED [ 96%]
 tests/test_openapi.py::test_swagger_ui_is_served PASSED                  [100%]
 
-============================= 31 passed in 10.34s ==============================
+============================= 31 passed in 10.42s ==============================
