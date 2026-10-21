@@ -1,0 +1,26 @@
+// Flujo de POST /api/v1/ai/suggest-service. Generar: dot -Tpng -Gdpi=200 arquitectura.dot -o arquitectura.png
+digraph mecatrack_ai {
+  rankdir=TB;
+  graph [fontname="Helvetica", fontsize=11, nodesep=0.35, ranksep=0.45, pad=0.2];
+  node  [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef2ff", color="#3b4fbf"];
+  edge  [fontname="Helvetica", fontsize=9, color="#555555"];
+
+  client   [label="Cliente\n(Swagger UI / frontend)", fillcolor="#ffffff"];
+  endpoint [label="POST /api/v1/ai/suggest-service\nFlask + flask-smorest\nlogin + validación (422)\nlímite por usuario (429)"];
+  retrieve [label="Recuperación (RAG)\npalabras clave + sinónimos\ntop-5 o catálogo completo"];
+  db       [label="PostgreSQL\nservices | ai_calls", shape=cylinder, fillcolor="#fff7e6", color="#b7791f"];
+  prompt   [label="services/prompts.py\nzero_shot | few_shot | cot\n+ contexto del catálogo"];
+  llm      [label="Google Gemini API\ngemini-3.5-flash-lite\ntimeout + reintentos 429/503", fillcolor="#e6fffa", color="#2c7a7b"];
+  parse    [label="Validación de la respuesta\nsolo service_id del contexto\nprecio y duración desde la BD"];
+  resp     [label="Respuesta al cliente\nJSON 200 o error 502 / 503 / 504", fillcolor="#ffffff"];
+
+  client -> endpoint [label="descripción + técnica"];
+  endpoint -> retrieve;
+  retrieve -> db [label="servicios activos", dir=both];
+  retrieve -> prompt;
+  prompt -> llm [label="prompt"];
+  llm -> parse [label="JSON + tokens"];
+  parse -> db [label="precio, duración\n+ registro ai_calls", style=dashed];
+  parse -> resp;
+  { rank=same; retrieve; db; }
+}
