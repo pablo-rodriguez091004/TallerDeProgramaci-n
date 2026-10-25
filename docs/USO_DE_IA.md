@@ -61,6 +61,36 @@ Decisiones que tomó Pablo: aprobar el plan y migrar los 9 blueprints (no solo a
 
 ---
 
+## Fase 2 – Inyección de dependencias y pruebas unitarias con mocks
+
+La guía pide "Mockito"; el stack confirmado es Python, así que se usó `unittest.mock` (librería estándar).
+
+### Código generado por la IA
+
+| Archivo | Qué prueba |
+|---|---|
+| `tests/unit/test_appointment_service.py` | `AppointmentService` con sus 6 dependencias simuladas: asignación, 2 pagos 30/70, un solo commit, nada escrito si no hay disponibilidad, reglas de cancelación y permisos del mecánico |
+| `tests/unit/test_payment_service.py` | `PaymentService` con `Clock` simulado: el depósito confirma la cita, el saldo no; pagos inválidos no escriben |
+| `tests/unit/test_resource_allocator.py` | Servicio de dominio con puertos simulados: primera bahía y primer mecánico libres; no consulta mecánicos si no hay bahía |
+| `tests/unit/test_tracking_service.py` | El descuento de stock es todo o nada |
+| `tests/unit/test_ai_assistant_service.py` | El LLM simulado como puerto: precios del catálogo, ids inventados descartados, fallos registrados, cuota con reloj inyectado |
+| `tests/unit/test_domain_rules.py` | Reglas puras, sin mocks |
+| `tests/conftest.py`, `tests/integration/conftest.py` | Separación: las fixtures que truncan PostgreSQL solo aplican a `integration/` |
+
+### Verificación
+
+- 43 pruebas unitarias en 0.3 s. También pasan con una `DATABASE_URL` inválida, lo que demuestra que no tocan la base.
+- **Prueba de mutación:** con `DEPOSIT_PERCENTAGE = 0.4` fallan 3 pruebas, justo las del 30/70. Luego se revirtió.
+- La suite completa da 81 en verde (38 de integración + 43 unitarias).
+
+### Decisión técnica a defender
+
+Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock()` acepta cualquier método y firma, y no detectaría que el servicio usa algo que el puerto no declara. Lo demuestra `test_autospec_mocks_enforce_the_port_contract`.
+
+**[COMPLETAR]** Experiencia personal de Pablo con las pruebas unitarias.
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*

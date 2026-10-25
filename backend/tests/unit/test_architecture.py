@@ -14,7 +14,7 @@ from pathlib import Path
 
 import pytest
 
-BACKEND = Path(__file__).resolve().parent.parent
+BACKEND = Path(__file__).resolve().parents[2]
 LAYERS = ('domain', 'application', 'api', 'infrastructure')
 
 # Librerias de framework, persistencia o IO prohibidas en el nucleo.

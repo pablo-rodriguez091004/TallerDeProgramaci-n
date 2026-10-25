@@ -134,13 +134,19 @@ venv/bin/python -m pytest
 
 Para usar otra base, define `TEST_DATABASE_URL`.
 
+Las pruebas están en dos carpetas:
+
+- `tests/unit/`: casos de uso y reglas de dominio con las dependencias simuladas (`unittest.mock.create_autospec` sobre cada puerto). No necesitan PostgreSQL ni red y corren en menos de 1 s: `venv/bin/python -m pytest tests/unit`.
+- `tests/integration/`: Flask + PostgreSQL reales (la tabla de abajo).
+
 | Prueba | Qué verifica |
 |---|---|
 | `test_login_and_role_based_access` | login/logout, 401 sin sesión, 403 por rol, el dueño crea bahías |
 | `test_booking_flow_assigns_resources_and_deposit_confirms` | se asignan bahía y mecánico, se calculan depósito (30 %) y saldo, pagar el depósito confirma la cita, el listado no tiene N+1 (`joinedload`, ≤ 2 SELECT) |
 | `test_scheduling_conflict_returns_409_and_cancel_frees_slot` | un cruce de horario da 409, `[inicio, fin)` permite citas seguidas, cancelar libera la franja, una bahía en mantenimiento no se asigna |
-| `test_legacy_routes.py` | contrato HTTP de negocio, mecánicos, repuestos, servicios, vehículos, seguimiento (stock) y estados de cita; validado contra el código previo al refactor |
-| `test_architecture.py` | reglas de dependencias: `domain` solo usa la librería estándar, `application` no usa Flask/SQLAlchemy/IO, `api` no importa `infrastructure` |
+| `integration/test_legacy_routes.py` | contrato HTTP de negocio, mecánicos, repuestos, servicios, vehículos, seguimiento (stock) y estados de cita; validado contra el código previo al refactor |
+| `unit/test_appointment_service.py`, `unit/test_payment_service.py` | DI por constructor: agendar, cancelar y pagar con repositorios, unit of work y reloj simulados |
+| `unit/test_architecture.py` | reglas de dependencias: `domain` solo usa la librería estándar, `application` no usa Flask/SQLAlchemy/IO, `api` no importa `infrastructure` |
 
 GitHub Actions ejecuta las pruebas con un servicio PostgreSQL en cada push o PR que toque `PROYECTO_FINAL/backend/**` (ver `.github/workflows/mecatrack-tests.yml` en la raíz del repositorio).
 

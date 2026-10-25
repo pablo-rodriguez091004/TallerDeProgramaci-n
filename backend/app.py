@@ -1,3 +1,5 @@
+from importlib import import_module
+
 from flask import Flask
 from flask_cors import CORS
 
@@ -20,7 +22,7 @@ def create_app(config_object=Config):
     db.init_app(app)
     migrate.init_app(app, db)
     # Registra todas las tablas en db.metadata (Alembic y las pruebas lo usan).
-    import infrastructure.persistence.models  # noqa: F401
+    import_module('infrastructure.persistence.models')
 
     bootstrap.install(app)
 
