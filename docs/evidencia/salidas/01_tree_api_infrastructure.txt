@@ -1,0 +1,54 @@
+# tree -L 2 --noreport -I '__pycache__' api infrastructure
+# cwd: backend | 2026-10-24 21:31 -05 | exit 0
+
+api
+├── auth.py
+├── deps.py
+├── errors.py
+├── __init__.py
+├── legacy
+│   ├── appointment_routes.py
+│   ├── auth_routes.py
+│   ├── bay_routes.py
+│   ├── business_routes.py
+│   ├── __init__.py
+│   ├── part_routes.py
+│   ├── payment_routes.py
+│   ├── service_routes.py
+│   ├── service_tracking_routes.py
+│   └── vehicle_routes.py
+├── openapi.py
+└── v1
+    ├── ai.py
+    ├── __init__.py
+    ├── market.py
+    ├── schemas
+    └── services.py
+infrastructure
+├── analytics
+│   ├── duckdb_analytics.py
+│   ├── __init__.py
+│   └── queries.py
+├── __init__.py
+├── llm
+│   ├── gemini_gateway.py
+│   └── __init__.py
+├── market_data
+│   ├── clients.py
+│   ├── health.py
+│   ├── __init__.py
+│   └── snapshot_store.py
+├── persistence
+│   ├── extensions.py
+│   ├── __init__.py
+│   ├── models
+│   ├── repositories
+│   └── unit_of_work.py
+├── resilience
+│   ├── circuit_breaker.py
+│   ├── http_client.py
+│   ├── __init__.py
+│   └── retry.py
+└── security
+    ├── __init__.py
+    └── password_hasher.py

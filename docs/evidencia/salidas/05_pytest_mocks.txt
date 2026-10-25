@@ -1,0 +1,32 @@
+# venv/bin/python -m pytest -p no:warnings --color=yes tests/unit/test_appointment_service.py tests/unit/test_payment_service.py
+# cwd: backend | 2026-10-24 21:31 -05 | exit 0
+
+================================================ test session starts =================================================
+platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0 -- /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 19 items
+
+tests/unit/test_appointment_service.py::test_book_assigns_resources_creates_two_payments_and_commits_once PASSED [  5%]
+tests/unit/test_appointment_service.py::test_book_without_availability_raises_conflict_and_writes_nothing PASSED [ 10%]
+tests/unit/test_appointment_service.py::test_book_validates_before_looking_for_resources[vehiculo_de_otro_cliente] PASSED [ 15%]
+tests/unit/test_appointment_service.py::test_book_validates_before_looking_for_resources[vehiculo_inexistente] PASSED [ 21%]
+tests/unit/test_appointment_service.py::test_book_validates_before_looking_for_resources[servicio_inactivo] PASSED [ 26%]
+tests/unit/test_appointment_service.py::test_book_rejects_unknown_payment_method PASSED                        [ 31%]
+tests/unit/test_appointment_service.py::test_cancel_marks_cancelled_and_saves PASSED                           [ 36%]
+tests/unit/test_appointment_service.py::test_cancel_rules[actor0-pending-PermissionDenied] PASSED              [ 42%]
+tests/unit/test_appointment_service.py::test_cancel_rules[actor1-completed-InvalidInput] PASSED                [ 47%]
+tests/unit/test_appointment_service.py::test_cancel_rules[actor2-cancelled-InvalidInput] PASSED                [ 52%]
+tests/unit/test_appointment_service.py::test_mechanic_cannot_change_status_of_an_appointment_assigned_to_someone_else PASSED [ 57%]
+tests/unit/test_appointment_service.py::test_autospec_mocks_enforce_the_port_contract PASSED                   [ 63%]
+tests/unit/test_payment_service.py::test_paying_the_deposit_completes_it_and_confirms_the_appointment PASSED   [ 68%]
+tests/unit/test_payment_service.py::test_paying_the_balance_does_not_touch_the_appointment PASSED              [ 73%]
+tests/unit/test_payment_service.py::test_invalid_payments_write_nothing[actor0-payment0-None-InvalidInput] PASSED [ 78%]
+tests/unit/test_payment_service.py::test_invalid_payments_write_nothing[actor1-payment1-bitcoin-InvalidInput] PASSED [ 84%]
+tests/unit/test_payment_service.py::test_invalid_payments_write_nothing[actor2-payment2-None-PermissionDenied] PASSED [ 89%]
+tests/unit/test_payment_service.py::test_unknown_payment_is_not_found PASSED                                   [ 94%]
+tests/unit/test_payment_service.py::test_list_checks_that_the_actor_participates PASSED                        [100%]
+
+================================================= 19 passed in 0.18s =================================================

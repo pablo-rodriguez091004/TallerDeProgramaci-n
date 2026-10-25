@@ -1,0 +1,68 @@
+# tree -L 2 --noreport -I '__pycache__' domain application
+# cwd: backend | 2026-10-24 21:31 -05 | exit 0
+
+domain
+├── ai_assistant
+│   ├── answer.py
+│   ├── errors.py
+│   ├── __init__.py
+│   ├── ports.py
+│   ├── prompts.py
+│   └── retrieval.py
+├── catalog
+│   ├── entities.py
+│   ├── __init__.py
+│   └── ports.py
+├── identity
+│   ├── entities.py
+│   ├── __init__.py
+│   └── ports.py
+├── __init__.py
+├── market_data
+│   ├── errors.py
+│   ├── __init__.py
+│   └── ports.py
+├── payments
+│   ├── entities.py
+│   ├── __init__.py
+│   ├── ports.py
+│   └── rules.py
+├── scheduling
+│   ├── allocation.py
+│   ├── entities.py
+│   ├── __init__.py
+│   ├── ports.py
+│   └── rules.py
+├── shared
+│   ├── actor.py
+│   ├── errors.py
+│   ├── __init__.py
+│   └── ports.py
+└── tracking
+    ├── entities.py
+    ├── __init__.py
+    └── ports.py
+application
+├── ai_assistant
+│   ├── __init__.py
+│   └── services.py
+├── catalog
+│   ├── __init__.py
+│   └── services.py
+├── changes.py
+├── identity
+│   ├── __init__.py
+│   └── services.py
+├── __init__.py
+├── market_data
+│   ├── __init__.py
+│   └── services.py
+├── payments
+│   ├── __init__.py
+│   └── services.py
+├── scheduling
+│   ├── __init__.py
+│   └── services.py
+└── tracking
+    ├── __init__.py
+    └── services.py

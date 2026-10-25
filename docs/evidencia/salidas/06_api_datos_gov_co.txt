@@ -1,0 +1,63 @@
+# /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultar_apis.py datos.gov.co
+# cwd: . | 2026-10-24 21:31 -05 | exit 0
+
+Consulta real: 2026-10-24T21:31:23-05:00
+
+### RUNT - Crecimiento del parque automotor (MinTransporte) u3vn-bdcy
+GET https://www.datos.gov.co/resource/u3vn-bdcy.json
+    $select = nombre_departamento, nombre_de_la_clase, fecha_de_registro, sum(cantidad) as vehiculos
+    $where = estado_del_vehiculo = 'ACTIVO'
+    $group = nombre_departamento, nombre_de_la_clase, fecha_de_registro
+    $order = vehiculos DESC
+    $limit = 50000
+-> HTTP 200 en 891 ms | intentos: 1 | breaker: CLOSED | 28007 registros (se muestran 3)
+[
+  {
+    "nombre_departamento": "CUNDINAMARCA",
+    "nombre_de_la_clase": "MOTOCICLETA",
+    "fecha_de_registro": "2025",
+    "vehiculos": "205163"
+  },
+  {
+    "nombre_departamento": "CUNDINAMARCA",
+    "nombre_de_la_clase": "MOTOCICLETA",
+    "fecha_de_registro": "2026",
+    "vehiculos": "192210"
+  },
+  {
+    "nombre_departamento": "ANTIOQUIA",
+    "nombre_de_la_clase": "MOTOCICLETA",
+    "fecha_de_registro": "2025",
+    "vehiculos": "177090"
+  }
+]
+... (28004 registros mas, omitidos en la captura)
+
+### DIVIPOLA - Codigos de municipios (DANE) gdxc-w37w
+GET https://www.datos.gov.co/resource/gdxc-w37w.json
+    $select = cod_dpto, dpto, cod_mpio, nom_mpio
+    $order = cod_mpio
+    $limit = 5000
+-> HTTP 200 en 182 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
+[
+  {
+    "cod_dpto": "05",
+    "dpto": "ANTIOQUIA",
+    "cod_mpio": "05001",
+    "nom_mpio": "MEDELLÍN"
+  },
+  {
+    "cod_dpto": "05",
+    "dpto": "ANTIOQUIA",
+    "cod_mpio": "05002",
+    "nom_mpio": "ABEJORRAL"
+  },
+  {
+    "cod_dpto": "05",
+    "dpto": "ANTIOQUIA",
+    "cod_mpio": "05004",
+    "nom_mpio": "ABRIAQUÍ"
+  }
+]
+... (1119 registros mas, omitidos en la captura)
+

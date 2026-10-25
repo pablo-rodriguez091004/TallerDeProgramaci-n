@@ -82,7 +82,7 @@ def test_book_without_availability_raises_conflict_and_writes_nothing(service, d
      'Vehículo inválido'),
     (lambda d: setattr(d['vehicles'].get, 'return_value', None), 'Vehículo inválido'),
     (lambda d: setattr(d['services'].get, 'return_value', make_service(status='inactive')), 'Servicio inválido'),
-])
+], ids=['vehiculo_de_otro_cliente', 'vehiculo_inexistente', 'servicio_inactivo'])
 def test_book_validates_before_looking_for_resources(service, deps, setup, message):
     setup(deps)
     with pytest.raises(InvalidInput, match=message):

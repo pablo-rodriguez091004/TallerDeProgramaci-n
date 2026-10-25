@@ -48,6 +48,9 @@ class Config:
     MARKET_RETRY_MAX_SECONDS = float(os.environ.get('MARKET_RETRY_MAX_SECONDS', 8))
     CIRCUIT_FAILURE_THRESHOLD = int(os.environ.get('CIRCUIT_FAILURE_THRESHOLD', 3))
     CIRCUIT_RECOVERY_SECONDS = float(os.environ.get('CIRCUIT_RECOVERY_SECONDS', 30))
+    # Base de datos.gov.co. Solo se cambia para la DEMOSTRACION CONTROLADA del circuit
+    # breaker (scripts/generar_evidencia.sh la apunta a un host .invalid).
+    MARKET_SOCRATA_BASE_URL = os.environ.get('MARKET_SOCRATA_BASE_URL', 'https://www.datos.gov.co/resource')
     # Opcional: token de Socrata (sube el limite de peticiones). Sin token tambien funciona.
     SOCRATA_APP_TOKEN = os.environ.get('SOCRATA_APP_TOKEN') or None
 

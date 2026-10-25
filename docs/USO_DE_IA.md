@@ -193,6 +193,23 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
+## Fase 7 – Evidencia (capturas)
+
+- **Generado por la IA:** `scripts/generar_evidencia.sh` (un solo paso), `scripts/evidencia/{render,capturar,consultar_apis,consultas_duckdb}.py` y 18 capturas en `docs/evidencia/` (índice en `docs/evidencia/README.md`).
+- **Instalado:** nada nuevo en el sistema. Playwright 1.64.0 y Chromium ya estaban de la Guía 5; Pygments 2.21.0 ya venía con pytest y se fijó en `scripts/requirements-evidence.txt`. `tree` ya estaba en Fedora. **No se instaló `gh`**: el repositorio es público, así que el CI se consultó con la API REST de GitHub y se capturó con Playwright.
+- **Honestidad:** las imágenes de terminal se generan a partir de la salida real de cada comando (guardada en `docs/evidencia/salidas/`). Los recortes están declarados en la imagen ("JSON recortado a 3 registros", "se omite la Parte A…"). Las capturas 08, 10 y 14 son **demostraciones controladas** (host `.invalid`), y así lo dicen.
+- **Errores detectados al revisar cada imagen (y corregidos):**
+  1. Las ligaduras de la fuente convertían `->`, `!=` y `===` en flechas y símbolos, lo que en una evidencia de código es engañoso. Se desactivaron.
+  2. pytest imprimía a 150 columnas y las líneas se partían. Ahora usa `COLUMNS=118`.
+  3. `tree` producía una imagen de 5 832 px. Se dividió en dos comandos reales lado a lado.
+  4. Los IDs de una prueba parametrizada salían escapados (`Veh\xedculo`). Se añadieron `ids=` legibles a la prueba.
+  5. La página de Mercado y el ADR completos eran demasiado altos para el Word. Se dividieron por secciones.
+  6. La barra de navegación *sticky* tapaba la tabla en la 13b. Se fija como estática solo durante esa captura.
+- **Cambio de configuración para la demo:** `MARKET_SOCRATA_BASE_URL` (por defecto la URL real de datos.gov.co). Solo el script de evidencia la cambia.
+- **Aviso:** la captura del CI corresponde al último run en verde (`4eb6286`). Los commits posteriores a la Fase 5 solo cambian documentación, scripts y una prueba; el CI se vuelve a ejecutar con el próximo push que toque `backend/`.
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*

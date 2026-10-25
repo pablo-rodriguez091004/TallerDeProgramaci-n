@@ -1,0 +1,29 @@
+# venv/bin/python -m pytest -p no:warnings --color=yes tests/unit/test_circuit_breaker.py tests/unit/test_retry.py tests/unit/test_resilient_http_client.py
+# cwd: backend | 2026-10-24 21:31 -05 | exit 0
+
+================================================ test session starts =================================================
+platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0 -- /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collecting ... collected 16 items
+
+tests/unit/test_circuit_breaker.py::test_full_cycle_closed_open_half_open_closed PASSED                        [  6%]
+tests/unit/test_circuit_breaker.py::test_failed_trial_reopens_and_restarts_the_timer PASSED                    [ 12%]
+tests/unit/test_circuit_breaker.py::test_half_open_lets_only_one_trial_through PASSED                          [ 18%]
+tests/unit/test_circuit_breaker.py::test_a_success_resets_the_consecutive_failure_count PASSED                 [ 25%]
+tests/unit/test_circuit_breaker.py::test_errors_outside_failure_exceptions_do_not_open_the_circuit PASSED      [ 31%]
+tests/unit/test_circuit_breaker.py::test_reset_closes_manually PASSED                                          [ 37%]
+tests/unit/test_circuit_breaker.py::test_invalid_threshold PASSED                                              [ 43%]
+tests/unit/test_retry.py::test_succeeds_after_transient_failures_waiting_exponentially PASSED                  [ 50%]
+tests/unit/test_retry.py::test_equal_jitter_keeps_each_delay_between_half_and_full_ceiling PASSED              [ 56%]
+tests/unit/test_retry.py::test_delay_is_capped_by_max_delay PASSED                                             [ 62%]
+tests/unit/test_retry.py::test_gives_up_after_max_retries_with_the_last_error PASSED                           [ 68%]
+tests/unit/test_retry.py::test_non_retryable_errors_propagate_immediately PASSED                               [ 75%]
+tests/unit/test_resilient_http_client.py::test_retries_5xx_and_timeouts_then_returns_json PASSED               [ 81%]
+tests/unit/test_resilient_http_client.py::test_4xx_is_permanent_no_retry_and_does_not_open_the_circuit PASSED  [ 87%]
+tests/unit/test_resilient_http_client.py::test_circuit_opens_mid_retries_and_then_fails_fast_without_network PASSED [ 93%]
+tests/unit/test_resilient_http_client.py::test_retry_exhausted_when_failures_stay_below_the_threshold PASSED   [100%]
+
+================================================= 16 passed in 0.04s =================================================

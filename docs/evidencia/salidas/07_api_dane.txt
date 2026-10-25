@@ -1,0 +1,41 @@
+# /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultar_apis.py dane
+# cwd: . | 2026-10-24 21:31 -05 | exit 0
+
+Consulta real: 2026-10-24T21:31:25-05:00
+
+### DANE geoportal (ArcGIS REST) - Poblacion total censada CNPV 2018 por municipio
+GET https://geoportal.dane.gov.co/mparcgis/rest/services/INDICADORES_DE_POBLACION/Serv_Mpios_DistribucionPoblacionTotalCen_2018/MapServer/4/query
+    where = 1=1
+    outFields = DPTO_CCDGO,MPIO_CCDGO,MPIO_CNMBR,CL0_TT_PERSN
+    returnGeometry = false
+    orderByFields = CL0_TT_PERSN DESC
+    f = json
+-> HTTP 200 en 981 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
+[
+  {
+    "attributes": {
+      "DPTO_CCDGO": "11",
+      "MPIO_CCDGO": "11001",
+      "MPIO_CNMBR": "BOGOTÁ, D.C.",
+      "CL0_TT_PERSN": 7181469
+    }
+  },
+  {
+    "attributes": {
+      "DPTO_CCDGO": "05",
+      "MPIO_CCDGO": "05001",
+      "MPIO_CNMBR": "MEDELLÍN",
+      "CL0_TT_PERSN": 2372330
+    }
+  },
+  {
+    "attributes": {
+      "DPTO_CCDGO": "76",
+      "MPIO_CCDGO": "76001",
+      "MPIO_CNMBR": "CALI",
+      "CL0_TT_PERSN": 1822869
+    }
+  }
+]
+... (1119 registros mas, omitidos en la captura)
+

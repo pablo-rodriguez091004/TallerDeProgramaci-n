@@ -24,7 +24,8 @@ from application.tracking.services import TrackingService
 from domain.scheduling.allocation import ResourceAllocator
 from infrastructure.analytics.duckdb_analytics import DuckDbMarketAnalytics
 from infrastructure.llm.gemini_gateway import GeminiGateway
-from infrastructure.market_data.clients import DanePopulationSource, DivipolaSource, RuntFleetSource, SocrataClient
+from infrastructure.market_data.clients import (SOCRATA_BASE, DanePopulationSource, DivipolaSource, RuntFleetSource,
+                                                SocrataClient)
 from infrastructure.market_data.health import BreakerHealthMonitor
 from infrastructure.market_data.snapshot_store import JsonFileSnapshotStore
 from infrastructure.persistence.repositories.ai_call_log import SqlAlchemyAiCallLog
@@ -80,7 +81,8 @@ def build_market_data(config, clock, transport=None):
 
     datos_gov = http_for('datos.gov.co')
     dane = http_for('geoportal.dane.gov.co')
-    socrata = SocrataClient(datos_gov, app_token=config.get('SOCRATA_APP_TOKEN'))
+    socrata = SocrataClient(datos_gov, base_url=config.get('MARKET_SOCRATA_BASE_URL', SOCRATA_BASE),
+                            app_token=config.get('SOCRATA_APP_TOKEN'))
     sources = [RuntFleetSource(socrata), DivipolaSource(socrata), DanePopulationSource(dane)]
     return MarketDataService(sources, JsonFileSnapshotStore(config['MARKET_DATA_DIR']),
                              BreakerHealthMonitor([datos_gov.breaker, dane.breaker]),
