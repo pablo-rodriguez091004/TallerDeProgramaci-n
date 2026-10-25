@@ -1,7 +1,7 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultar_apis.py dane
-# cwd: . | 2026-10-24 22:03 -05 | exit 0
+# cwd: . | 2026-10-25 00:49 -05 | exit 0
 
-Consulta real: 2026-10-24T22:03:49-05:00
+Consulta real: 2026-10-25T00:51:04-05:00
 
 ### DANE geoportal (ArcGIS REST) - Poblacion total censada CNPV 2018 por municipio
 GET https://geoportal.dane.gov.co/mparcgis/rest/services/INDICADORES_DE_POBLACION/Serv_Mpios_DistribucionPoblacionTotalCen_2018/MapServer/4/query
@@ -10,7 +10,7 @@ GET https://geoportal.dane.gov.co/mparcgis/rest/services/INDICADORES_DE_POBLACIO
     returnGeometry = false
     orderByFields = CL0_TT_PERSN DESC
     f = json
--> HTTP 200 en 1063 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
+-> HTTP 200 en 1059 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
 [
   {
     "attributes": {

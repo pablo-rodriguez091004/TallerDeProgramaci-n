@@ -254,3 +254,18 @@ Como cambió el identificador de cada commit, esta es la equivalencia de los cit
 Los runs de GitHub Actions anteriores quedan registrados sobre los commits viejos. La evidencia y el informe se regeneraron después con el CI de los commits nuevos.
 
 **CI después de la reescritura.** El *force push* no disparó el workflow, así que no había un run sobre los commits nuevos. En lugar de un commit vacío se hizo un cambio útil: las actions se actualizaron a versiones con Node 24 (`checkout@v7.0.1`, `setup-python@v7.0.0`, `upload-artifact@v7.0.2`), con versiones fijas verificadas y sin usar la `setup-python` v7.1.0, publicada 2 días antes. Eso eliminó el aviso de deprecación de Node.js 20. Resultado: run `40156647221` del commit `7c3e54a` → **success**. La evidencia y el informe se regeneraron con ese run.
+
+## Extra – Rol administrador y recepción (2026-10-25, pedido por Pablo)
+
+- **Necesidad (Pablo):** una persona que administre el negocio, agende citas de clientes nuevos y esté pendiente del inventario.
+- **Generado por la IA:**
+  - Usuario de prueba `admin@tallermecanico.com` creado con `scripts/crear_admin.py`, que no duplica si ya existe.
+  - Endpoints `GET` y `POST /businesses/clients`.
+  - Registro de vehículos y agendamiento con `client_user_id` para `owner` y `admin`.
+  - Pestaña **Recepción** en el Panel del taller, con registro del depósito.
+  - 13 pruebas nuevas (unitarias con mocks y una de integración del flujo completo).
+- **Regla de negocio:** el cliente sigue sin poder actuar a nombre de otro (403) y el mecánico no tiene acceso a recepción. Crear o desactivar mecánicos sigue siendo exclusivo del dueño.
+- **Verificación:** 128 pruebas en verde. Prueba de punta a punta con Playwright en la app real: cliente nuevo, vehículo, cita, depósito y cita **Confirmada** que el cliente ve en su historial. Los datos de prueba se borraron de la base de desarrollo. CI en verde en `master` y `mecatrack-final`.
+- **Errores de la IA en esta parte:**
+  - La prueba de punta a punta falló una vez porque esperaba el texto "Bahía", que la propia IA había quitado de la interfaz. Se corrigió la prueba.
+  - Un `pkill` cuyo patrón aparecía en la propia línea de comando cerró la terminal de la IA; desde entonces los procesos se detienen por PID.

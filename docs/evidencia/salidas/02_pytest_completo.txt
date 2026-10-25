@@ -1,5 +1,5 @@
 # venv/bin/python -m pytest -q -p no:warnings --color=yes
-# cwd: backend | 2026-10-24 22:03 -05 | exit 0
+# cwd: backend | 2026-10-25 00:49 -05 | exit 0
 
 ================================================ test session starts =================================================
 platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0
@@ -7,26 +7,28 @@ rootdir: /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend
 configfile: pytest.ini
 testpaths: tests
 plugins: anyio-4.15.1
-collected 115 items
+collected 128 items
 
-tests/integration/test_api_v1_ai.py ...............                                                            [ 13%]
-tests/integration/test_api_v1_market.py ....                                                                   [ 16%]
-tests/integration/test_api_v1_services.py .........                                                            [ 24%]
-tests/integration/test_integration.py ...                                                                      [ 26%]
-tests/integration/test_legacy_routes.py .......                                                                [ 33%]
-tests/integration/test_openapi.py ....                                                                         [ 36%]
-tests/unit/test_ai_assistant_service.py ...                                                                    [ 39%]
-tests/unit/test_appointment_service.py ............                                                            [ 49%]
-tests/unit/test_architecture.py ......                                                                         [ 54%]
+tests/integration/test_api_v1_ai.py ...............                                                            [ 11%]
+tests/integration/test_api_v1_market.py ....                                                                   [ 14%]
+tests/integration/test_api_v1_services.py .........                                                            [ 21%]
+tests/integration/test_integration.py ...                                                                      [ 24%]
+tests/integration/test_legacy_routes.py .......                                                                [ 29%]
+tests/integration/test_openapi.py ....                                                                         [ 32%]
+tests/integration/test_reception.py ....                                                                       [ 35%]
+tests/unit/test_ai_assistant_service.py ...                                                                    [ 38%]
+tests/unit/test_appointment_service.py ................                                                        [ 50%]
+tests/unit/test_architecture.py ......                                                                         [ 55%]
 tests/unit/test_circuit_breaker.py .......                                                                     [ 60%]
-tests/unit/test_domain_rules.py ..........                                                                     [ 69%]
-tests/unit/test_duckdb_analytics.py .......                                                                    [ 75%]
-tests/unit/test_market_data_service.py ..                                                                      [ 77%]
-tests/unit/test_market_sources.py .....                                                                        [ 81%]
-tests/unit/test_payment_service.py .......                                                                     [ 87%]
-tests/unit/test_resilient_http_client.py ....                                                                  [ 91%]
-tests/unit/test_resource_allocator.py ...                                                                      [ 93%]
-tests/unit/test_retry.py .....                                                                                 [ 98%]
-tests/unit/test_tracking_service.py ..                                                                         [100%]
+tests/unit/test_domain_rules.py ..........                                                                     [ 68%]
+tests/unit/test_duckdb_analytics.py .......                                                                    [ 74%]
+tests/unit/test_market_data_service.py ..                                                                      [ 75%]
+tests/unit/test_market_sources.py .....                                                                        [ 79%]
+tests/unit/test_payment_service.py .......                                                                     [ 85%]
+tests/unit/test_resilient_http_client.py ....                                                                  [ 88%]
+tests/unit/test_resource_allocator.py ...                                                                      [ 90%]
+tests/unit/test_retry.py .....                                                                                 [ 94%]
+tests/unit/test_tracking_service.py ..                                                                         [ 96%]
+tests/unit/test_vehicle_service.py .....                                                                       [100%]
 
-================================================ 115 passed in 15.90s ================================================
+================================================ 128 passed in 27.90s ================================================

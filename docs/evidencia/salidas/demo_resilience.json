@@ -1,45 +1,45 @@
 {
  "retry": {
   "gaps_s": [
-   0.438,
-   0.583,
-   1.344,
-   3.087
+   0.371,
+   0.609,
+   1.068,
+   3.827
   ],
   "planned_s": [
-   0.436,
-   0.582,
-   1.343,
-   3.086
+   0.366,
+   0.606,
+   1.066,
+   3.825
   ]
  },
  "transitions": [
   {
-   "at": "2026-10-25T03:03:56.778+00:00",
+   "at": "2026-10-25T05:51:12.616+00:00",
    "from": "CLOSED",
    "to": "OPEN",
    "reason": "3 consecutive failures (last: TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json)"
   },
   {
-   "at": "2026-10-25T03:04:01.778+00:00",
+   "at": "2026-10-25T05:51:17.617+00:00",
    "from": "OPEN",
    "to": "HALF_OPEN",
    "reason": "recovery timeout of 5 s elapsed"
   },
   {
-   "at": "2026-10-25T03:04:01.779+00:00",
+   "at": "2026-10-25T05:51:17.620+00:00",
    "from": "HALF_OPEN",
    "to": "OPEN",
    "reason": "trial call failed (TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json)"
   },
   {
-   "at": "2026-10-25T03:04:06.779+00:00",
+   "at": "2026-10-25T05:51:22.620+00:00",
    "from": "OPEN",
    "to": "HALF_OPEN",
    "reason": "recovery timeout of 5 s elapsed"
   },
   {
-   "at": "2026-10-25T03:04:10.553+00:00",
+   "at": "2026-10-25T05:51:24.228+00:00",
    "from": "HALF_OPEN",
    "to": "CLOSED",
    "reason": "trial call succeeded"
@@ -47,151 +47,151 @@
  ],
  "events": [
   {
-   "t": 0.018,
+   "t": 0.061,
    "kind": "ATTEMPT",
    "message": "intento 1 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json"
   },
   {
-   "t": 0.02,
+   "t": 0.067,
    "kind": "BACKOFF",
-   "message": "espera planificada 0.436 s (techo 0.5 s)",
-   "planned_s": 0.436
+   "message": "espera planificada 0.366 s (techo 0.5 s)",
+   "planned_s": 0.366
   },
   {
-   "t": 0.456,
+   "t": 0.433,
    "kind": "ATTEMPT",
-   "message": "intento 2 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.438 s desde el anterior)"
+   "message": "intento 2 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.371 s desde el anterior)"
   },
   {
-   "t": 0.458,
+   "t": 0.435,
    "kind": "BACKOFF",
-   "message": "espera planificada 0.582 s (techo 1 s)",
-   "planned_s": 0.582
+   "message": "espera planificada 0.606 s (techo 1 s)",
+   "planned_s": 0.606
   },
   {
-   "t": 1.04,
+   "t": 1.042,
    "kind": "ATTEMPT",
-   "message": "intento 3 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.583 s desde el anterior)"
+   "message": "intento 3 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.609 s desde el anterior)"
   },
   {
-   "t": 1.041,
+   "t": 1.044,
    "kind": "BACKOFF",
-   "message": "espera planificada 1.343 s (techo 2 s)",
-   "planned_s": 1.343
+   "message": "espera planificada 1.066 s (techo 2 s)",
+   "planned_s": 1.066
   },
   {
-   "t": 2.384,
+   "t": 2.11,
    "kind": "ATTEMPT",
-   "message": "intento 4 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+1.344 s desde el anterior)"
+   "message": "intento 4 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+1.068 s desde el anterior)"
   },
   {
-   "t": 2.385,
+   "t": 2.112,
    "kind": "BACKOFF",
-   "message": "espera planificada 3.086 s (techo 4 s)",
-   "planned_s": 3.086
+   "message": "espera planificada 3.825 s (techo 4 s)",
+   "planned_s": 3.825
   },
   {
-   "t": 5.471,
+   "t": 5.937,
    "kind": "ATTEMPT",
-   "message": "intento 5 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+3.087 s desde el anterior)"
+   "message": "intento 5 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+3.827 s desde el anterior)"
   },
   {
-   "t": 5.473,
+   "t": 5.939,
    "kind": "GAVE_UP",
    "message": "5 intentos: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json"
   },
   {
-   "t": 5.476,
+   "t": 5.95,
    "kind": "STATE",
    "message": "estado inicial: CLOSED"
   },
   {
-   "t": 5.889,
+   "t": 6.341,
    "kind": "OK",
-   "message": "1. llamada real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 413 ms | estado=CLOSED"
+   "message": "1. llamada real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 391 ms | estado=CLOSED"
   },
   {
-   "t": 5.89,
+   "t": 6.343,
    "kind": "FAILED",
    "message": "2. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=1"
   },
   {
-   "t": 5.89,
+   "t": 6.344,
    "kind": "FAILED",
    "message": "3. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=2"
   },
   {
-   "t": 5.891,
+   "t": 6.345,
    "kind": "TRANSITION",
    "message": "circuit datos.gov.co: CLOSED -> OPEN (3 consecutive failures (last: TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))"
   },
   {
-   "t": 5.891,
+   "t": 6.346,
    "kind": "FAILED",
    "message": "4. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=3"
   },
   {
-   "t": 5.891,
+   "t": 6.346,
    "kind": "REJECTED",
-   "message": "5. llamada con el circuito abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 29 us)"
+   "message": "5. llamada con el circuito abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 135 us)"
   },
   {
-   "t": 5.891,
+   "t": 6.346,
    "kind": "WAIT",
    "message": "esperando 5 s de recuperacion..."
   },
   {
-   "t": 10.891,
+   "t": 11.346,
    "kind": "TRANSITION",
    "message": "circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)"
   },
   {
-   "t": 10.891,
+   "t": 11.346,
    "kind": "STATE",
    "message": "tras la espera: HALF_OPEN"
   },
   {
-   "t": 10.892,
+   "t": 11.349,
    "kind": "TRANSITION",
    "message": "circuit datos.gov.co: HALF_OPEN -> OPEN (trial call failed (TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))"
   },
   {
-   "t": 10.892,
+   "t": 11.349,
    "kind": "FAILED",
    "message": "6. prueba HALF_OPEN que falla: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=4"
   },
   {
-   "t": 10.892,
+   "t": 11.349,
    "kind": "REJECTED",
-   "message": "7. llamada con el circuito re-abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 30 us)"
+   "message": "7. llamada con el circuito re-abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 115 us)"
   },
   {
-   "t": 10.892,
+   "t": 11.349,
    "kind": "WAIT",
    "message": "esperando 5 s de recuperacion..."
   },
   {
-   "t": 15.892,
+   "t": 16.349,
    "kind": "TRANSITION",
    "message": "circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)"
   },
   {
-   "t": 15.892,
+   "t": 16.35,
    "kind": "STATE",
    "message": "tras la espera: HALF_OPEN"
   },
   {
-   "t": 19.666,
+   "t": 17.957,
    "kind": "TRANSITION",
    "message": "circuit datos.gov.co: HALF_OPEN -> CLOSED (trial call succeeded)"
   },
   {
-   "t": 19.666,
+   "t": 17.957,
    "kind": "OK",
-   "message": "8. prueba HALF_OPEN real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 3774 ms | estado=CLOSED"
+   "message": "8. prueba HALF_OPEN real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 1608 ms | estado=CLOSED"
   },
   {
-   "t": 19.666,
+   "t": 17.957,
    "kind": "STATE",
    "message": "estado final: CLOSED"
   }

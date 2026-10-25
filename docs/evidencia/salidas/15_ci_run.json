@@ -1,12 +1,12 @@
 {
- "id": 40156647221,
+ "id": 40166749058,
  "name": "MecaTrack - pruebas de integracion",
- "head_sha": "7c3e54abf98ce3067dd63a2c9d7bae44b35cf65e",
+ "head_sha": "875ef3682c8811418edfb8b94dd51f7524422da4",
  "status": "completed",
  "conclusion": "success",
- "html_url": "https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n/actions/runs/40156647221",
- "run_started_at": "2026-10-25T03:01:11Z",
- "updated_at": "2026-10-25T03:02:20Z",
- "ultimo_commit_backend": "7c3e54abf98ce3067dd63a2c9d7bae44b35cf65e",
- "head_local": "7c3e54abf98ce3067dd63a2c9d7bae44b35cf65e"
+ "html_url": "https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n/actions/runs/40166749058",
+ "run_started_at": "2026-10-25T05:46:38Z",
+ "updated_at": "2026-10-25T05:47:40Z",
+ "ultimo_commit_backend": "875ef3682c8811418edfb8b94dd51f7524422da4",
+ "head_local": "875ef3682c8811418edfb8b94dd51f7524422da4"
 }

@@ -1,6 +1,8 @@
 # git log --format="%h %ad %s" --date=short 7cca398..HEAD
-# cwd: . | 2026-10-24 22:03 -05 | exit 0
+# cwd: . | 2026-10-25 00:49 -05 | exit 0
 
+875ef36 2026-10-25 Rol administrador: recepcion de clientes, vehiculos y citas a su nombre
+5197986 2026-10-24 Guia 6: evidencia e informe regenerados tras la reescritura (CI run 40156647221)
 7c3e54a 2026-10-24 CI: actions con Node 24 (checkout v7.0.1, setup-python v7.0.0, upload-artifact v7.0.2)
 630a393 2026-10-24 PROYECTO_FINAL pasa a ser la raiz del repositorio
 b7f2ebc 2026-10-24 Guia 6: evidencia e informe finales (CI del run 40155508580) y README

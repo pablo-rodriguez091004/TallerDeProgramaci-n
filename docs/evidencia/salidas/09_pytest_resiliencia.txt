@@ -1,5 +1,5 @@
 # venv/bin/python -m pytest -p no:warnings --color=yes tests/unit/test_circuit_breaker.py tests/unit/test_retry.py tests/unit/test_resilient_http_client.py
-# cwd: backend | 2026-10-24 22:03 -05 | exit 0
+# cwd: backend | 2026-10-25 00:49 -05 | exit 0
 
 ================================================ test session starts =================================================
 platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0 -- /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python
@@ -26,4 +26,4 @@ tests/unit/test_resilient_http_client.py::test_4xx_is_permanent_no_retry_and_doe
 tests/unit/test_resilient_http_client.py::test_circuit_opens_mid_retries_and_then_fails_fast_without_network PASSED [ 93%]
 tests/unit/test_resilient_http_client.py::test_retry_exhausted_when_failures_stay_below_the_threshold PASSED   [100%]
 
-================================================= 16 passed in 0.04s =================================================
+================================================= 16 passed in 0.15s =================================================

@@ -1,7 +1,7 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultas_duckdb.py q2
-# cwd: . | 2026-10-24 22:03 -05 | exit 0
+# cwd: . | 2026-10-25 00:49 -05 | exit 0
 
-DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T03:03:09.443060, divipola 2026-10-25T03:03:09.754615, dane_population 2026-10-25T03:03:10.941565
+DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T05:49:54.550505, divipola 2026-10-25T05:49:55.081617, dane_population 2026-10-25T05:49:56.535577
 Q2 - Motorizacion por departamento + resumen entre departamentos
 ┌────────┬──────────────────────────────────────────────────────────┬────────────────┬───────────┬────────────────────────┬───────────┐
 │ puesto │                       departamento                       │ poblacion_2018 │ vehiculos │ vehiculos_por_1000_hab │ pct_motos │
@@ -43,7 +43,7 @@ Q2 - Motorizacion por departamento + resumen entre departamentos
 └────────┴──────────────────────────────────────────────────────────┴────────────────┴───────────┴────────────────────────┴───────────┘
   33 rows                                                                                                                   6 columns
 
-33 filas en 101.0 ms
+33 filas en 314.7 ms
 
 ┌───────────────┬───────────┬────────┬─────────┬────────────┬────────┬────────┬────────┬────────┬───────────────────────┐
 │ departamentos │ con_datos │ media  │ mediana │ desviacion │ minimo │  p25   │  p75   │ maximo │ nacional_por_1000_hab │
@@ -52,5 +52,5 @@ Q2 - Motorizacion por departamento + resumen entre departamentos
 │            33 │        32 │  514.8 │   446.5 │      343.9 │   63.2 │  306.4 │  627.6 │ 2020.7 │                 499.4 │
 └───────────────┴───────────┴────────┴─────────┴────────────┴────────┴────────┴────────┴────────┴───────────────────────┘
 
-1 filas en 0.7 ms
+1 filas en 2.9 ms
 

@@ -1,4 +1,4 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/exportar_analitica.py
-# cwd: . | 2026-10-24 22:03 -05 | exit 0
+# cwd: . | 2026-10-25 00:49 -05 | exit 0
 
-/home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/docs/evidencia/salidas/analitica.json: fleet_age_by_class 9 filas (88.5 ms), motorization_by_department 33 filas (96.9 ms), age_distribution 20 filas (87.1 ms)
+/home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/docs/evidencia/salidas/analitica.json: fleet_age_by_class 9 filas (214.7 ms), motorization_by_department 33 filas (166.5 ms), age_distribution 20 filas (127.9 ms)
