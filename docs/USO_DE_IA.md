@@ -173,6 +173,15 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
+## Fase 5 – ADR en inglés
+
+- **Generado por la IA:** `docs/adr/0001-hexagonal-architecture.md` (plantilla de Nygard): contexto, decisión, 7 bounded contexts con su tipo de subdominio y puertos, mapa de contextos (cliente/proveedor, conformista, capa anticorrupción), DI, resiliencia, 5 alternativas descartadas y consecuencias positivas y negativas.
+- **Verificación:** todas las cifras salen de ejecuciones reales (18 puertos ABC, 73 pruebas unitarias en 1,12 s, 42 de integración en 14,7 s, ~60 líneas de cableado). Las 4 URLs de las referencias respondieron HTTP 200 el 2026-10-24; los libros (Evans, 2003; Nygard, 2018) son ediciones publicadas.
+- **Error de la IA detectado:** el borrador decía "11-service graph", pero tras la Fase 3 el contenedor tiene 12 servicios. Se detectó contando los campos de `Container` y se corrigió.
+- **A revisar por Pablo:** la clasificación de subdominios (core/supporting/generic) es una decisión de diseño que debe poder defender. **[COMPLETAR]** Acuerdo o cambios.
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*
