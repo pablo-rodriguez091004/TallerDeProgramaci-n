@@ -13,7 +13,7 @@ OUT=evidence/pytest_output.txt
 mkdir -p evidence
 
 {
-  echo "# Salida de pytest - MecaTrack (Guia 5)"
+  echo "# Salida de pytest - MecaTrack (unitarias + integracion)"
   echo "# Fecha:   $(date '+%Y-%m-%d %H:%M:%S %Z')"
   echo "# Commit:  $(git rev-parse --short HEAD)$(git diff --quiet -- backend || echo ' (con cambios sin commit en backend/)')"
   echo "# Python:  $(backend/venv/bin/python --version 2>&1)"

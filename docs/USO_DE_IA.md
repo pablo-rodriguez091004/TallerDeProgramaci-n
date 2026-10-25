@@ -182,6 +182,17 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
+## Fase 6 – CI en GitHub Actions
+
+- El workflow existente (`.github/workflows/mecatrack-tests.yml`: PostgreSQL 16, Python 3.12, pytest y verificación de `openapi.json`) **no necesitó cambios**. Ya ejecuta las dos carpetas de pruebas, porque `testpaths = tests`, y `duckdb==1.5.6` entró por `requirements.txt`.
+- Antes del push (autorizado por Pablo) se escanearon los 16 commits pendientes en busca de secretos (claves de Google, tokens de GitHub, URLs con contraseña): no había ninguno.
+- No se incluyó el borrado sin commit de `Taller1/` y `Actividad_2/`.
+- Resultado real: run `40154151261` del commit `4eb6286` → **completed / success**.
+  https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n/actions/runs/40154151261
+- Suite local antes del push: 115 pruebas en verde (73 unitarias + 42 de integración).
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*
