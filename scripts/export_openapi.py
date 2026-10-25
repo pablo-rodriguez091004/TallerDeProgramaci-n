@@ -20,7 +20,7 @@ sys.path.insert(0, BACKEND)
 from openapi_spec_validator import validate  # noqa: E402
 
 from app import create_app  # noqa: E402
-from api import api  # noqa: E402
+from api.openapi import api  # noqa: E402
 
 
 def main():

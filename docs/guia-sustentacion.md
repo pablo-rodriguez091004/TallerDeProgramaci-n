@@ -14,7 +14,7 @@ Duración sugerida: **12–15 min** (2 de contexto + 7 de demo + 3 de código/pr
 - [ ] Terminal 1: `./scripts/start-backend.sh`
 - [ ] Terminal 2: `cd frontend && python3 -m http.server 5500 --bind 127.0.0.1`
 - [ ] Navegador en `http://127.0.0.1:5500/index.html` (usa `127.0.0.1`, **no** `localhost`)
-- [ ] VSCode abierto en `appointment_model.py`, `appointment_repository.py`, `scheduling_engine.py` y `tests/test_integration.py`
+- [ ] VSCode abierto en `appointment_model.py`, `appointment_repository.py`, `domain/scheduling/allocation.py` y `tests/test_integration.py`
 
 > **Demo sin riesgo para tus datos:** puedes presentar sobre una base aparte creada con las migraciones y el seed:
 > `DATABASE_URL=postgresql://postgres:CLAVE@127.0.0.1:5432/mecatrack_demo ./scripts/start-backend.sh`
@@ -29,7 +29,7 @@ Duración sugerida: **12–15 min** (2 de contexto + 7 de demo + 3 de código/pr
 - **Problema:** un taller agenda citas "a mano", choca bahías y mecánicos y el cliente no sabe en qué va su carro.
 - **Solución:** MecaTrack, con 3 roles (cliente, mecánico y dueño) y un motor que asigna solo una bahía y un mecánico libres.
 - **Arquitectura multicapa**, dibujada o en una diapositiva:
-  `UI (HTML/JS vanilla) → API Flask (blueprints + role_required) → negocio (scheduling_engine) → repositorios → SQLAlchemy ORM → PostgreSQL`
+  `UI (HTML/JS vanilla) → api (blueprints + role_required) → application (casos de uso) → domain (reglas + puertos) ← infrastructure (repos SQLAlchemy → PostgreSQL)`
 
 ### 2.2 Demo en vivo (≈ 7 min)
 
@@ -48,8 +48,8 @@ Duración sugerida: **12–15 min** (2 de contexto + 7 de demo + 3 de código/pr
 
 ### 2.3 Código y calidad (≈ 3 min)
 
-1. **ORM y relaciones**, en `models/appointment_model.py`: la doble FK hacia `users` con alias `client` y `mechanic` (`foreign_keys=[...]`).
-2. **Repositorio + N+1**, en `repositories/appointment_repository.py`: `_LIST_OPTIONS` con `joinedload`. Las rutas no consultan modelos directamente.
+1. **ORM y relaciones**, en `backend/infrastructure/persistence/models/appointment_model.py`: la doble FK hacia `users` con alias `client` y `mechanic` (`foreign_keys=[...]`).
+2. **Repositorio + N+1**, en `backend/infrastructure/persistence/repositories/appointment_repository.py`: `_VIEW_OPTIONS` con `joinedload`. Las rutas no consultan modelos: llaman casos de uso de `application/`.
 3. **Migraciones**: `venv/bin/flask --app app db history` → 2 revisiones (esquema inicial + índices del motor).
 4. **Pruebas**: ejecutar `venv/bin/python -m pytest` en vivo (≈ 2 s, 3 pasan) y mostrar el `assert len(selects) <= 2`.
 5. **CI**: pestaña Actions en verde y `.github/workflows/mecatrack-tests.yml` (PostgreSQL como servicio).

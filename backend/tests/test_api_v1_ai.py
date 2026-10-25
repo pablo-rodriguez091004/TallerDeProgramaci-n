@@ -1,7 +1,7 @@
 """
 Pruebas de POST /api/v1/ai/suggest-service con el LLM simulado.
 
-Se reemplaza solo llm_client._call_model (la funcion que usa la red): la
+Se reemplaza solo gemini_gateway._call_model (la funcion que usa la red): la
 recuperacion, los prompts, los reintentos, el mapeo de errores y la bitacora
 ai_calls se ejecutan de verdad contra PostgreSQL.
 """
@@ -13,9 +13,10 @@ import httpx
 import pytest
 from google.genai import errors as genai_errors
 
-from db.conexion import db
-from models.ai_call_model import AiCall
-from services import llm_client, prompts, retrieval
+from domain.ai_assistant import prompts
+from infrastructure.llm import gemini_gateway
+from infrastructure.persistence.extensions import db
+from infrastructure.persistence.models import AiCall
 
 URL = '/api/v1/ai/suggest-service'
 SYMPTOM = 'El carro vibra mucho cuando freno en bajada'
@@ -50,7 +51,7 @@ class FakeModel:
 @pytest.fixture
 def brake_catalog(app):
     """Agrega al seed (1 = Cambio de aceite) servicios de frenos y bateria."""
-    from models.service_model import Service
+    from infrastructure.persistence.models import Service
     with app.app_context():
         db.session.add_all([
             Service(business_id=1, service_name='Cambio de pastillas de freno',
@@ -68,7 +69,7 @@ def brake_catalog(app):
 def fake_model(monkeypatch):
     def _install(*outcomes):
         model = FakeModel(*outcomes)
-        monkeypatch.setattr(llm_client, '_call_model', model)
+        monkeypatch.setattr(gemini_gateway, '_call_model', model)
         return model
     return _install
 
@@ -215,10 +216,11 @@ def test_per_user_hourly_limit(app, login, monkeypatch, fake_model):
 
 def test_retrieval_ranks_matches_and_falls_back_to_full_catalog(app, brake_catalog):
     with app.app_context():
-        result = retrieval.retrieve('no prende en las mañanas, creo que es la bateria')
+        assistant = app.extensions['mecatrack'].ai_assistant
+        result = assistant.retrieve('no prende en las mañanas, creo que es la bateria')
         assert [s.service_id for s in result['services']][0] == 4 and not result['fallback']
 
-        result = retrieval.retrieve('quiero lavar y polichar la pintura')
+        result = assistant.retrieve('quiero lavar y polichar la pintura')
         assert result['fallback'] and len(result['services']) == 4
 
 

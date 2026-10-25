@@ -1,6 +1,7 @@
 """
 POST /api/v1/ai/suggest-service: el cliente describe un sintoma y el LLM
-sugiere servicios del catalogo (RAG). La logica vive en services/ai_service.py;
+sugiere servicios del catalogo (RAG). La logica vive en
+application/ai_assistant/services.py (AiAssistantService);
 aqui solo se valida, se aplica el limite por usuario y se mapean errores a HTTP.
 """
 
@@ -9,19 +10,20 @@ from flask.views import MethodView
 from flask_login import current_user, login_required
 from flask_smorest import Blueprint
 
+from api.deps import container
 from api.errors import ApiError
-from schemas.ai_schema import SuggestServiceRequestSchema, SuggestServiceResponseSchema
-from schemas.error_schema import UNAUTHORIZED_EXAMPLE, ApiErrorSchema, error_example
-from services import ai_service, llm_client
+from api.v1.schemas.ai_schema import SuggestServiceRequestSchema, SuggestServiceResponseSchema
+from api.v1.schemas.error_schema import UNAUTHORIZED_EXAMPLE, ApiErrorSchema, error_example
+from domain.ai_assistant import errors as ai_errors
 
 blp = Blueprint('AI', __name__, description='LLM-powered assistant that suggests catalog services (RAG).')
 
 # Excepcion del cliente LLM -> (HTTP, code, message publico)
 LLM_ERRORS = {
-    llm_client.LlmNotConfigured: (503, 'ai_not_configured', 'The AI assistant is not configured on this server'),
-    llm_client.LlmTimeout: (504, 'llm_timeout', 'The AI provider did not answer in time, please try again'),
-    llm_client.LlmRateLimited: (429, 'llm_rate_limited', 'The AI provider is rate limiting requests, try again later'),
-    llm_client.LlmProviderError: (502, 'llm_provider_error', 'The AI provider failed to process the request'),
+    ai_errors.LlmNotConfigured: (503, 'ai_not_configured', 'The AI assistant is not configured on this server'),
+    ai_errors.LlmTimeout: (504, 'llm_timeout', 'The AI provider did not answer in time, please try again'),
+    ai_errors.LlmRateLimited: (429, 'llm_rate_limited', 'The AI provider is rate limiting requests, try again later'),
+    ai_errors.LlmProviderError: (502, 'llm_provider_error', 'The AI provider failed to process the request'),
 }
 
 REQUEST_EXAMPLE = {'description': 'El carro vibra cuando freno en bajada', 'technique': 'few_shot'}
@@ -75,20 +77,21 @@ class SuggestService(MethodView):
         database, never from the model. Every call is stored in `ai_calls`.
         Any logged-in user can call it, up to `AI_MAX_CALLS_PER_HOUR` times per hour.
         """
+        assistant = container().ai_assistant
         limit = int(current_app.config.get('AI_MAX_CALLS_PER_HOUR', 20))
         try:
-            ai_service.check_user_quota(current_user.user_id, limit)
-        except ai_service.UserQuotaExceeded as exc:
+            assistant.check_user_quota(current_user.user_id, limit)
+        except ai_errors.UserQuotaExceeded as exc:
             raise ApiError(429, 'user_quota_exceeded', f'You reached the limit of {limit} AI requests per hour',
                            {'retry_after_seconds': exc.retry_after_s},
                            headers={'Retry-After': str(exc.retry_after_s)})
 
         try:
-            return ai_service.suggest_services(data['description'], data['technique'], user_id=current_user.user_id)
-        except llm_client.LlmError as exc:
+            return assistant.suggest_services(data['description'], data['technique'], user_id=current_user.user_id)
+        except ai_errors.LlmError as exc:
             status, code, message = LLM_ERRORS[type(exc)]
             raise ApiError(status, code, message,
                            {'ai_call_id': getattr(exc, 'ai_call_id', None), 'attempts': exc.attempts}) from exc
-        except ai_service.InvalidModelResponse as exc:
+        except ai_errors.InvalidModelResponse as exc:
             raise ApiError(502, 'invalid_llm_response', 'The AI provider returned an unexpected answer',
                            {'ai_call_id': getattr(exc, 'ai_call_id', None), 'reason': str(exc)}) from exc

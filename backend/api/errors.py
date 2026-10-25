@@ -14,6 +14,9 @@ lee la clave 'error' y no se debe romper.
 from flask import jsonify, request
 from werkzeug.exceptions import HTTPException
 
+from domain.shared.errors import (AuthenticationFailed, Conflict, DomainError, InvalidInput, NotFound,
+                                  PermissionDenied)
+
 API_PREFIX = '/api/'
 
 # Codigo por defecto segun el estado HTTP cuando el error no trae uno propio
@@ -81,3 +84,32 @@ def error_response(error):
     for name, value in headers.items():
         response.headers[name] = value
     return response
+
+
+# El dominio no conoce HTTP: aqui se decide el estado de cada tipo de error.
+DOMAIN_ERROR_STATUS = (
+    (AuthenticationFailed, 401),
+    (PermissionDenied, 403),
+    (NotFound, 404),
+    (Conflict, 409),
+    (InvalidInput, 400),
+)
+
+
+def domain_error_status(error):
+    for error_type, status in DOMAIN_ERROR_STATUS:
+        if isinstance(error, error_type):
+            return status
+    return 400
+
+
+def handle_domain_error(error: DomainError):
+    """
+    Un solo manejador para toda la app:
+    - /api/v1 -> formato unico {"code","message","details"}
+    - rutas antiguas -> {"error": "..."} (lo lee el frontend)
+    """
+    status = domain_error_status(error)
+    if is_api_request():
+        return error_response(ApiError(status, error.code, error.message, error.details))
+    return jsonify({'error': error.message}), status

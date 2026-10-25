@@ -3,7 +3,7 @@ Experimento de tecnicas de prompting (Guia 5, fase 5).
 
 Ejecuta los casos de evidence/prompt_eval/cases.json con las 3 tecnicas
 (zero_shot, few_shot, cot) llamando al LLM REAL a traves del mismo servicio
-que usa el endpoint (services/ai_service.py). Cada llamada queda ademas en la
+que usa el endpoint (application/ai_assistant/services.py). Cada llamada queda ademas en la
 tabla ai_calls con source='eval'.
 
 Salidas:
@@ -37,18 +37,18 @@ sys.path.insert(0, os.path.join(ROOT, 'backend'))
 EVAL_DIR = os.path.join(ROOT, 'evidence', 'prompt_eval')
 
 from app import create_app  # noqa: E402
-from db.conexion import db  # noqa: E402
-from models.ai_call_model import AiCall  # noqa: E402
-from repositories import service_repository  # noqa: E402
-from services import ai_service, llm_client, prompts  # noqa: E402
+from domain.ai_assistant import prompts  # noqa: E402
+from domain.ai_assistant.errors import InvalidModelResponse, LlmError  # noqa: E402
+from infrastructure.persistence.extensions import db  # noqa: E402
+from infrastructure.persistence.models import AiCall  # noqa: E402
 
 
-def run_case(case, technique):
+def run_case(assistant, case, technique):
     row = {'case_id': case['id'], 'technique': technique, 'description': case['description'],
            'expected_service_id': case['expected_service_id']}
     try:
-        result = ai_service.suggest_services(case['description'], technique, source='eval')
-    except (llm_client.LlmError, ai_service.InvalidModelResponse) as exc:
+        result = assistant.suggest_services(case['description'], technique, source='eval')
+    except (LlmError, InvalidModelResponse) as exc:
         call = db.session.get(AiCall, getattr(exc, 'ai_call_id', None)) if getattr(exc, 'ai_call_id', None) else None
         row.update(status=call.status if call else 'error', error=str(exc), ai_call_id=getattr(exc, 'ai_call_id', None),
                    suggested_service_ids=[], hit_top1=False, hit_top3=False, retrieval_hit=None,
@@ -130,8 +130,10 @@ def main():
     with app.app_context():
         if not app.config.get('GEMINI_API_KEY') or not app.config.get('GEMINI_MODEL'):
             sys.exit('Falta GEMINI_API_KEY o GEMINI_MODEL en backend/.env: no se ejecuta nada.')
+        assistant = app.extensions['mecatrack'].ai_assistant
+        # Sin terminos de busqueda, retrieve() cae al catalogo activo completo.
         catalog = [{'service_id': s.service_id, 'service_name': s.service_name}
-                   for s in service_repository.list_active()]
+                   for s in assistant.retrieve('')['services']]
         missing = {c['expected_service_id'] for c in cases} - {s['service_id'] for s in catalog}
         if missing:
             sys.exit(f'El catalogo activo no tiene los servicios esperados {missing}: corre ./scripts/seed_catalog.sh')
@@ -143,7 +145,7 @@ def main():
             for technique in techniques:
                 if rows:
                     time.sleep(args.delay)
-                row = run_case(case, technique)
+                row = run_case(assistant, case, technique)
                 rows.append(row)
                 mark = 'OK ' if row['hit_top1'] else ('top3' if row['hit_top3'] else 'X  ')
                 print(f"[{len(rows):2}/{total}] caso {case['id']:2} {technique:9} {row['status']:16} {mark} "

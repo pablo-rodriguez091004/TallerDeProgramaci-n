@@ -6,7 +6,7 @@ Sistema de gestión de citas y seguimiento para un taller mecánico. Proyecto fi
 - **Mecánicos:** ven las citas que tienen asignadas, cambian su estado y registran cada paso del servicio (con los repuestos usados, que se descuentan del inventario).
 - **Dueño (owner):** tiene una vista global de las citas y gestiona bahías, repuestos, servicios y mecánicos.
 
-Cuando se agenda una cita, el **motor de agendamiento** (`backend/utils/scheduling_engine.py`) asigna solo una bahía y un mecánico libres, sin que se crucen los horarios.
+Cuando se agenda una cita, el **motor de agendamiento** (`backend/domain/scheduling/allocation.py`) asigna solo una bahía y un mecánico libres, sin que se crucen los horarios.
 
 ## Stack
 
@@ -21,17 +21,17 @@ Cuando se agenda una cita, el **motor de agendamiento** (`backend/utils/scheduli
 
 ```
 PROYECTO_FINAL/
-├── backend/
-│   ├── app.py                 # app factory (create_app)
+├── backend/                   # Arquitectura hexagonal (Guía 6): ver docs/adr/
+│   ├── app.py                 # app factory: config + extensiones + bootstrap + api
+│   ├── bootstrap.py           # composition root: crea adaptadores y los inyecta
 │   ├── config.py              # Config / TestConfig
-│   ├── db/conexion.py         # db, login_manager, migrate
-│   ├── models/                # 10 modelos SQLAlchemy con relationship()
-│   ├── repositories/          # capa de acceso a datos (CRUD y consultas)
-│   ├── routes/                # 9 blueprints (solo HTTP: validan y llaman repositorios)
-│   ├── middlewares/           # role_required (control de acceso por rol)
-│   ├── utils/scheduling_engine.py
+│   ├── domain/                # núcleo, solo Python estándar: entidades, reglas y puertos (ABC)
+│   │   └── identity, catalog, scheduling, payments, tracking, ai_assistant   (bounded contexts)
+│   ├── application/           # casos de uso por contexto, dependencias por constructor
+│   ├── api/                   # adaptador HTTP: legacy/ (frontend) y v1/ (OpenAPI)
+│   ├── infrastructure/        # adaptadores: persistence/ (modelos y repos SQLAlchemy), llm/, security/
 │   ├── migrations/            # Alembic: esquema inicial (= schema.sql) + índices
-│   └── tests/                 # pruebas de integración (pytest)
+│   └── tests/                 # integración (pytest) + reglas de arquitectura
 ├── frontend/
 │   ├── index.html             # login / registro
 │   ├── pages/                 # catálogo, calendario, historial, panel mecánico, panel dueño
@@ -139,6 +139,8 @@ Para usar otra base, define `TEST_DATABASE_URL`.
 | `test_login_and_role_based_access` | login/logout, 401 sin sesión, 403 por rol, el dueño crea bahías |
 | `test_booking_flow_assigns_resources_and_deposit_confirms` | se asignan bahía y mecánico, se calculan depósito (30 %) y saldo, pagar el depósito confirma la cita, el listado no tiene N+1 (`joinedload`, ≤ 2 SELECT) |
 | `test_scheduling_conflict_returns_409_and_cancel_frees_slot` | un cruce de horario da 409, `[inicio, fin)` permite citas seguidas, cancelar libera la franja, una bahía en mantenimiento no se asigna |
+| `test_legacy_routes.py` | contrato HTTP de negocio, mecánicos, repuestos, servicios, vehículos, seguimiento (stock) y estados de cita; validado contra el código previo al refactor |
+| `test_architecture.py` | reglas de dependencias: `domain` solo usa la librería estándar, `application` no usa Flask/SQLAlchemy/IO, `api` no importa `infrastructure` |
 
 GitHub Actions ejecuta las pruebas con un servicio PostgreSQL en cada push o PR que toque `PROYECTO_FINAL/backend/**` (ver `.github/workflows/mecatrack-tests.yml` en la raíz del repositorio).
 

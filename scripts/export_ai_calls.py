@@ -15,7 +15,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, os.path.join(ROOT, 'backend'))
 
 from app import create_app  # noqa: E402
-from models.ai_call_model import AiCall  # noqa: E402
+from infrastructure.persistence.models import AiCall  # noqa: E402
 
 FIELDS = ['ai_call_id', 'created_at', 'source', 'user_id', 'technique', 'model', 'status', 'input_tokens',
           'output_tokens', 'thinking_tokens', 'latency_ms', 'attempts', 'description', 'response', 'error_message']

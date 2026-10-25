@@ -5,7 +5,7 @@ PostgreSQL) de punta a punta, sin mocks.
 
 from sqlalchemy import event
 
-from db.conexion import db
+from infrastructure.persistence.extensions import db
 
 
 def _create_vehicle(client, plate='ABC123'):

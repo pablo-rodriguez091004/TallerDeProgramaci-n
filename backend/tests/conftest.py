@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')
 
 from app import create_app  # noqa: E402
 from config import TestConfig  # noqa: E402
-from db.conexion import db  # noqa: E402
+from infrastructure.persistence.extensions import db  # noqa: E402
 from flask_migrate import upgrade, downgrade  # noqa: E402
 
 PASSWORD = 'test1234'
@@ -56,10 +56,7 @@ def app():
 @pytest.fixture(autouse=True)
 def seed(app):
     """Vacia las tablas y carga: owner, mecanico, cliente, negocio, 1 bahia y 1 servicio."""
-    from models.user_model import User
-    from models.business_model import Business
-    from models.bay_model import Bay
-    from models.service_model import Service
+    from infrastructure.persistence.models import Bay, Business, Service, User
 
     ctx = app.app_context()
     ctx.push()
@@ -95,12 +92,12 @@ def seed(app):
 @pytest.fixture(autouse=True)
 def block_real_llm(monkeypatch):
     """Ninguna prueba puede llamar al LLM real (el CI no tiene key y cuesta cuota)."""
-    from services import llm_client
+    from infrastructure.llm import gemini_gateway
 
     def _fail(*args, **kwargs):
-        raise AssertionError('A test tried to call the real LLM; mock llm_client._call_model')
+        raise AssertionError('A test tried to call the real LLM; mock gemini_gateway._call_model')
 
-    monkeypatch.setattr(llm_client, '_call_model', _fail)
+    monkeypatch.setattr(gemini_gateway, '_call_model', _fail)
 
 
 @pytest.fixture

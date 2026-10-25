@@ -13,15 +13,12 @@ de OpenAPI y el resto la `description`. Por eso van en ingles.
 """
 
 from flask.views import MethodView
-from flask_login import current_user
 from flask_smorest import Blueprint
-from sqlalchemy.exc import IntegrityError
 
-from api.errors import ApiError
-from middlewares.auth_middleware import role_required
-from repositories import base_repository, business_repository, service_repository
-from schemas.error_schema import FORBIDDEN_EXAMPLE, UNAUTHORIZED_EXAMPLE, ApiErrorSchema, error_example
-from schemas.service_schema import ServiceInputSchema, ServiceQuerySchema, ServiceSchema
+from api.auth import role_required
+from api.deps import actor, container
+from api.v1.schemas.error_schema import FORBIDDEN_EXAMPLE, UNAUTHORIZED_EXAMPLE, ApiErrorSchema, error_example
+from api.v1.schemas.service_schema import ServiceInputSchema, ServiceQuerySchema, ServiceSchema
 
 blp = Blueprint('Services', __name__, description='Workshop service catalog: list, read, create, replace and delete.')
 
@@ -83,33 +80,9 @@ def duplicate():
                   DUPLICATE_EXAMPLE)
 
 
-# --- Reglas de negocio ---------------------------------------------------------
-
-def _get_or_404(service_id):
-    service = service_repository.get_by_id(service_id)
-    if not service:
-        raise ApiError(404, 'not_found', f'Service {service_id} was not found', {'service_id': service_id})
-    return service
-
-
-def _ensure_unique_name(business_id, service_name, exclude_id=None):
-    duplicate_service = service_repository.find_by_name(business_id, service_name, exclude_id)
-    if duplicate_service:
-        raise ApiError(409, 'duplicate_service_name',
-                       f"A service named '{service_name}' already exists",
-                       {'service_name': service_name, 'existing_service_id': duplicate_service.service_id})
-
-
-def _commit_or_conflict(service_name):
-    # La restriccion UNIQUE(business_id, service_name) cubre la carrera entre
-    # dos peticiones simultaneas que pasan el chequeo previo.
-    try:
-        base_repository.commit()
-    except IntegrityError:
-        base_repository.rollback()
-        raise ApiError(409, 'duplicate_service_name',
-                       f"A service named '{service_name}' already exists", {'service_name': service_name})
-
+# Las reglas (nombre unico por taller, 404, 409 si tiene citas) viven en
+# application.catalog.services.ServiceCatalogService; sus errores de dominio
+# se traducen al formato unico en api/errors.py (handle_domain_error).
 
 # --- Endpoints -------------------------------------------------------------------
 
@@ -131,7 +104,7 @@ class ServiceCollection(MethodView):
         Public endpoint, no authentication required.
         """
         status = None if query['status'] == 'all' else query['status']
-        return service_repository.list_by_status(status)
+        return container().catalog.list_by_status(status)
 
     @role_required(*WRITE_ROLES)
     @blp.arguments(ServiceInputSchema, example=INPUT_EXAMPLE)
@@ -150,14 +123,7 @@ class ServiceCollection(MethodView):
         `base_price` are required; `status` defaults to `active`.
         Requires an `owner` or `admin` session (cookie from POST /auth/login).
         """
-        business = business_repository.get_for_user(current_user)
-        if not business:
-            raise ApiError(403, 'business_not_linked', 'Your account is not linked to a workshop')
-
-        _ensure_unique_name(business.business_id, data['service_name'])
-        service = service_repository.create(business_id=business.business_id, **data)
-        _commit_or_conflict(data['service_name'])
-        return service
+        return container().catalog.create(actor(), data)
 
 
 @blp.route('/<int:service_id>', parameters=[{'in': 'path', 'name': 'service_id',
@@ -172,7 +138,7 @@ class ServiceItem(MethodView):
         Returns a single service by its id, whether it is active or inactive.
         Public endpoint, no authentication required.
         """
-        return _get_or_404(service_id)
+        return container().catalog.get(service_id)
 
     @role_required(*WRITE_ROLES)
     @blp.arguments(ServiceInputSchema, example={**INPUT_EXAMPLE, 'base_price': 165000})
@@ -192,12 +158,7 @@ class ServiceItem(MethodView):
         their defaults. To retire a service that already has appointments,
         send `status: inactive`. Requires an `owner` or `admin` session.
         """
-        service = _get_or_404(service_id)
-        _ensure_unique_name(service.business_id, data['service_name'], exclude_id=service_id)
-        for field, value in data.items():
-            setattr(service, field, value)
-        _commit_or_conflict(data['service_name'])
-        return service
+        return container().catalog.replace(service_id, data)
 
     @role_required(*WRITE_ROLES)
     @blp.response(204, description='The service was deleted. The response has no body.')
@@ -214,11 +175,4 @@ class ServiceItem(MethodView):
         would orphan those appointments; deactivate it with PUT
         (`status: inactive`) instead. Requires an `owner` or `admin` session.
         """
-        service = _get_or_404(service_id)
-        appointments = service_repository.count_appointments(service_id)
-        if appointments:
-            raise ApiError(409, 'service_has_appointments',
-                           f'Service {service_id} has {appointments} appointment(s) and cannot be deleted',
-                           {'service_id': service_id, 'appointments': appointments})
-        service_repository.delete(service)
-        base_repository.commit()
+        container().catalog.delete(service_id)
