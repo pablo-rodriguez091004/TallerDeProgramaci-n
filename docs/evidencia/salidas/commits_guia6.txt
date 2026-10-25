@@ -1,6 +1,8 @@
 # git log --format="%h %ad %s" --date=short 45b5a4f..HEAD
-# cwd: . | 2026-10-24 21:35 -05 | exit 0
+# cwd: . | 2026-10-24 21:44 -05 | exit 0
 
+1efeec5 2026-10-24 Guia 6 fase 9: guion del video en ingles y scripts/demo.sh
+caf881c 2026-10-24 Guia 6 fase 8: informe Word APA 7 generado desde la evidencia real
 f688fba 2026-10-24 Guia 6 fase 7: evidencia real (18 capturas) y generar_evidencia.sh
 a3a2b46 2026-10-24 Guia 6 fase 6: CI verificado en GitHub Actions (run 40154151261, verde)
 4eb6286 2026-10-24 Guia 6 fase 5: ADR 0001 en ingles (arquitectura hexagonal y bounded contexts)

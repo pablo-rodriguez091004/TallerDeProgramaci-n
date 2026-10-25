@@ -1,7 +1,7 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultas_duckdb.py q1
-# cwd: . | 2026-10-24 21:35 -05 | exit 0
+# cwd: . | 2026-10-24 21:44 -05 | exit 0
 
-DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T02:31:48.593333
+DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T02:44:38.644294
 Q1 - Antiguedad del parque por clase (estadisticas ponderadas)
 ┌──────────────┬─────────────┬───────────┬────────┬────────────┬────────┬───────┬─────────┬───────┬───────┬────────┬────────────────────┐
 │    clase     │ tipo_taller │ vehiculos │ media  │ desviacion │ minimo │  p25  │ mediana │  p75  │  p90  │ maximo │ pct_10_anios_o_mas │
@@ -18,5 +18,5 @@ Q1 - Antiguedad del parque por clase (estadisticas ponderadas)
 │ BUSETA       │ van         │     33845 │  24.59 │      13.65 │      0 │    17 │      22 │    30 │    45 │     76 │               90.7 │
 └──────────────┴─────────────┴───────────┴────────┴────────────┴────────┴───────┴─────────┴───────┴───────┴────────┴────────────────────┘
 
-9 filas en 139.4 ms
+9 filas en 144.5 ms
 

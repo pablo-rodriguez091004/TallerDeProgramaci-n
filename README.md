@@ -189,3 +189,6 @@ El panel **Mercado** (dueño/admin, `frontend/pages/mercado.html`) descarga dato
 - Cada host tiene un **circuit breaker** (CLOSED → OPEN → HALF_OPEN) y las fallas transitorias se reintentan con **backoff exponencial + jitter** (`backend/infrastructure/resilience/`).
 - Las descargas quedan en `backend/var/market_data/` (no se versionan). La primera vez pulsa **Actualizar datos**, o llama a `POST /api/v1/market/refresh`.
 - Demo controlada de la resiliencia con red real: `backend/venv/bin/python scripts/demo_resilience.py`.
+- `./scripts/demo.sh` levanta la demo para el video (`--breaker-abierto`: datos.gov.co apunta a un host `.invalid`; `--ciclo`: ciclo completo del breaker en la terminal).
+- `./scripts/generar_evidencia.sh` regenera en un solo paso las pruebas, las 18 capturas de `docs/evidencia/` y el informe `informe/Informe_Guia6_MecaTrack.docx`.
+- Decisión de arquitectura: `docs/adr/0001-hexagonal-architecture.md`. Trazabilidad del uso de IA: `docs/USO_DE_IA.md`.

@@ -1,43 +1,43 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/demo_resilience.py --json docs/evidencia/salidas/demo_resilience.json
-# cwd: . | 2026-10-24 21:35 -05 | exit 0
+# cwd: . | 2026-10-24 21:44 -05 | exit 0
 
 DEMOSTRACION CONTROLADA: fallos forzados con un host .invalid (RFC 2606); exitos contra datos.gov.co real.
-Inicio: 2026-10-24T21:35:49-05:00
+Inicio: 2026-10-24T21:45:16-05:00
 
 === Parte A: retry con backoff exponencial + jitter (equal jitter) ===
 Politica: 4 reintentos, techo = min(8, 0.5 * 2^(n-1)), espera = techo/2 + U(0, techo/2)
-[21:35:49.648] +  0.019s  ATTEMPT     intento 1 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json
-[21:35:49.650] +  0.021s  BACKOFF     espera planificada 0.462 s (techo 0.5 s)
-[21:35:50.112] +  0.483s  ATTEMPT     intento 2 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.464 s desde el anterior)
-[21:35:50.113] +  0.484s  BACKOFF     espera planificada 0.599 s (techo 1 s)
-[21:35:50.713] +  1.084s  ATTEMPT     intento 3 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.601 s desde el anterior)
-[21:35:50.714] +  1.085s  BACKOFF     espera planificada 1.574 s (techo 2 s)
-[21:35:52.288] +  2.658s  ATTEMPT     intento 4 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+1.575 s desde el anterior)
-[21:35:52.289] +  2.659s  BACKOFF     espera planificada 2.577 s (techo 4 s)
-[21:35:54.866] +  5.237s  ATTEMPT     intento 5 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+2.578 s desde el anterior)
-[21:35:54.867] +  5.238s  GAVE_UP     5 intentos: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json
-Separacion real entre intentos (s): [0.464, 0.601, 1.575, 2.578]
+[21:45:16.822] +  0.017s  ATTEMPT     intento 1 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json
+[21:45:16.824] +  0.019s  BACKOFF     espera planificada 0.289 s (techo 0.5 s)
+[21:45:17.112] +  0.308s  ATTEMPT     intento 2 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.291 s desde el anterior)
+[21:45:17.113] +  0.309s  BACKOFF     espera planificada 0.805 s (techo 1 s)
+[21:45:17.919] +  1.114s  ATTEMPT     intento 3 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+0.807 s desde el anterior)
+[21:45:17.920] +  1.115s  BACKOFF     espera planificada 1.519 s (techo 2 s)
+[21:45:19.440] +  2.635s  ATTEMPT     intento 4 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+1.521 s desde el anterior)
+[21:45:19.440] +  2.636s  BACKOFF     espera planificada 3.143 s (techo 4 s)
+[21:45:22.584] +  5.780s  ATTEMPT     intento 5 -> https://datos-gov-co.invalid/resource/gdxc-w37w.json (+3.145 s desde el anterior)
+[21:45:22.585] +  5.781s  GAVE_UP     5 intentos: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json
+Separacion real entre intentos (s): [0.291, 0.807, 1.521, 3.145]
 
 === Parte B: circuit breaker (umbral 3 fallos, recuperacion 5 s) ===
-[21:35:54.870] +  5.241s  STATE       estado inicial: CLOSED
-[21:35:55.323] +  5.694s  OK          1. llamada real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 453 ms | estado=CLOSED
-[21:35:55.324] +  5.695s  FAILED      2. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=1
-[21:35:55.324] +  5.695s  FAILED      3. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=2
-[21:35:55.325] +  5.696s  TRANSITION  circuit datos.gov.co: CLOSED -> OPEN (3 consecutive failures (last: TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))
-[21:35:55.325] +  5.696s  FAILED      4. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=3
-[21:35:55.325] +  5.696s  REJECTED    5. llamada con el circuito abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 27 us)
-[21:35:55.325] +  5.696s  WAIT        esperando 5 s de recuperacion...
-[21:36:00.325] + 10.696s  TRANSITION  circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)
-[21:36:00.325] + 10.696s  STATE       tras la espera: HALF_OPEN
-[21:36:00.326] + 10.697s  TRANSITION  circuit datos.gov.co: HALF_OPEN -> OPEN (trial call failed (TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))
-[21:36:00.326] + 10.697s  FAILED      6. prueba HALF_OPEN que falla: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=4
-[21:36:00.326] + 10.697s  REJECTED    7. llamada con el circuito re-abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 52 us)
-[21:36:00.326] + 10.697s  WAIT        esperando 5 s de recuperacion...
-[21:36:05.327] + 15.697s  TRANSITION  circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)
-[21:36:05.327] + 15.697s  STATE       tras la espera: HALF_OPEN
-[21:36:05.886] + 16.257s  TRANSITION  circuit datos.gov.co: HALF_OPEN -> CLOSED (trial call succeeded)
-[21:36:05.887] + 16.257s  OK          8. prueba HALF_OPEN real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 560 ms | estado=CLOSED
-[21:36:05.887] + 16.257s  STATE       estado final: CLOSED
+[21:45:22.588] +  5.784s  STATE       estado inicial: CLOSED
+[21:45:23.319] +  6.514s  OK          1. llamada real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 730 ms | estado=CLOSED
+[21:45:23.319] +  6.515s  FAILED      2. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=1
+[21:45:23.320] +  6.516s  FAILED      3. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=CLOSED fallos=2
+[21:45:23.320] +  6.516s  TRANSITION  circuit datos.gov.co: CLOSED -> OPEN (3 consecutive failures (last: TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))
+[21:45:23.320] +  6.516s  FAILED      4. fallo controlado (host .invalid): ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=3
+[21:45:23.321] +  6.516s  REJECTED    5. llamada con el circuito abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 29 us)
+[21:45:23.321] +  6.516s  WAIT        esperando 5 s de recuperacion...
+[21:45:28.321] + 11.516s  TRANSITION  circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)
+[21:45:28.321] + 11.516s  STATE       tras la espera: HALF_OPEN
+[21:45:28.322] + 11.517s  TRANSITION  circuit datos.gov.co: HALF_OPEN -> OPEN (trial call failed (TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json))
+[21:45:28.322] + 11.517s  FAILED      6. prueba HALF_OPEN que falla: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json | estado=OPEN fallos=4
+[21:45:28.322] + 11.518s  REJECTED    7. llamada con el circuito re-abierto: Circuit 'datos.gov.co' is OPEN; next trial in 5.0 s (sin salir a la red, 48 us)
+[21:45:28.322] + 11.518s  WAIT        esperando 5 s de recuperacion...
+[21:45:33.322] + 16.518s  TRANSITION  circuit datos.gov.co: OPEN -> HALF_OPEN (recovery timeout of 5 s elapsed)
+[21:45:33.322] + 16.518s  STATE       tras la espera: HALF_OPEN
+[21:45:33.738] + 16.933s  TRANSITION  circuit datos.gov.co: HALF_OPEN -> CLOSED (trial call succeeded)
+[21:45:33.738] + 16.933s  OK          8. prueba HALF_OPEN real a datos.gov.co: [{'cod_mpio': '05001', 'nom_mpio': 'MEDELLÍN'}] en 415 ms | estado=CLOSED
+[21:45:33.738] + 16.933s  STATE       estado final: CLOSED
 
 Transiciones registradas por el breaker:
      CLOSED -> OPEN      3 consecutive failures (last: TransientHttpError: ConnectError calling https://datos-gov-co.invalid/resource/gdxc-w37w.json)
