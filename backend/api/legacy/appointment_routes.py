@@ -10,11 +10,12 @@ appointment_bp = Blueprint('appointments', __name__)
 
 
 @appointment_bp.route('', methods=['POST'])
-@role_required('client')
+@role_required('client', 'owner', 'admin')
 def create_appointment():
     """
-    El cliente agenda vehiculo + servicio + hora de inicio; el caso de uso
-    asigna bahia y mecanico y genera los pagos (ver AppointmentService.book).
+    El cliente agenda vehiculo + servicio + hora de inicio; en recepcion,
+    owner/admin lo hacen a nombre de un cliente (client_user_id). El caso de
+    uso asigna bahia y mecanico y genera los pagos (AppointmentService.book).
     """
     data = json_body()
     error = missing_field(data, ['vehicle_id', 'service_id', 'scheduled_start'])
@@ -27,7 +28,8 @@ def create_appointment():
         return jsonify({'error': 'Formato de scheduled_start inválido, usa ISO 8601 (ej. 2026-09-20T09:00:00)'}), 400
 
     booking = container().appointments.book(actor(), data['vehicle_id'], data['service_id'], scheduled_start,
-                                            data.get('payment_method', 'cash'))
+                                            data.get('payment_method', 'cash'),
+                                            client_user_id=data.get('client_user_id'))
     appointment = booking.appointment
     return jsonify({
         'message': 'Cita creada, pendiente de pago de depósito para confirmar',

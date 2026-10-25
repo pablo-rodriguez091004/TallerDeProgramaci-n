@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from api.auth import role_required
 from api.deps import actor, container
@@ -10,20 +10,24 @@ REQUIRED_FIELDS = ['license_plate', 'brand', 'model', 'year', 'vehicle_type', 'f
 
 
 @vehicle_bp.route('', methods=['POST'])
-@role_required('client')
+@role_required('client', 'owner', 'admin')
 def create_vehicle():
+    """El cliente registra su vehiculo; en recepcion, owner/admin envian client_user_id."""
     data = json_body()
     error = missing_field(data, REQUIRED_FIELDS, allow_falsy=True)
     if error:
         return error
-    vehicle = container().vehicles.register(actor(), data)
+    vehicle = container().vehicles.register(actor(), data, client_user_id=data.get('client_user_id'))
     return jsonify({'message': 'Vehículo registrado', 'vehicle_id': vehicle.vehicle_id}), 201
 
 
 @vehicle_bp.route('', methods=['GET'])
-@role_required('client')
+@role_required('client', 'owner', 'admin')
 def list_my_vehicles():
-    return jsonify([_serialize_vehicle(v) for v in container().vehicles.list_mine(actor())]), 200
+    # Recepcion: owner/admin consultan los vehiculos de un cliente con ?client_user_id=
+    client_user_id = request.args.get('client_user_id', type=int)
+    vehicles = container().vehicles.list_mine(actor(), client_user_id=client_user_id)
+    return jsonify([_serialize_vehicle(v) for v in vehicles]), 200
 
 
 @vehicle_bp.route('/<int:vehicle_id>', methods=['GET'])

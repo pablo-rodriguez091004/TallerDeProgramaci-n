@@ -1345,3 +1345,19 @@ body:has(.auth-container) {
 .tabla-fuentes small { overflow-wrap: anywhere; }
 .tabla-compacta th, .tabla-compacta td { padding: var(--sp-2) var(--sp-3); font-size: var(--fs-sm); }
 .tabla-compacta th { white-space: normal; }
+
+/* ---------- Panel del taller: Recepción ---------- */
+.recepcion-pasos { display: grid; gap: var(--sp-4); }
+.recepcion-pasos .card { padding: var(--sp-5); }
+.paso-bloqueado { opacity: 0.5; pointer-events: none; }
+.lista-seleccion { list-style: none; margin: var(--sp-3) 0 0; padding: 0; }
+.lista-seleccion li { display: flex; justify-content: space-between; align-items: center; gap: var(--sp-3); padding: var(--sp-2) 0; border-top: 1px solid var(--c-border); }
+.lista-seleccion small { display: block; color: var(--c-text-muted); }
+.seleccion-actual { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); padding: var(--sp-3) var(--sp-4); border-radius: var(--r-md); background: var(--c-primary-soft); color: var(--c-primary-text); }
+.seleccion-actual svg { width: 20px; height: 20px; flex: none; }
+.seleccion-actual small { display: block; color: var(--c-text-muted); }
+.seleccion-actual button { margin-left: auto; }
+#form-cliente-nuevo, #form-vehiculo-cliente { margin-top: var(--sp-4); }
+.resultado-cita { margin-top: var(--sp-4); }
+.resultado-cita p { margin: 0 0 var(--sp-3); }
+.recepcion-pasos .form-inline { display: flex; }

@@ -18,6 +18,7 @@ CLIENT = Actor(user_id=3, role='client')
 OTHER_CLIENT = Actor(user_id=99, role='client')
 MECHANIC = Actor(user_id=2, role='mechanic')
 OWNER = Actor(user_id=1, role='owner')
+ADMIN = Actor(user_id=4, role='admin')
 START = datetime(2030, 1, 10, 9, 0)
 
 

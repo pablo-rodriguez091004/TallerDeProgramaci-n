@@ -243,20 +243,38 @@ class VehicleService:
     CREATE_FIELDS = ('license_plate', 'brand', 'model', 'year', 'color', 'vehicle_type', 'vin',
                      'engine_displacement', 'mileage', 'fuel_type', 'transmission_type')
 
-    def __init__(self, vehicles: VehicleRepository, uow: UnitOfWork):
+    def __init__(self, vehicles: VehicleRepository, users: UserRepository, uow: UnitOfWork):
         self._vehicles = vehicles
+        self._users = users
         self._uow = uow
 
-    def register(self, actor, data):
+    def owner_for(self, actor, client_user_id=None):
+        """
+        Dueño del vehiculo segun quien actua: el cliente opera sobre lo suyo; en
+        recepcion, el administrador o el dueño del taller indican el cliente.
+        """
+        if not actor.is_manager:
+            if client_user_id not in (None, actor.user_id):
+                raise PermissionDenied('No puedes operar a nombre de otro cliente')
+            return actor.user_id
+        if client_user_id is None:
+            raise InvalidInput('Indica el cliente (client_user_id)')
+        client = self._users.get(client_user_id)
+        if not client or client.role != 'client':
+            raise NotFound('Cliente no encontrado')
+        return client.user_id
+
+    def register(self, actor, data, client_user_id=None):
+        owner_user_id = self.owner_for(actor, client_user_id)
         if self._vehicles.get_by_plate(data['license_plate']):
             raise Conflict('Esa placa ya está registrada')
-        vehicle = self._vehicles.add(Vehicle(owner_user_id=actor.user_id,
+        vehicle = self._vehicles.add(Vehicle(owner_user_id=owner_user_id,
                                              **{f: data.get(f) for f in self.CREATE_FIELDS}))
         self._uow.commit()
         return vehicle
 
-    def list_mine(self, actor):
-        return self._vehicles.list_by_owner(actor.user_id)
+    def list_mine(self, actor, client_user_id=None):
+        return self._vehicles.list_by_owner(self.owner_for(actor, client_user_id))
 
     def get(self, actor, vehicle_id):
         vehicle = self._vehicles.get(vehicle_id)

@@ -26,6 +26,7 @@
 
     <nav class="tabs" role="tablist">
       <button class="tab activo" data-seccion="citas" role="tab">Citas</button>
+      <button class="tab" data-seccion="recepcion" role="tab">Recepción</button>
       <button class="tab" data-seccion="bahias" role="tab">Bahías</button>
       <button class="tab" data-seccion="repuestos" role="tab">Repuestos</button>
       <button class="tab" data-seccion="servicios" role="tab">Servicios</button>
@@ -67,6 +68,95 @@
         </table>
       </div>
       <p id="citas-vacio" class="detalle-servicio oculto">No hay citas para este filtro.</p>
+    </section>
+
+    <!-- ===== RECEPCIÓN: agendar a nombre de un cliente ===== -->
+    <section id="seccion-recepcion" class="seccion-admin oculto">
+      <p class="detalle-servicio">Para clientes que llegan o llaman al taller: búscalo o regístralo, elige su vehículo y agéndale la cita. Bahía y mecánico se asignan automáticamente.</p>
+
+      <div class="recepcion-pasos">
+        <div class="card form-section">
+          <h3 class="form-section-title"><span class="step">1</span>Cliente</h3>
+          <form id="form-buscar-cliente" class="form-inline">
+            <div>
+              <label for="buscar-cliente">Nombre, correo o documento</label>
+              <input type="search" id="buscar-cliente" placeholder="Ej. Laura o 1003456789">
+            </div>
+            <button type="submit">Buscar</button>
+            <button type="button" id="btn-cliente-nuevo" class="btn-secundario">Cliente nuevo</button>
+          </form>
+          <ul id="resultados-clientes" class="lista-seleccion"></ul>
+
+          <form id="form-cliente-nuevo" class="oculto">
+            <div class="form-grid">
+              <div class="field"><label for="cli-nombre">Nombre</label><input type="text" id="cli-nombre" required></div>
+              <div class="field"><label for="cli-apellido">Apellido</label><input type="text" id="cli-apellido" required></div>
+              <div class="field"><label for="cli-documento">Documento</label><input type="text" id="cli-documento" required></div>
+              <div class="field"><label for="cli-email">Correo</label><input type="email" id="cli-email" required></div>
+              <div class="field"><label for="cli-telefono">Teléfono</label><input type="tel" id="cli-telefono"></div>
+              <div class="field">
+                <label for="cli-password">Contraseña inicial</label>
+                <input type="password" id="cli-password" minlength="6" required aria-describedby="ayuda-cli-password">
+                <span id="ayuda-cli-password" class="field-hint">Entrégasela al cliente para que consulte sus citas.</span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit">Registrar cliente</button>
+              <button type="button" class="btn-secundario" id="btn-cancelar-cliente">Cancelar</button>
+            </div>
+          </form>
+          <div id="cliente-seleccionado" class="seleccion-actual oculto"></div>
+        </div>
+
+        <div class="card form-section paso-bloqueado" id="paso-vehiculo">
+          <h3 class="form-section-title"><span class="step">2</span>Vehículo</h3>
+          <div class="form-inline">
+            <div>
+              <label for="select-vehiculo-cliente">Vehículo del cliente</label>
+              <select id="select-vehiculo-cliente"></select>
+            </div>
+            <button type="button" id="btn-vehiculo-nuevo" class="btn-secundario">Agregar vehículo</button>
+          </div>
+          <form id="form-vehiculo-cliente" class="oculto">
+            <div class="form-grid">
+              <div class="field"><label for="rv-placa">Placa</label><input type="text" id="rv-placa" maxlength="10" autocomplete="off" required></div>
+              <div class="field"><label for="rv-marca">Marca</label><input type="text" id="rv-marca" required></div>
+              <div class="field"><label for="rv-modelo">Modelo</label><input type="text" id="rv-modelo" required></div>
+              <div class="field"><label for="rv-anio">Año</label><input type="number" id="rv-anio" min="1950" max="2100" required></div>
+              <div class="field"><label for="rv-tipo">Tipo</label>
+                <select id="rv-tipo"><option value="car">Carro</option><option value="motorcycle">Moto</option><option value="truck">Camión</option><option value="van">Van</option></select></div>
+              <div class="field"><label for="rv-combustible">Combustible</label>
+                <select id="rv-combustible"><option value="gasoline">Gasolina</option><option value="diesel">Diésel</option><option value="electric">Eléctrico</option><option value="hybrid">Híbrido</option></select></div>
+              <div class="field"><label for="rv-transmision">Transmisión</label>
+                <select id="rv-transmision"><option value="manual">Manual</option><option value="automatic">Automática</option></select></div>
+            </div>
+            <div class="form-actions">
+              <button type="submit">Guardar vehículo</button>
+              <button type="button" class="btn-secundario" id="btn-cancelar-vehiculo">Cancelar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="card form-section paso-bloqueado" id="paso-cita">
+          <h3 class="form-section-title"><span class="step">3</span>Cita</h3>
+          <form id="form-cita-recepcion" class="form-inline">
+            <div>
+              <label for="rc-servicio">Servicio</label>
+              <select id="rc-servicio" required></select>
+            </div>
+            <div>
+              <label for="rc-fecha">Fecha y hora</label>
+              <input type="datetime-local" id="rc-fecha" required>
+            </div>
+            <div>
+              <label for="rc-pago">Método de pago</label>
+              <select id="rc-pago"><option value="cash">Efectivo</option><option value="card">Tarjeta</option><option value="transfer">Transferencia</option></select>
+            </div>
+            <button type="submit">Agendar cita</button>
+          </form>
+          <div id="resultado-cita" class="oculto"></div>
+        </div>
+      </div>
     </section>
 
     <!-- ===== BAHÍAS ===== -->

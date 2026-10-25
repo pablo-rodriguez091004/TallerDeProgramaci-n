@@ -41,3 +41,7 @@ class AuthService:
 
     def get_user(self, user_id):
         return self._users.get(user_id)
+
+    def search_clients(self, text=None):
+        """Recepcion: el administrador busca al cliente antes de agendarle una cita."""
+        return self._users.search_clients(text)

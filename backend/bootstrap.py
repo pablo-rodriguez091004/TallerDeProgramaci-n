@@ -115,7 +115,7 @@ def build_container(app):
         bays=BayService(bays, business, uow),
         parts=PartService(parts, business, uow),
         catalog=ServiceCatalogService(services, business, uow),
-        vehicles=VehicleService(vehicles, uow),
+        vehicles=VehicleService(vehicles, users, uow),
         appointments=AppointmentService(appointments, vehicles, services, allocator, payments, uow),
         payments=PaymentService(payments, appointments, uow, clock),
         tracking=TrackingService(appointments, tracking, parts, uow),

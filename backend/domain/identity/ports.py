@@ -18,6 +18,10 @@ class UserRepository(ABC):
     def list_mechanics(self, only_active: bool = False) -> list[User]: ...
 
     @abstractmethod
+    def search_clients(self, text: Optional[str] = None, limit: int = 20) -> list[User]:
+        """Clientes cuyo nombre, apellido, correo o documento contiene `text` (todos si es None)."""
+
+    @abstractmethod
     def add(self, user: User) -> User:
         """Agrega el usuario y devuelve la entidad con su user_id asignado."""
 

@@ -120,6 +120,9 @@ Abre `http://127.0.0.1:5500/index.html` en Firefox o Chrome. Con Live Server de 
 | Dueño | carlos.owner@tallermecanico.com | `pages/dashboard-admin.html` |
 | Mecánico | andres.mecanico@tallermecanico.com | `pages/dashboard-empleado.html` |
 | Cliente | laura.cliente@gmail.com | `pages/catalogo.html` |
+| Administrador | admin@tallermecanico.com | `pages/dashboard-admin.html` (pestaña **Recepción**: registra clientes y vehículos y agenda citas a su nombre) |
+
+El administrador se crea con `backend/venv/bin/python scripts/crear_admin.py` (no duplica si ya existe).
 
 ## Pruebas
 

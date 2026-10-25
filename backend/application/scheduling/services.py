@@ -33,15 +33,17 @@ class AppointmentService:
         self._payments = payments
         self._uow = uow
 
-    def book(self, actor, vehicle_id, service_id, scheduled_start, payment_method='cash'):
+    def book(self, actor, vehicle_id, service_id, scheduled_start, payment_method='cash', client_user_id=None):
         """
-        El cliente agenda su vehiculo para un servicio. Se calcula el fin con
-        la duracion estimada, se asigna automaticamente una bahia y un
-        mecanico libres y se generan los pagos de deposito y saldo, todo en
-        una sola transaccion.
+        Agenda un vehiculo para un servicio. Lo hace el propio cliente o, en
+        recepcion, el administrador/dueño a nombre de un cliente
+        (client_user_id). Se calcula el fin con la duracion estimada, se
+        asigna automaticamente una bahia y un mecanico libres y se generan los
+        pagos de deposito y saldo, todo en una sola transaccion.
         """
+        client_id = self._client_for(actor, client_user_id)
         vehicle = self._vehicles.get(vehicle_id)
-        if not vehicle or vehicle.owner_user_id != actor.user_id:
+        if not vehicle or vehicle.owner_user_id != client_id:
             raise InvalidInput('Vehículo inválido')
 
         service = self._services.get(service_id)
@@ -57,7 +59,7 @@ class AppointmentService:
             raise Conflict('No hay disponibilidad de bahía o mecánico en ese horario', code='no_availability')
 
         appointment = self._appointments.add(Appointment(
-            client_user_id=actor.user_id, vehicle_id=vehicle.vehicle_id, service_id=service.service_id,
+            client_user_id=client_id, vehicle_id=vehicle.vehicle_id, service_id=service.service_id,
             bay_id=bay.bay_id, mechanic_user_id=mechanic.user_id,
             scheduled_start=scheduled_start, scheduled_end=scheduled_end, status='pending',
         ))
@@ -68,6 +70,16 @@ class AppointmentService:
                                        payment_method=payment_method, amount=amount, status='pending'))
         self._uow.commit()
         return Booking(appointment, deposit, balance)
+
+    @staticmethod
+    def _client_for(actor, client_user_id):
+        if actor.is_manager:
+            if client_user_id is None:
+                raise InvalidInput('Indica el cliente (client_user_id)')
+            return client_user_id
+        if client_user_id not in (None, actor.user_id):
+            raise PermissionDenied('No puedes agendar a nombre de otro cliente')
+        return actor.user_id
 
     def list_for(self, actor):
         return self._appointments.list_views_for(actor)

@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 
 from api.auth import role_required
 from api.deps import actor, container
@@ -33,6 +33,26 @@ def create_mechanic():
     return jsonify({'message': 'Mecánico creado', 'user_id': mechanic.user_id}), 201
 
 
+@business_bp.route('/clients', methods=['GET'])
+@role_required('owner', 'admin')
+def search_clients():
+    """Recepcion: busca clientes por nombre, apellido, correo o documento (?q=)."""
+    clients = container().auth.search_clients(request.args.get('q') or None)
+    return jsonify([_serialize_client(c) for c in clients]), 200
+
+
+@business_bp.route('/clients', methods=['POST'])
+@role_required('owner', 'admin')
+def create_client():
+    """Recepcion: registra a un cliente nuevo que llega o llama al taller."""
+    data = json_body()
+    error = missing_field(data, REGISTER_FIELDS)
+    if error:
+        return error
+    client = container().auth.register(data, role='client')
+    return jsonify({'message': 'Cliente registrado', 'user_id': client.user_id}), 201
+
+
 @business_bp.route('/mechanics', methods=['GET'])
 @role_required('owner', 'admin')
 def list_mechanics():
@@ -54,6 +74,18 @@ def _serialize_mechanic(m):
         'email': m.email,
         'phone': m.phone,
         'status': m.status
+    }
+
+
+def _serialize_client(c):
+    return {
+        'user_id': c.user_id,
+        'first_name': c.first_name,
+        'last_name': c.last_name,
+        'document_number': c.document_number,
+        'email': c.email,
+        'phone': c.phone,
+        'status': c.status
     }
 
 

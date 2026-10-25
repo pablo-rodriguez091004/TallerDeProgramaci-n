@@ -1,3 +1,5 @@
+from sqlalchemy import or_
+
 from domain.identity.entities import User
 from domain.identity.ports import UserRepository
 from infrastructure.persistence.models.user_model import User as UserRow
@@ -18,3 +20,11 @@ class SqlAlchemyUserRepository(SqlAlchemyRepository, UserRepository):
         if only_active:
             query = query.filter_by(status='active')
         return self._to_entities(query.order_by(UserRow.user_id))
+
+    def search_clients(self, text=None, limit=20):
+        query = UserRow.query.filter_by(role='client')
+        if text:
+            pattern = f'%{text.strip()}%'
+            query = query.filter(or_(UserRow.first_name.ilike(pattern), UserRow.last_name.ilike(pattern),
+                                     UserRow.email.ilike(pattern), UserRow.document_number.ilike(pattern)))
+        return self._to_entities(query.order_by(UserRow.first_name, UserRow.last_name).limit(limit))

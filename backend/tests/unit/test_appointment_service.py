@@ -132,3 +132,34 @@ def test_autospec_mocks_enforce_the_port_contract(deps):
         deps['appointments'].find_all()  # AppointmentRepository no declara find_all
     with pytest.raises(TypeError):
         deps['payments'].add()  # add(payment) exige un argumento
+
+
+# --- Recepcion: agendar a nombre de un cliente -------------------------------------
+
+def test_admin_books_on_behalf_of_the_client(service, deps):
+    from tests.unit.factories import ADMIN
+    booking = service.book(ADMIN, 10, 1, START, client_user_id=CLIENT.user_id)
+
+    [stored] = deps['appointments'].add.call_args.args
+    assert stored.client_user_id == CLIENT.user_id  # la cita es del cliente, no del admin
+    assert booking.deposit_amount == 24000
+    deps['uow'].commit.assert_called_once_with()
+
+
+def test_admin_must_say_which_client(service, deps):
+    from tests.unit.factories import ADMIN
+    with pytest.raises(InvalidInput, match='Indica el cliente'):
+        service.book(ADMIN, 10, 1, START)
+    deps['appointments'].add.assert_not_called()
+
+
+def test_admin_cannot_book_a_vehicle_of_another_client(service, deps):
+    from tests.unit.factories import ADMIN
+    with pytest.raises(InvalidInput, match='Vehículo inválido'):
+        service.book(ADMIN, 10, 1, START, client_user_id=OTHER_CLIENT.user_id)
+
+
+def test_a_client_cannot_book_on_behalf_of_someone_else(service, deps):
+    with pytest.raises(PermissionDenied):
+        service.book(CLIENT, 10, 1, START, client_user_id=OTHER_CLIENT.user_id)
+    deps['allocator'].find_bay_and_mechanic.assert_not_called()
