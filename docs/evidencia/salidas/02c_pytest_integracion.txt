@@ -1,0 +1,18 @@
+# venv/bin/python -m pytest tests/integration -q -p no:warnings
+# cwd: backend | 2026-10-24 21:35 -05 | exit 0
+
+================================================ test session starts =================================================
+platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0
+rootdir: /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend
+configfile: pytest.ini
+plugins: anyio-4.15.1
+collected 42 items
+
+tests/integration/test_api_v1_ai.py ...............                                                            [ 35%]
+tests/integration/test_api_v1_market.py ....                                                                   [ 45%]
+tests/integration/test_api_v1_services.py .........                                                            [ 66%]
+tests/integration/test_integration.py ...                                                                      [ 73%]
+tests/integration/test_legacy_routes.py .......                                                                [ 90%]
+tests/integration/test_openapi.py ....                                                                         [100%]
+
+================================================ 42 passed in 14.63s =================================================

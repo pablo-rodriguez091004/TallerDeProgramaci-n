@@ -1,7 +1,7 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultar_apis.py datos.gov.co
-# cwd: . | 2026-10-24 21:31 -05 | exit 0
+# cwd: . | 2026-10-24 21:35 -05 | exit 0
 
-Consulta real: 2026-10-24T21:31:23-05:00
+Consulta real: 2026-10-24T21:35:46-05:00
 
 ### RUNT - Crecimiento del parque automotor (MinTransporte) u3vn-bdcy
 GET https://www.datos.gov.co/resource/u3vn-bdcy.json
@@ -10,7 +10,7 @@ GET https://www.datos.gov.co/resource/u3vn-bdcy.json
     $group = nombre_departamento, nombre_de_la_clase, fecha_de_registro
     $order = vehiculos DESC
     $limit = 50000
--> HTTP 200 en 891 ms | intentos: 1 | breaker: CLOSED | 28007 registros (se muestran 3)
+-> HTTP 200 en 1190 ms | intentos: 1 | breaker: CLOSED | 28007 registros (se muestran 3)
 [
   {
     "nombre_departamento": "CUNDINAMARCA",
@@ -38,7 +38,7 @@ GET https://www.datos.gov.co/resource/gdxc-w37w.json
     $select = cod_dpto, dpto, cod_mpio, nom_mpio
     $order = cod_mpio
     $limit = 5000
--> HTTP 200 en 182 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
+-> HTTP 200 en 192 ms | intentos: 1 | breaker: CLOSED | 1122 registros (se muestran 3)
 [
   {
     "cod_dpto": "05",

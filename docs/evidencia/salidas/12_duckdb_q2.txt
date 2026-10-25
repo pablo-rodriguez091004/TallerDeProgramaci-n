@@ -1,7 +1,7 @@
 # /home/alejandro/Escritorio/TallerDeProgramacion/PROYECTO_FINAL/backend/venv/bin/python scripts/evidencia/consultas_duckdb.py q2
-# cwd: . | 2026-10-24 21:31 -05 | exit 0
+# cwd: . | 2026-10-24 21:35 -05 | exit 0
 
-DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T02:31:04.055629, divipola 2026-10-25T02:31:04.333320, dane_population 2026-10-25T02:31:05.201246
+DuckDB 1.5.6 | snapshots: runt_fleet 2026-10-25T02:31:48.593333, divipola 2026-10-25T02:31:48.841656, dane_population 2026-10-25T02:31:57.275494
 Q2 - Motorizacion por departamento + resumen entre departamentos
 ┌────────┬──────────────────────────────────────────────────────────┬────────────────┬───────────┬────────────────────────┬───────────┐
 │ puesto │                       departamento                       │ poblacion_2018 │ vehiculos │ vehiculos_por_1000_hab │ pct_motos │

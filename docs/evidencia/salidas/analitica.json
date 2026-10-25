@@ -1,0 +1,768 @@
+{
+ "fleet_age_by_class": {
+  "name": "fleet_age_by_class",
+  "title": "Antigüedad del parque automotor activo por clase",
+  "description": "Años desde el registro (corte RUNT OCTUBRE 2026), ponderado por número de vehículos.",
+  "columns": [
+   {
+    "key": "clase",
+    "label": "Clase",
+    "type": "text"
+   },
+   {
+    "key": "tipo_taller",
+    "label": "Tipo MecaTrack",
+    "type": "text"
+   },
+   {
+    "key": "vehiculos",
+    "label": "Vehículos",
+    "type": "number"
+   },
+   {
+    "key": "media",
+    "label": "Media",
+    "type": "number"
+   },
+   {
+    "key": "desviacion",
+    "label": "Desv. estándar",
+    "type": "number"
+   },
+   {
+    "key": "minimo",
+    "label": "Mín.",
+    "type": "number"
+   },
+   {
+    "key": "p25",
+    "label": "P25",
+    "type": "number"
+   },
+   {
+    "key": "mediana",
+    "label": "Mediana",
+    "type": "number"
+   },
+   {
+    "key": "p75",
+    "label": "P75",
+    "type": "number"
+   },
+   {
+    "key": "p90",
+    "label": "P90",
+    "type": "number"
+   },
+   {
+    "key": "maximo",
+    "label": "Máx.",
+    "type": "number"
+   },
+   {
+    "key": "pct_10_anios_o_mas",
+    "label": "% con 10+ años",
+    "type": "number"
+   }
+  ],
+  "rows": [
+   {
+    "clase": "MOTOCICLETA",
+    "tipo_taller": "motorcycle",
+    "vehiculos": 14512606,
+    "media": 10.85,
+    "desviacion": 9.23,
+    "minimo": 0,
+    "p25": 4,
+    "mediana": 9,
+    "p75": 16,
+    "p90": 22,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 49.8
+   },
+   {
+    "clase": "AUTOMOVIL",
+    "tipo_taller": "car",
+    "vehiculos": 4039777,
+    "media": 19.39,
+    "desviacion": 13.56,
+    "minimo": 0,
+    "p25": 10,
+    "mediana": 16,
+    "p75": 27,
+    "p90": 39,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 76.4
+   },
+   {
+    "clase": "CAMIONETA",
+    "tipo_taller": "car",
+    "vehiculos": 2159385,
+    "media": 12.96,
+    "desviacion": 13.43,
+    "minimo": 0,
+    "p25": 4,
+    "mediana": 9,
+    "p75": 17,
+    "p90": 32,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 48.5
+   },
+   {
+    "clase": "CAMPERO",
+    "tipo_taller": "car",
+    "vehiculos": 776280,
+    "media": 23.67,
+    "desviacion": 15.51,
+    "minimo": 0,
+    "p25": 12,
+    "mediana": 20,
+    "p75": 33,
+    "p90": 47,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 82.6
+   },
+   {
+    "clase": "CAMION",
+    "tipo_taller": "truck",
+    "vehiculos": 319053,
+    "media": 23.57,
+    "desviacion": 18.89,
+    "minimo": 0,
+    "p25": 10,
+    "mediana": 18,
+    "p75": 34,
+    "p90": 52,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 75.3
+   },
+   {
+    "clase": "MICROBUS",
+    "tipo_taller": "van",
+    "vehiculos": 82246,
+    "media": 21.44,
+    "desviacion": 11.3,
+    "minimo": 0,
+    "p25": 14,
+    "mediana": 20,
+    "p75": 29,
+    "p90": 33,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 90.2
+   },
+   {
+    "clase": "TRACTOCAMION",
+    "tipo_taller": "truck",
+    "vehiculos": 72197,
+    "media": 15.44,
+    "desviacion": 12.25,
+    "minimo": 0,
+    "p25": 5,
+    "mediana": 14,
+    "p75": 20,
+    "p90": 31,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 68.5
+   },
+   {
+    "clase": "VOLQUETA",
+    "tipo_taller": "truck",
+    "vehiculos": 58900,
+    "media": 27.07,
+    "desviacion": 18.7,
+    "minimo": 0,
+    "p25": 13,
+    "mediana": 19,
+    "p75": 42,
+    "p90": 55,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 87.0
+   },
+   {
+    "clase": "BUSETA",
+    "tipo_taller": "van",
+    "vehiculos": 33845,
+    "media": 24.59,
+    "desviacion": 13.65,
+    "minimo": 0,
+    "p25": 17,
+    "mediana": 22,
+    "p75": 30,
+    "p90": 45,
+    "maximo": 76,
+    "pct_10_anios_o_mas": 90.7
+   }
+  ],
+  "summary": {
+   "vehiculos_analizados": 22054289,
+   "antiguedad_media_ponderada": 13.38,
+   "excluidos_por_calidad": 8864,
+   "anio_minimo_valido": 1950,
+   "corte_runt": "OCTUBRE 2026"
+  },
+  "sql": "WITH clases_taller(clase, tipo_taller) AS (VALUES\n    ('AUTOMOVIL', 'car'), ('CAMIONETA', 'car'), ('CAMPERO', 'car'),\n    ('MOTOCICLETA', 'motorcycle'),\n    ('CAMION', 'truck'), ('VOLQUETA', 'truck'), ('TRACTOCAMION', 'truck'),\n    ('MICROBUS', 'van'), ('BUSETA', 'van')\n),\nrunt_limpio AS (\n    SELECT strip_accents(upper(trim(r.nombre_departamento)))  AS departamento,\n           c.clase, c.tipo_taller,\n           CAST(r.fecha_de_registro AS INTEGER)               AS anio_registro,\n           CAST(r.anio_publicacion AS INTEGER)                AS anio_corte,\n           CAST(r.vehiculos AS BIGINT)                        AS vehiculos\n    FROM runt r\n    JOIN clases_taller c ON c.clase = strip_accents(upper(trim(r.nombre_de_la_clase)))\n    WHERE CAST(r.fecha_de_registro AS INTEGER) >= 1950\n),\npor_edad AS (\n    SELECT clase, tipo_taller, anio_corte - anio_registro AS antiguedad, SUM(vehiculos) AS n\n    FROM runt_limpio\n    GROUP BY ALL\n),\nacumulado AS (\n    SELECT *,\n           SUM(n) OVER (PARTITION BY clase ORDER BY antiguedad) AS n_acumulado,\n           SUM(n) OVER (PARTITION BY clase)                     AS total,\n           SUM(n * antiguedad) OVER (PARTITION BY clase)\n             / SUM(n) OVER (PARTITION BY clase)                 AS media\n    FROM por_edad\n)\nSELECT clase,\n       any_value(tipo_taller)                                                   AS tipo_taller,\n       any_value(total)::BIGINT                                                 AS vehiculos,\n       round(any_value(media), 2)                                               AS media,\n       round(sqrt(SUM(n * (antiguedad - media) ^ 2) / any_value(total)), 2)    AS desviacion,\n       MIN(antiguedad)                                                          AS minimo,\n       MIN(antiguedad) FILTER (WHERE n_acumulado >= 0.25 * total)               AS p25,\n       MIN(antiguedad) FILTER (WHERE n_acumulado >= 0.50 * total)               AS mediana,\n       MIN(antiguedad) FILTER (WHERE n_acumulado >= 0.75 * total)               AS p75,\n       MIN(antiguedad) FILTER (WHERE n_acumulado >= 0.90 * total)               AS p90,\n       MAX(antiguedad)                                                          AS maximo,\n       round(100.0 * SUM(n) FILTER (WHERE antiguedad >= 10) / any_value(total), 1) AS pct_10_anios_o_mas\nFROM acumulado\nGROUP BY clase\nORDER BY vehiculos DESC",
+  "elapsed_ms": 80.7,
+  "snapshots": {
+   "runt_fleet": "2026-10-25T02:31:48.593333"
+  }
+ },
+ "motorization_by_department": {
+  "name": "motorization_by_department",
+  "title": "Motorización por departamento",
+  "description": "Vehículos activos de las clases que atiende el taller (RUNT, MinTransporte) por cada 1.000 habitantes censados (CNPV 2018, DANE). Indicativo: RUNT ubica el vehículo en el organismo de tránsito donde está matriculado.",
+  "columns": [
+   {
+    "key": "puesto",
+    "label": "#",
+    "type": "number"
+   },
+   {
+    "key": "departamento",
+    "label": "Departamento",
+    "type": "text"
+   },
+   {
+    "key": "poblacion_2018",
+    "label": "Población 2018",
+    "type": "number"
+   },
+   {
+    "key": "vehiculos",
+    "label": "Vehículos",
+    "type": "number"
+   },
+   {
+    "key": "vehiculos_por_1000_hab",
+    "label": "Vehículos / 1.000 hab.",
+    "type": "number"
+   },
+   {
+    "key": "carros_por_1000_hab",
+    "label": "Carros / 1.000 hab.",
+    "type": "number"
+   },
+   {
+    "key": "pct_motos",
+    "label": "% motos",
+    "type": "number"
+   }
+  ],
+  "rows": [
+   {
+    "cod_dpto": "95",
+    "departamento": "GUAVIARE",
+    "poblacion_2018": 73081,
+    "vehiculos": 147676,
+    "vehiculos_por_1000_hab": 2020.7,
+    "carros_por_1000_hab": 12.7,
+    "pct_motos": 99.3,
+    "puesto": 1
+   },
+   {
+    "cod_dpto": "25",
+    "departamento": "CUNDINAMARCA",
+    "poblacion_2018": 2792877,
+    "vehiculos": 2792125,
+    "vehiculos_por_1000_hab": 999.7,
+    "carros_por_1000_hab": 261.6,
+    "pct_motos": 67.5,
+    "puesto": 2
+   },
+   {
+    "cod_dpto": "86",
+    "departamento": "PUTUMAYO",
+    "poblacion_2018": 283197,
+    "vehiculos": 214944,
+    "vehiculos_por_1000_hab": 759.0,
+    "carros_por_1000_hab": 12.5,
+    "pct_motos": 97.9,
+    "puesto": 3
+   },
+   {
+    "cod_dpto": "18",
+    "departamento": "CAQUETÁ",
+    "poblacion_2018": 359602,
+    "vehiculos": 269200,
+    "vehiculos_por_1000_hab": 748.6,
+    "carros_por_1000_hab": 44.4,
+    "pct_motos": 93.7,
+    "puesto": 4
+   },
+   {
+    "cod_dpto": "88",
+    "departamento": "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA",
+    "poblacion_2018": 48299,
+    "vehiculos": 35749,
+    "vehiculos_por_1000_hab": 740.2,
+    "carros_por_1000_hab": 149.4,
+    "pct_motos": 78.7,
+    "puesto": 5
+   },
+   {
+    "cod_dpto": "50",
+    "departamento": "META",
+    "poblacion_2018": 919129,
+    "vehiculos": 635512,
+    "vehiculos_por_1000_hab": 691.4,
+    "carros_por_1000_hab": 115.0,
+    "pct_motos": 81.5,
+    "puesto": 6
+   },
+   {
+    "cod_dpto": "76",
+    "departamento": "VALLE DEL CAUCA",
+    "poblacion_2018": 3789874,
+    "vehiculos": 2523167,
+    "vehiculos_por_1000_hab": 665.8,
+    "carros_por_1000_hab": 192.8,
+    "pct_motos": 69.3,
+    "puesto": 7
+   },
+   {
+    "cod_dpto": "68",
+    "departamento": "SANTANDER",
+    "poblacion_2018": 2008841,
+    "vehiculos": 1278128,
+    "vehiculos_por_1000_hab": 636.3,
+    "carros_por_1000_hab": 169.8,
+    "pct_motos": 69.9,
+    "puesto": 8
+   },
+   {
+    "cod_dpto": "41",
+    "departamento": "HUILA",
+    "poblacion_2018": 1009548,
+    "vehiculos": 630704,
+    "vehiculos_por_1000_hab": 624.7,
+    "carros_por_1000_hab": 120.8,
+    "pct_motos": 79.0,
+    "puesto": 9
+   },
+   {
+    "cod_dpto": "63",
+    "departamento": "QUINDÍO",
+    "poblacion_2018": 509640,
+    "vehiculos": 308880,
+    "vehiculos_por_1000_hab": 606.1,
+    "carros_por_1000_hab": 181.5,
+    "pct_motos": 67.9,
+    "puesto": 10
+   },
+   {
+    "cod_dpto": "05",
+    "departamento": "ANTIOQUIA",
+    "poblacion_2018": 5974788,
+    "vehiculos": 3466251,
+    "vehiculos_por_1000_hab": 580.1,
+    "carros_por_1000_hab": 177.4,
+    "pct_motos": 66.9,
+    "puesto": 11
+   },
+   {
+    "cod_dpto": "66",
+    "departamento": "RISARALDA",
+    "poblacion_2018": 839597,
+    "vehiculos": 484811,
+    "vehiculos_por_1000_hab": 577.4,
+    "carros_por_1000_hab": 180.6,
+    "pct_motos": 66.9,
+    "puesto": 12
+   },
+   {
+    "cod_dpto": "17",
+    "departamento": "CALDAS",
+    "poblacion_2018": 923472,
+    "vehiculos": 519823,
+    "vehiculos_por_1000_hab": 562.9,
+    "carros_por_1000_hab": 182.2,
+    "pct_motos": 65.9,
+    "puesto": 13
+   },
+   {
+    "cod_dpto": "85",
+    "departamento": "CASANARE",
+    "poblacion_2018": 379892,
+    "vehiculos": 184706,
+    "vehiculos_por_1000_hab": 486.2,
+    "carros_por_1000_hab": 70.6,
+    "pct_motos": 84.1,
+    "puesto": 14
+   },
+   {
+    "cod_dpto": "23",
+    "departamento": "CÓRDOBA",
+    "poblacion_2018": 1555596,
+    "vehiculos": 745750,
+    "vehiculos_por_1000_hab": 479.4,
+    "carros_por_1000_hab": 36.5,
+    "pct_motos": 91.7,
+    "puesto": 15
+   },
+   {
+    "cod_dpto": "54",
+    "departamento": "NORTE DE SANTANDER",
+    "poblacion_2018": 1346806,
+    "vehiculos": 601902,
+    "vehiculos_por_1000_hab": 446.9,
+    "carros_por_1000_hab": 99.5,
+    "pct_motos": 75.9,
+    "puesto": 16
+   },
+   {
+    "cod_dpto": "73",
+    "departamento": "TOLIMA",
+    "poblacion_2018": 1228763,
+    "vehiculos": 548063,
+    "vehiculos_por_1000_hab": 446.0,
+    "carros_por_1000_hab": 112.3,
+    "pct_motos": 72.7,
+    "puesto": 17
+   },
+   {
+    "cod_dpto": "81",
+    "departamento": "ARAUCA",
+    "poblacion_2018": 239503,
+    "vehiculos": 100697,
+    "vehiculos_por_1000_hab": 420.4,
+    "carros_por_1000_hab": 14.3,
+    "pct_motos": 96.0,
+    "puesto": 18
+   },
+   {
+    "cod_dpto": "52",
+    "departamento": "NARIÑO",
+    "poblacion_2018": 1335521,
+    "vehiculos": 555046,
+    "vehiculos_por_1000_hab": 415.6,
+    "carros_por_1000_hab": 98.3,
+    "pct_motos": 73.4,
+    "puesto": 19
+   },
+   {
+    "cod_dpto": "91",
+    "departamento": "AMAZONAS",
+    "poblacion_2018": 66056,
+    "vehiculos": 26230,
+    "vehiculos_por_1000_hab": 397.1,
+    "carros_por_1000_hab": 7.0,
+    "pct_motos": 98.0,
+    "puesto": 20
+   },
+   {
+    "cod_dpto": "11",
+    "departamento": "BOGOTÁ, D.C.",
+    "poblacion_2018": 7181469,
+    "vehiculos": 2777337,
+    "vehiculos_por_1000_hab": 386.7,
+    "carros_por_1000_hab": 310.1,
+    "pct_motos": 18.6,
+    "puesto": 21
+   },
+   {
+    "cod_dpto": "19",
+    "departamento": "CAUCA",
+    "poblacion_2018": 1243503,
+    "vehiculos": 467776,
+    "vehiculos_por_1000_hab": 376.2,
+    "carros_por_1000_hab": 53.7,
+    "pct_motos": 84.0,
+    "puesto": 22
+   },
+   {
+    "cod_dpto": "47",
+    "departamento": "MAGDALENA",
+    "poblacion_2018": 1263788,
+    "vehiculos": 394861,
+    "vehiculos_por_1000_hab": 312.4,
+    "carros_por_1000_hab": 36.2,
+    "pct_motos": 87.0,
+    "puesto": 23
+   },
+   {
+    "cod_dpto": "15",
+    "departamento": "BOYACÁ",
+    "poblacion_2018": 1135698,
+    "vehiculos": 348591,
+    "vehiculos_por_1000_hab": 306.9,
+    "carros_por_1000_hab": 127.5,
+    "pct_motos": 50.2,
+    "puesto": 24
+   },
+   {
+    "cod_dpto": "20",
+    "departamento": "CESAR",
+    "poblacion_2018": 1098577,
+    "vehiculos": 335098,
+    "vehiculos_por_1000_hab": 305.0,
+    "carros_por_1000_hab": 50.5,
+    "pct_motos": 81.8,
+    "puesto": 25
+   },
+   {
+    "cod_dpto": "08",
+    "departamento": "ATLÁNTICO",
+    "poblacion_2018": 2342265,
+    "vehiculos": 704001,
+    "vehiculos_por_1000_hab": 300.6,
+    "carros_por_1000_hab": 109.9,
+    "pct_motos": 60.3,
+    "puesto": 26
+   },
+   {
+    "cod_dpto": "13",
+    "departamento": "BOLÍVAR",
+    "poblacion_2018": 1909460,
+    "vehiculos": 565962,
+    "vehiculos_por_1000_hab": 296.4,
+    "carros_por_1000_hab": 58.1,
+    "pct_motos": 78.7,
+    "puesto": 27
+   },
+   {
+    "cod_dpto": "70",
+    "departamento": "SUCRE",
+    "poblacion_2018": 864036,
+    "vehiculos": 251906,
+    "vehiculos_por_1000_hab": 291.5,
+    "carros_por_1000_hab": 43.3,
+    "pct_motos": 84.0,
+    "puesto": 28
+   },
+   {
+    "cod_dpto": "99",
+    "departamento": "VICHADA",
+    "poblacion_2018": 76642,
+    "vehiculos": 15141,
+    "vehiculos_por_1000_hab": 197.6,
+    "carros_por_1000_hab": 2.7,
+    "pct_motos": 98.3,
+    "puesto": 29
+   },
+   {
+    "cod_dpto": "94",
+    "departamento": "GUAINÍA",
+    "poblacion_2018": 44431,
+    "vehiculos": 8675,
+    "vehiculos_por_1000_hab": 195.2,
+    "carros_por_1000_hab": 0.0,
+    "pct_motos": 100.0,
+    "puesto": 30
+   },
+   {
+    "cod_dpto": "27",
+    "departamento": "CHOCÓ",
+    "poblacion_2018": 457412,
+    "vehiculos": 63375,
+    "vehiculos_por_1000_hab": 138.6,
+    "carros_por_1000_hab": 2.4,
+    "pct_motos": 97.9,
+    "puesto": 31
+   },
+   {
+    "cod_dpto": "44",
+    "departamento": "LA GUAJIRA",
+    "poblacion_2018": 825364,
+    "vehiculos": 52202,
+    "vehiculos_por_1000_hab": 63.2,
+    "carros_por_1000_hab": 9.9,
+    "pct_motos": 81.9,
+    "puesto": 32
+   },
+   {
+    "cod_dpto": "97",
+    "departamento": "VAUPÉS",
+    "poblacion_2018": 37690,
+    "vehiculos": 0,
+    "vehiculos_por_1000_hab": null,
+    "carros_por_1000_hab": null,
+    "pct_motos": null,
+    "puesto": 33
+   }
+  ],
+  "summary": {
+   "departamentos": 33,
+   "con_datos": 32,
+   "media": 514.8,
+   "mediana": 446.5,
+   "desviacion": 343.9,
+   "minimo": 63.2,
+   "p25": 306.4,
+   "p75": 627.6,
+   "maximo": 2020.7,
+   "nacional_por_1000_hab": 499.4,
+   "sin_vehiculos_en_runt": [
+    "VAUPÉS"
+   ]
+  },
+  "sql": "WITH clases_taller(clase, tipo_taller) AS (VALUES\n    ('AUTOMOVIL', 'car'), ('CAMIONETA', 'car'), ('CAMPERO', 'car'),\n    ('MOTOCICLETA', 'motorcycle'),\n    ('CAMION', 'truck'), ('VOLQUETA', 'truck'), ('TRACTOCAMION', 'truck'),\n    ('MICROBUS', 'van'), ('BUSETA', 'van')\n),\nrunt_limpio AS (\n    SELECT strip_accents(upper(trim(r.nombre_departamento)))  AS departamento,\n           c.clase, c.tipo_taller,\n           CAST(r.fecha_de_registro AS INTEGER)               AS anio_registro,\n           CAST(r.anio_publicacion AS INTEGER)                AS anio_corte,\n           CAST(r.vehiculos AS BIGINT)                        AS vehiculos\n    FROM runt r\n    JOIN clases_taller c ON c.clase = strip_accents(upper(trim(r.nombre_de_la_clase)))\n    WHERE CAST(r.fecha_de_registro AS INTEGER) >= 1950\n),\nvehiculos_depto AS (\n    SELECT regexp_replace(departamento, '[^A-Z]', '', 'g')         AS clave,\n           SUM(vehiculos)                                         AS vehiculos,\n           SUM(vehiculos) FILTER (WHERE tipo_taller = 'motorcycle') AS motos,\n           SUM(vehiculos) FILTER (WHERE tipo_taller = 'car')        AS carros\n    FROM runt_limpio\n    GROUP BY clave\n),\ndepartamentos AS (\n    SELECT DISTINCT cod_dpto, dpto,\n           regexp_replace(strip_accents(upper(dpto)), '[^A-Z]', '', 'g') AS clave\n    FROM divipola\n),\npoblacion_depto AS (\n    SELECT cod_dpto, SUM(CAST(poblacion AS BIGINT)) AS poblacion\n    FROM poblacion\n    GROUP BY cod_dpto\n),\nclave_resuelta AS (\n    -- Clave DIVIPOLA de cada departamento RUNT: exacta y, si no hay, por prefijo.\n    SELECT v.*,\n           coalesce((SELECT d.clave FROM departamentos d WHERE d.clave = v.clave),\n                    (SELECT min(d.clave) FROM departamentos d\n                     WHERE length(v.clave) >= 10 AND starts_with(d.clave, v.clave))) AS clave_divipola\n    FROM vehiculos_depto v\n),\nvehiculos_divipola AS (\n    SELECT clave_divipola, SUM(vehiculos) AS vehiculos, SUM(motos) AS motos, SUM(carros) AS carros\n    FROM clave_resuelta\n    GROUP BY clave_divipola\n),\ncruce AS (\n    SELECT d.cod_dpto, d.dpto, p.poblacion, v.vehiculos, v.motos, v.carros\n    FROM departamentos d\n    JOIN poblacion_depto p USING (cod_dpto)\n    LEFT JOIN vehiculos_divipola v ON v.clave_divipola = d.clave\n)\nSELECT cod_dpto,\n       dpto                                                    AS departamento,\n       poblacion::BIGINT                                       AS poblacion_2018,\n       coalesce(vehiculos, 0)::BIGINT                          AS vehiculos,\n       round(1000.0 * vehiculos / poblacion, 1)                AS vehiculos_por_1000_hab,\n       round(1000.0 * carros / poblacion, 1)                   AS carros_por_1000_hab,\n       round(100.0 * motos / vehiculos, 1)                     AS pct_motos,\n       rank() OVER (ORDER BY vehiculos / poblacion DESC NULLS LAST) AS puesto\nFROM cruce\nORDER BY puesto, cod_dpto\n\n-- Resumen entre departamentos\nSELECT count(*)                                                       AS departamentos,\n       count(vehiculos_por_1000_hab)                                  AS con_datos,\n       round(avg(vehiculos_por_1000_hab), 1)                          AS media,\n       round(median(vehiculos_por_1000_hab), 1)                       AS mediana,\n       round(stddev_samp(vehiculos_por_1000_hab), 1)                  AS desviacion,\n       min(vehiculos_por_1000_hab)                                    AS minimo,\n       round(quantile_cont(vehiculos_por_1000_hab, 0.25), 1)          AS p25,\n       round(quantile_cont(vehiculos_por_1000_hab, 0.75), 1)          AS p75,\n       max(vehiculos_por_1000_hab)                                    AS maximo,\n       round(1000.0 * sum(vehiculos) / sum(poblacion_2018), 1)        AS nacional_por_1000_hab\nFROM motorizacion",
+  "elapsed_ms": 89.8,
+  "snapshots": {
+   "runt_fleet": "2026-10-25T02:31:48.593333",
+   "divipola": "2026-10-25T02:31:48.841656",
+   "dane_population": "2026-10-25T02:31:57.275494"
+  }
+ },
+ "age_distribution": {
+  "name": "age_distribution",
+  "title": "Distribución del parque por rango de antigüedad",
+  "description": "Porcentaje de vehículos de cada tipo MecaTrack en cada rango de años desde el registro.",
+  "columns": [
+   {
+    "key": "tipo_taller",
+    "label": "Tipo",
+    "type": "text"
+   },
+   {
+    "key": "rango",
+    "label": "Años",
+    "type": "text"
+   },
+   {
+    "key": "vehiculos",
+    "label": "Vehículos",
+    "type": "number"
+   },
+   {
+    "key": "pct_del_tipo",
+    "label": "% del tipo",
+    "type": "number"
+   }
+  ],
+  "rows": [
+   {
+    "tipo_taller": "car",
+    "rango": "0-4",
+    "vehiculos": 1077486,
+    "pct_del_tipo": 15.4
+   },
+   {
+    "tipo_taller": "car",
+    "rango": "5-9",
+    "vehiculos": 1122879,
+    "pct_del_tipo": 16.1
+   },
+   {
+    "tipo_taller": "car",
+    "rango": "10-14",
+    "vehiculos": 1333799,
+    "pct_del_tipo": 19.1
+   },
+   {
+    "tipo_taller": "car",
+    "rango": "15-19",
+    "vehiculos": 1096948,
+    "pct_del_tipo": 15.7
+   },
+   {
+    "tipo_taller": "car",
+    "rango": "20+",
+    "vehiculos": 2344330,
+    "pct_del_tipo": 33.6
+   },
+   {
+    "tipo_taller": "motorcycle",
+    "rango": "0-4",
+    "vehiculos": 4423796,
+    "pct_del_tipo": 30.5
+   },
+   {
+    "tipo_taller": "motorcycle",
+    "rango": "5-9",
+    "vehiculos": 2867622,
+    "pct_del_tipo": 19.8
+   },
+   {
+    "tipo_taller": "motorcycle",
+    "rango": "10-14",
+    "vehiculos": 3062579,
+    "pct_del_tipo": 21.1
+   },
+   {
+    "tipo_taller": "motorcycle",
+    "rango": "15-19",
+    "vehiculos": 2053765,
+    "pct_del_tipo": 14.2
+   },
+   {
+    "tipo_taller": "motorcycle",
+    "rango": "20+",
+    "vehiculos": 2104844,
+    "pct_del_tipo": 14.5
+   },
+   {
+    "tipo_taller": "truck",
+    "rango": "0-4",
+    "vehiculos": 62513,
+    "pct_del_tipo": 13.9
+   },
+   {
+    "tipo_taller": "truck",
+    "rango": "5-9",
+    "vehiculos": 46568,
+    "pct_del_tipo": 10.3
+   },
+   {
+    "tipo_taller": "truck",
+    "rango": "10-14",
+    "vehiculos": 77019,
+    "pct_del_tipo": 17.1
+   },
+   {
+    "tipo_taller": "truck",
+    "rango": "15-19",
+    "vehiculos": 77958,
+    "pct_del_tipo": 17.3
+   },
+   {
+    "tipo_taller": "truck",
+    "rango": "20+",
+    "vehiculos": 186092,
+    "pct_del_tipo": 41.3
+   },
+   {
+    "tipo_taller": "van",
+    "rango": "0-4",
+    "vehiculos": 5758,
+    "pct_del_tipo": 5.0
+   },
+   {
+    "tipo_taller": "van",
+    "rango": "5-9",
+    "vehiculos": 5491,
+    "pct_del_tipo": 4.7
+   },
+   {
+    "tipo_taller": "van",
+    "rango": "10-14",
+    "vehiculos": 19236,
+    "pct_del_tipo": 16.6
+   },
+   {
+    "tipo_taller": "van",
+    "rango": "15-19",
+    "vehiculos": 21583,
+    "pct_del_tipo": 18.6
+   },
+   {
+    "tipo_taller": "van",
+    "rango": "20+",
+    "vehiculos": 64023,
+    "pct_del_tipo": 55.1
+   }
+  ],
+  "summary": {
+   "rangos": [
+    "0-4",
+    "5-9",
+    "10-14",
+    "15-19",
+    "20+"
+   ]
+  },
+  "sql": "WITH clases_taller(clase, tipo_taller) AS (VALUES\n    ('AUTOMOVIL', 'car'), ('CAMIONETA', 'car'), ('CAMPERO', 'car'),\n    ('MOTOCICLETA', 'motorcycle'),\n    ('CAMION', 'truck'), ('VOLQUETA', 'truck'), ('TRACTOCAMION', 'truck'),\n    ('MICROBUS', 'van'), ('BUSETA', 'van')\n),\nrunt_limpio AS (\n    SELECT strip_accents(upper(trim(r.nombre_departamento)))  AS departamento,\n           c.clase, c.tipo_taller,\n           CAST(r.fecha_de_registro AS INTEGER)               AS anio_registro,\n           CAST(r.anio_publicacion AS INTEGER)                AS anio_corte,\n           CAST(r.vehiculos AS BIGINT)                        AS vehiculos\n    FROM runt r\n    JOIN clases_taller c ON c.clase = strip_accents(upper(trim(r.nombre_de_la_clase)))\n    WHERE CAST(r.fecha_de_registro AS INTEGER) >= 1950\n),\nrangos AS (\n    SELECT tipo_taller,\n           CASE WHEN anio_corte - anio_registro < 5  THEN '0-4'\n                WHEN anio_corte - anio_registro < 10 THEN '5-9'\n                WHEN anio_corte - anio_registro < 15 THEN '10-14'\n                WHEN anio_corte - anio_registro < 20 THEN '15-19'\n                ELSE '20+' END                                    AS rango,\n           vehiculos\n    FROM runt_limpio\n)\nSELECT tipo_taller, rango, SUM(vehiculos)::BIGINT AS vehiculos,\n       round(100.0 * SUM(vehiculos) / SUM(SUM(vehiculos)) OVER (PARTITION BY tipo_taller), 1) AS pct_del_tipo\nFROM rangos\nGROUP BY tipo_taller, rango\nORDER BY tipo_taller, list_position(['0-4', '5-9', '10-14', '15-19', '20+'], rango)",
+  "elapsed_ms": 79.2,
+  "snapshots": {
+   "runt_fleet": "2026-10-25T02:31:48.593333"
+  }
+ }
+}

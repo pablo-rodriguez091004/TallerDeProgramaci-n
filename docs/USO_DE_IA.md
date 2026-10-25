@@ -210,6 +210,17 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
-## Fases siguientes
+## Fase 8 – Informe Word (APA 7)
 
-*(Se completan al terminar cada fase.)*
+- **Generado por la IA:** `informe/build_informe_guia6.js` → `informe/Informe_Guia6_MecaTrack.docx`. Los helpers de formato se extrajeron a `informe/apa.js` con el **mismo estilo** que la Guía 5 (Times New Roman 12, carta, márgenes de 1", doble espacio, rótulos APA de tablas y figuras, notas a 10 pt). El generador de la Guía 5 no se tocó.
+- **Portada:** sigue la versión final que Pablo ajustó a mano en la Guía 5 (sin línea de docente), con nombre y código en `[COMPLETAR]`.
+- **Datos:** el script **lee** todas las cifras de `docs/evidencia/salidas/` (pytest, APIs, demo de resiliencia, analítica DuckDB, run del CI, commits) y falla si los conteos no cuadran. No hay números escritos a mano.
+- **Referencias:** las 21 con URL se comprobaron con HTTP 200 el 2026-10-24; el RFC 2606 se cita por su DOI.
+- **Revisión visual:** se convirtió a PDF con LibreOffice y se revisaron las 41 páginas. Se encontró y corrigió una nota interna del script de capturas que se había colado en la sección de CI; ahora el informe explica con datos qué commit cubre el CI.
+- **[COMPLETAR] en el informe:** nombre y código, conclusión de negocio, dificultad personal, experiencia con Copilot, enlaces (repositorio, CI y YouTube) y la declaración de uso de IA.
+
+## Fase 9 – Video en inglés
+
+- **Generado por la IA:** `docs/video_script_EN.md` (320 palabras habladas, ≈ 2 min 17 s a 140 ppm; incluye un glosario en inglés como recurso previo) y `scripts/demo.sh` (modo normal, `--breaker-abierto` para la demostración controlada en la UI y `--ciclo` para el ciclo completo en terminal).
+- **Verificado:** `demo.sh` levanta backend y frontend (HTTP 200 en ambos) y libera los puertos al detenerse.
+- **Pendiente de Pablo:** grabar el video, decir su nombre y, si usó Copilot, reemplazar el ejemplo de la sección 4 por el suyo.

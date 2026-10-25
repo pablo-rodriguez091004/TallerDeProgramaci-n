@@ -1,0 +1,10 @@
+# git log --format="%h %ad %s" --date=short 45b5a4f..HEAD
+# cwd: . | 2026-10-24 21:35 -05 | exit 0
+
+f688fba 2026-10-24 Guia 6 fase 7: evidencia real (18 capturas) y generar_evidencia.sh
+a3a2b46 2026-10-24 Guia 6 fase 6: CI verificado en GitHub Actions (run 40154151261, verde)
+4eb6286 2026-10-24 Guia 6 fase 5: ADR 0001 en ingles (arquitectura hexagonal y bounded contexts)
+04843b5 2026-10-24 Guia 6 fase 4: analisis con DuckDB, endpoints /api/v1/market y vista vanilla
+4433138 2026-10-24 Guia 6 fase 3: APIs colombianas con circuit breaker y retry con backoff
+4c69d37 2026-10-24 Guia 6 fase 2: pruebas unitarias con mocks de los servicios con DI
+0a2c6f3 2026-10-24 Guia 6 fase 1: refactor a arquitectura hexagonal por bounded contexts

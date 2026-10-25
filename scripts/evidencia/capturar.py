@@ -95,6 +95,13 @@ def stage_terminal(browser):
          f'{python} · commit {commit} · {NOW}. tests/unit (sin BD, con mocks) + tests/integration (Flask + PostgreSQL).',
          [terminal_panel(['cd backend', 'venv/bin/python -m pytest -q -p no:warnings --color=yes'], pytest_out)])
 
+    # Conteos separados (solo texto, para el informe)
+    run('venv/bin/python -m pytest tests/unit -q -p no:warnings', cwd=os.path.join(ROOT, 'backend'),
+        name='02b_pytest_unitarias')
+    run('venv/bin/python -m pytest tests/integration -q -p no:warnings', cwd=os.path.join(ROOT, 'backend'),
+        name='02c_pytest_integracion')
+    run('git log --format="%h %ad %s" --date=short 45b5a4f..HEAD', name='commits_guia6')
+
     # 03. Puerto en domain + adaptador en infrastructure
     port = 'backend/domain/scheduling/ports.py'
     adapter = 'backend/infrastructure/persistence/repositories/appointment_repository.py'
@@ -167,6 +174,7 @@ def stage_terminal(browser):
                                                after=find_lines(queries_file, r'^FLEET_AGE_BY_CLASS')[0] - 1)),
           terminal_panel('backend/venv/bin/python scripts/evidencia/consultas_duckdb.py q1', q1)], width=1380)
     q2 = run(f'{PY} scripts/evidencia/consultas_duckdb.py q2', name='12_duckdb_q2')
+    run(f'{PY} scripts/evidencia/exportar_analitica.py', name='analitica_resumen')
     start = find_lines(queries_file, r'^MOTORIZATION_BY_DEPARTMENT')[0]
     save(browser, '12_duckdb_q2_motorizacion.png', 'DuckDB · Q2: motorización por departamento',
          'Cruce RUNT (MinTransporte) + DIVIPOLA + CNPV 2018 (DANE) y estadísticas entre departamentos.',
@@ -247,21 +255,29 @@ def stage_ui_breaker(browser):
 
 # ------------------------------------------------------------------------------------------ web
 
+# Rutas que disparan el workflow (ver .github/workflows/mecatrack-tests.yml).
+CI_PATHS = 'backend scripts/export_openapi.py docs/openapi.json ../.github/workflows/mecatrack-tests.yml'
+
+
 def stage_web(browser):
-    head = run('git rev-parse HEAD').strip()
-    with urllib.request.urlopen(f'https://api.github.com/repos/{REPO}/actions/runs?branch={BRANCH}&per_page=10') as r:
-        runs = json.load(r)['workflow_runs']
-    finished = [x for x in runs if x['status'] == 'completed']
-    if not finished:
-        raise SystemExit('No hay ejecuciones terminadas del CI en GitHub.')
-    latest = finished[0]
+    # El CI solo corre cuando cambia el backend: se busca el ultimo run terminado cuyo commit
+    # INCLUYE el ultimo cambio relevante (los commits posteriores solo tocan docs/evidencia).
+    relevant = run(f'git log -1 --format=%H -- {CI_PATHS}').strip()
+    with urllib.request.urlopen(f'https://api.github.com/repos/{REPO}/actions/runs?branch={BRANCH}&per_page=20') as r:
+        runs = [x for x in json.load(r)['workflow_runs'] if x['status'] == 'completed']
+    covering = [x for x in runs if subprocess.run(['git', 'merge-base', '--is-ancestor', relevant, x['head_sha']],
+                                                   cwd=ROOT, capture_output=True).returncode == 0]
+    if not covering:
+        raise SystemExit(f'Ningun CI terminado incluye el commit {relevant[:7]} (ultimo cambio del backend): haz push y '
+                         'espera a que termine el workflow.')
+    latest = covering[0]
     if latest['conclusion'] != 'success':
-        raise SystemExit(f"El ultimo CI terminado no esta en verde: {latest['conclusion']} {latest['html_url']}")
-    note = '' if latest['head_sha'] == head else (
-        f"OJO: el CI capturado es del commit {latest['head_sha'][:7]}; HEAD local es {head[:7]} (cambios sin push).")
+        raise SystemExit(f"El CI del ultimo cambio del backend no esta en verde: {latest['conclusion']} {latest['html_url']}")
     with open(os.path.join(TXT, '15_ci_run.json'), 'w', encoding='utf-8') as f:
         json.dump({k: latest[k] for k in ('id', 'name', 'head_sha', 'status', 'conclusion', 'html_url',
-                                          'run_started_at', 'updated_at')} | {'nota': note}, f, indent=1)
+                                          'run_started_at', 'updated_at')}
+                  | {'ultimo_commit_backend': relevant, 'head_local': run('git rev-parse HEAD').strip()}, f, indent=1)
+    note = f'(incluye el ultimo cambio del backend, {relevant[:7]})'
     page = browser.new_page(viewport={'width': 1366, 'height': 900}, device_scale_factor=1.5)
     page.goto(latest['html_url'])
     page.wait_for_load_state('networkidle')

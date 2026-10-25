@@ -1,5 +1,5 @@
 # tree -L 2 --noreport -I '__pycache__' api infrastructure
-# cwd: backend | 2026-10-24 21:31 -05 | exit 0
+# cwd: backend | 2026-10-24 21:35 -05 | exit 0
 
 api
 ├── auth.py
