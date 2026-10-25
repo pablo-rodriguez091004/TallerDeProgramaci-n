@@ -1,6 +1,6 @@
 # Video script (English) – Lab guide 6: Hexagonal architecture, DDD and Colombian open data
 
-**Target length:** about 2 min 30 s (≤ 3 min). **Spoken words:** 320 (≈ 137 s at 140 words per minute).
+**Target length:** about 2 min 30 s (≤ 3 min). **Spoken words:** 336 (≈ 144 s at 140 words per minute).
 **Before recording:** run `./scripts/demo.sh` (normal mode). Have open: the "Mercado" page, VS Code with `backend/`, and a terminal.
 Text in *[brackets]* is what to show on screen; it is not read aloud.
 
@@ -10,7 +10,7 @@ Text in *[brackets]* is what to show on screen; it is not read aloud.
 
 *[VS Code: folders `domain`, `application`, `api`, `infrastructure` and `bootstrap.py`]*
 
-"Hi, I'm [YOUR NAME]. This is MecaTrack, a booking system for a car workshop. In this lab I refactored the backend into a hexagonal architecture with four layers. The domain holds entities, business rules and ports, which are abstract interfaces, and it only uses the Python standard library. Application services receive those ports through the constructor, and the infrastructure layer implements them with SQLAlchemy, HTTP clients and DuckDB."
+"Hi, I'm Pablo Rodríguez. This is MecaTrack, a booking system for a car workshop. In this lab I refactored the backend into a hexagonal architecture with four layers. The domain holds entities, business rules and ports, which are abstract interfaces, and it only uses the Python standard library. Application services receive those ports through the constructor, and the infrastructure layer implements them with SQLAlchemy, HTTP clients and DuckDB."
 
 *[Open `tests/unit/test_architecture.py`, then the terminal with pytest green]*
 
@@ -32,7 +32,7 @@ Text in *[brackets]* is what to show on screen; it is not read aloud.
 
 *[Show `infrastructure/analytics/queries.py`, the `clave_resuelta` block]*
 
-"I used an AI assistant. One suggestion was wrong: it wrote a left join with a correlated subquery, and DuckDB rejected it at runtime. I rewrote it to resolve the join key first. [IF YOU USED COPILOT, DESCRIBE YOUR OWN EXAMPLE HERE.] The lesson: AI is fast, but every output must be verified."
+"I used an AI assistant. One suggestion was wrong: it wrote a left join with a correlated subquery, and DuckDB rejected it at runtime. I rewrote it to resolve the join key first. I did not use GitHub Copilot in this lab; this example comes from Claude Code. The lesson: AI is fast, but every output must be verified."
 
 ### 5. Summary (≈ 15 s)
 

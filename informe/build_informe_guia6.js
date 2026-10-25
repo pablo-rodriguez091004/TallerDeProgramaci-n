@@ -74,7 +74,7 @@ function buildContent() {
   add(
     ...Array.from({ length: 3 }, () => new Paragraph({ spacing: { line: A.DOUBLE }, children: [] })),
     new Paragraph({ alignment: AlignmentType.CENTER, spacing: { line: A.DOUBLE, after: 480 }, children: [new TextRun({ text: TITLE, bold: true })] }),
-    center('[[COMPLETAR: nombre completo]] — Código [[COMPLETAR: código]]'),
+    center('Pablo Alejandro Rodríguez Suarez — Código [[COMPLETAR: código]]'),
     center('Facultad de Ingeniería, Universidad Manuela Beltrán (UMB)'),
     center('Taller de Programación — Sesiones 11 y 12'),
     center('24 de octubre de 2026'),
@@ -212,7 +212,8 @@ function buildContent() {
     figure(img('13a_ui_mercado_fuentes_motorizacion.png'), 'Vista Mercado: fuentes, circuit breakers, indicadores y motorización', 'Captura con Playwright de la aplicación real después de pulsar «Actualizar datos».', 640),
     figure(img('13b_ui_mercado_antiguedad.png'), 'Vista Mercado: antigüedad del parque y distribución por rangos', null, 560),
     figure(img('17_swagger_market.png'), 'Endpoints /api/v1/market documentados en Swagger UI', null, 200),
-    p(`Para el negocio, el resultado más útil es que la mitad de las motos (mediana de ${moto.mediana} años) y la mayoría de los automóviles (mediana de ${auto.mediana} años; ${fmt(auto.pct_10_anios_o_mas, 1)} % con 10 años o más) ya están en la edad en que aumentan las reparaciones, y que el ${fmt(motoShare('car', '20+'), 1)} % de los carros tiene más de 20 años de registro. En motorización, ${top.departamento.charAt(0) + top.departamento.slice(1).toLowerCase()} (${fmt(top.vehiculos_por_1000_hab, 1)} por cada 1.000 habitantes, ${fmt(top.pct_motos, 1)} % motos) supera a Bogotá (${fmt(bogota.vehiculos_por_1000_hab, 1)}): RUNT ubica cada vehículo en el organismo de tránsito donde se matriculó y no donde circula, así que la cifra es indicativa y la interfaz lo advierte. [[COMPLETAR: conclusión propia sobre qué significa esto para la estrategia del taller.]]`),
+    p(`Para el negocio, el resultado más útil es que la mitad de las motos (mediana de ${moto.mediana} años) y la mayoría de los automóviles (mediana de ${auto.mediana} años; ${fmt(auto.pct_10_anios_o_mas, 1)} % con 10 años o más) ya están en la edad en que aumentan las reparaciones, y que el ${fmt(motoShare('car', '20+'), 1)} % de los carros tiene más de 20 años de registro. En motorización, ${top.departamento.charAt(0) + top.departamento.slice(1).toLowerCase()} (${fmt(top.vehiculos_por_1000_hab, 1)} por cada 1.000 habitantes, ${fmt(top.pct_motos, 1)} % motos) supera a Bogotá (${fmt(bogota.vehiculos_por_1000_hab, 1)}): RUNT ubica cada vehículo en el organismo de tránsito donde se matriculó y no donde circula, así que la cifra es indicativa y la interfaz lo advierte.`),
+    p(`Para la estrategia del taller, los datos sugieren tres decisiones. Primero, las motos son el ${fmt(100 * moto.vehiculos / Q1.summary.vehiculos_analizados, 1)} % del parque analizado y la mitad tiene ${moto.mediana} años o menos, así que conviene ofrecer servicios rápidos y de bajo costo para motos (mantenimiento preventivo, frenos, transmisión); hoy ninguno de los servicios del catálogo de MecaTrack es específico para motos. Segundo, en carros predomina el parque envejecido (${fmt(auto.pct_10_anios_o_mas, 1)} % de los automóviles con 10 años o más), donde son más frecuentes las reparaciones correctivas (suspensión, refrigeración, embrague); eso justifica tener inventario de repuestos para esas fallas y reservar bahías para trabajos largos. Tercero, la motorización por departamento sirve como contexto, pero no basta para decidir dónde abrir una sede, porque refleja el lugar de matrícula y no el de circulación; para esa decisión haría falta información local, como las propias citas del taller agrupadas por zona.`),
   );
 
   // 7. CI
@@ -237,7 +238,7 @@ function buildContent() {
     bullet('**Nombres que no coinciden entre fuentes.** RUNT y la DIVIPOLA escriben distinto Bogotá y San Andrés; se normalizaron los nombres y una prueba verifica que el total de vehículos se conserva en el cruce.'),
     bullet('**Consulta SoQL mal codificada.** La primera prueba contra Socrata respondió `400 query.compiler.malformed` porque toda la consulta viajaba en un solo parámetro; se detectó por la respuesta real y se corrigió.'),
     bullet('**Evidencia fiel.** Las primeras capturas mostraban `->` y `!=` como símbolos (ligaduras de la fuente) y partían líneas de pytest; se corrigió la presentación sin alterar la salida real de los comandos.'),
-    p('[[COMPLETAR: dificultad que viviste personalmente al entender o defender la arquitectura y cómo la resolviste.]]', { indent: {} }),
+    p('En lo personal, la dificultad principal fue **entender la arquitectura hexagonal lo suficiente para explicarla**: al principio no era evidente por qué separar puertos y adaptadores, ni por qué un servicio debe recibir sus dependencias en lugar de crearlas. La estrategia fue seguir una petición completa a través de las capas —`POST /appointments` en `api/`, `AppointmentService.book` en `application/`, el `ResourceAllocator` y los puertos en `domain/`, y el repositorio SQLAlchemy en `infrastructure/`—, apoyarse en el ADR para entender el porqué de cada decisión y leer las pruebas con mocks, que muestran de qué depende cada servicio sin necesidad de la base de datos. La prueba de arquitectura ayudó a fijar la regla: si el dominio importa Flask, la prueba falla.'),
     h2('3. Evidencia técnica de los entregables'),
     ...table('Entregables y evidencia', ['Entregable de la guía', 'Evidencia'], [
       ['Arquitectura hexagonal de 4 capas', `\`backend/{domain,application,api,infrastructure}\`, \`bootstrap.py\`, \`tests/unit/test_architecture.py\`; Figuras ${fig('01_estructura_hexagonal.png')} y ${fig('03_puerto_y_adaptador.png')}`],
@@ -253,14 +254,14 @@ function buildContent() {
     p('En esta práctica se usó Claude Code (Anthropic, 2026), un agente que trabaja en la terminal: lee el repositorio, ejecuta comandos y pruebas y aplica cambios que el estudiante aprueba fase por fase. El detalle de qué generó la IA y qué se verificó está en `docs/USO_DE_IA.md`.'),
     p('**Ventajas observadas.** Consultó las APIs reales antes de escribir los clientes, en lugar de suponer URLs o campos; escribió pruebas junto con cada cambio y propuso verificaciones independientes (pruebas de caracterización contra el código original, mutaciones para comprobar que las pruebas fallan, validación cruzada de las estadísticas ponderadas); y automatizó la evidencia y este informe a partir de ejecuciones reales.'),
     p('**Errores reales de la IA y cómo se detectaron.** Dejó líneas sin sentido en dos archivos (una llamada a un método inexistente y un `if False else`), que se detectaron al revisar el código antes de las pruebas; codificó mal una consulta SoQL (respuesta 400 de la API); usó construcciones SQL que DuckDB no soporta (errores en la ejecución real); escribió en un docstring que unas pruebas se habían hecho "antes del refactor" cuando no era cierto, y en el ADR contó 11 servicios cuando eran 12 (ambos detectados al releer contra los hechos); y generó capturas con ligaduras tipográficas que cambiaban la apariencia del código (detectado al revisar cada imagen). Todo se corrigió antes del commit de cada fase. La lección es la misma de la guía anterior: la IA acelera el trabajo, pero cada salida necesita una verificación independiente.'),
-    p('[[COMPLETAR (GitHub Copilot): describe una sugerencia real de Copilot que hayas evaluado en esta guía —qué pediste, qué sugirió, si era correcta y qué corregiste—. Si no usaste Copilot, indícalo y explica que la asistencia fue con Claude Code.]]', { indent: {} }),
+    p('**Sobre GitHub Copilot.** En esta guía no se usó GitHub Copilot; toda la asistencia de IA fue con Claude Code. La evaluación crítica que pide la guía se hizo sobre una sugerencia real de ese asistente: para cruzar los departamentos de RUNT con los de la DIVIPOLA propuso un `LEFT JOIN` con una subconsulta correlacionada (`NOT EXISTS`) dentro de la condición del join. La idea era correcta —aceptar la coincidencia por prefijo solo cuando no hay coincidencia exacta—, pero la sugerencia no funcionaba: DuckDB la rechazó al ejecutarla con el error *Cannot perform non-inner join on subquery*. Se detectó en la ejecución real contra los datos descargados y se corrigió calculando primero la clave de cruce en una expresión aparte (`clave_resuelta`) y haciendo luego un join simple. Para verificar la corrección se agregó una prueba que comprueba que el total de vehículos no se pierde ni se duplica en el cruce.'),
   );
 
   // Enlaces
   add(
     h1('Enlaces'),
-    plain('**Repositorio:** [[COMPLETAR]] (sugerido: https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n, rama `mecatrack-final`).'),
-    plain(`**Pipeline CI/CD:** [[COMPLETAR]] (sugerido: ${CI.html_url}).`),
+    plain('**Repositorio:** https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n (ramas `master` y `mecatrack-final`).'),
+    plain(`**Pipeline CI/CD:** ${CI.html_url}`),
     plain('**Video en inglés (YouTube):** [[COMPLETAR: enlace del video]]'),
   );
 
@@ -298,10 +299,9 @@ function buildContent() {
   // Declaración de uso de IA
   add(
     h1('Declaración de Uso de Inteligencia Artificial'),
-    plain('[[BORRADOR — revisar y ajustar antes de entregar.]]'),
     p('En este trabajo se utilizó Claude Code (Anthropic, 2026) como asistente de programación. A partir de las instrucciones del estudiante y por fases aprobadas una a una, la IA generó: el refactor a arquitectura hexagonal, los casos de uso y adaptadores, las pruebas unitarias y de integración, los clientes de las APIs con circuit breaker y reintentos, las consultas de DuckDB, la vista Mercado, el ADR, los scripts de evidencia y el borrador de este informe, que se genera a partir de las evidencias.'),
     p('El estudiante definió los requisitos y las reglas de trabajo (no inventar datos, un commit por fase, no publicar sin autorización), aprobó el plan y cada fase y autorizó la publicación en GitHub. Las cifras de pruebas, tiempos, respuestas de las APIs y resultados analíticos provienen de ejecuciones reales y no se editaron a mano. El registro detallado está en `docs/USO_DE_IA.md`.'),
-    p('[[COMPLETAR: qué revisaste o cambiaste tú personalmente y cualquier otra herramienta de IA que hayas usado (por ejemplo, GitHub Copilot).]]', { indent: {} }),
+    p('Personalmente, el estudiante revisó y aprobó el diagnóstico y el plan por fases, decidió migrar las nueve rutas del backend a la arquitectura nueva, aprobó los conjuntos de datos elegidos, autorizó cada publicación en GitHub, pidió eliminar del repositorio las actividades anteriores (`Taller1` y `Actividad_2`) y dejar el proyecto como raíz, y solicitó el rol de administrador con la recepción de clientes. No se usó GitHub Copilot ni otra herramienta de IA distinta de Claude Code.'),
   );
 
   // Anexo A: SQL real ejecutado
