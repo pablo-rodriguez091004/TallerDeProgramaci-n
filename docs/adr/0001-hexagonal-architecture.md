@@ -3,12 +3,12 @@
 - **Status:** Accepted
 - **Date:** 2026-10-24
 - **Deciders:** Pablo Rodríguez (student, project owner); implementation assisted by an AI coding assistant (see `docs/USO_DE_IA.md`)
-- **Scope:** `PROYECTO_FINAL/backend` of MecaTrack, the booking and vehicle-tracking system for a car repair workshop
+- **Scope:** `backend/` of MecaTrack, the booking and vehicle-tracking system for a car repair workshop
 - **Format:** Nygard's ADR template (context, decision, consequences), extended with the alternatives that were considered
 
 ## 1. Context
 
-MecaTrack is a Flask + SQLAlchemy + PostgreSQL application with a vanilla HTML/JS frontend. Before this decision (commit `45b5a4f`) the backend was a **layered "routes → repositories" design**:
+MecaTrack is a Flask + SQLAlchemy + PostgreSQL application with a vanilla HTML/JS frontend. Before this decision (commit `7cca398`) the backend was a **layered "routes → repositories" design**:
 
 - 9 Flask blueprints in `routes/` called module-level repository functions that used the global `db.session`.
 - Business rules lived **inside the HTTP handlers**. For example, the 30 % deposit and the creation of both payments were coded in `POST /appointments`, and the "paying the deposit confirms the appointment" rule lived in `POST /payments/<id>/pay`.

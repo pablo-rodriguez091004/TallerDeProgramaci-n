@@ -37,7 +37,7 @@ Decisiones que tomó Pablo: aprobar el plan y migrar los 9 blueprints (no solo a
 ### Cómo se verificó que no se rompió nada
 
 1. Las 31 pruebas existentes pasan sin cambiar ninguna aserción; solo se actualizaron los imports a las rutas nuevas.
-2. Las 7 pruebas nuevas de caracterización se corrieron primero contra el código **original** (worktree en el commit `45b5a4f`, 7/7 en verde) y después contra el refactor (7/7 en verde).
+2. Las 7 pruebas nuevas de caracterización se corrieron primero contra el código **original** (worktree en el commit `7cca398`, antes `45b5a4f`; 7/7 en verde) y después contra el refactor (7/7 en verde).
 3. `flask db check`: *No new upgrade operations detected*, es decir, el esquema no cambió.
 4. `scripts/export_openapi.py`: `docs/openapi.json` sin diferencias.
 5. Prueba de humo de la app real contra la base de desarrollo: login y 7 rutas protegidas con respuesta 200.
@@ -187,7 +187,7 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 - El workflow existente (`.github/workflows/mecatrack-tests.yml`: PostgreSQL 16, Python 3.12, pytest y verificación de `openapi.json`) **no necesitó cambios**. Ya ejecuta las dos carpetas de pruebas, porque `testpaths = tests`, y `duckdb==1.5.6` entró por `requirements.txt`.
 - Antes del push (autorizado por Pablo) se escanearon los 16 commits pendientes en busca de secretos (claves de Google, tokens de GitHub, URLs con contraseña): no había ninguno.
 - No se incluyó el borrado sin commit de `Taller1/` y `Actividad_2/`.
-- Resultado real: run `40154151261` del commit `4eb6286` → **completed / success**.
+- Resultado real: run `40154151261` del commit `4eb6286` (hoy `9ba8a46`, ver «Reescritura del historial») → **completed / success**.
   https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n/actions/runs/40154151261
 - Suite local antes del push: 115 pruebas en verde (73 unitarias + 42 de integración).
 
@@ -206,7 +206,7 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
   5. La página de Mercado y el ADR completos eran demasiado altos para el Word. Se dividieron por secciones.
   6. La barra de navegación *sticky* tapaba la tabla en la 13b. Se fija como estática solo durante esa captura.
 - **Cambio de configuración para la demo:** `MARKET_SOCRATA_BASE_URL` (por defecto la URL real de datos.gov.co). Solo el script de evidencia la cambia.
-- **Aviso:** la captura del CI corresponde al último run en verde (`4eb6286`). Los commits posteriores a la Fase 5 solo cambian documentación, scripts y una prueba; el CI se vuelve a ejecutar con el próximo push que toque `backend/`.
+- **Aviso:** la captura del CI corresponde al último run en verde (`4eb6286`, hoy `9ba8a46`). Los commits posteriores a la Fase 5 solo cambian documentación, scripts y una prueba; el CI se vuelve a ejecutar con el próximo push que toque `backend/`.
 
 ---
 
@@ -224,3 +224,31 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 - **Generado por la IA:** `docs/video_script_EN.md` (320 palabras habladas, ≈ 2 min 17 s a 140 ppm; incluye un glosario en inglés como recurso previo) y `scripts/demo.sh` (modo normal, `--breaker-abierto` para la demostración controlada en la UI y `--ciclo` para el ciclo completo en terminal).
 - **Verificado:** `demo.sh` levanta backend y frontend (HTTP 200 en ambos) y libera los puertos al detenerse.
 - **Pendiente de Pablo:** grabar el video, decir su nombre y, si usó Copilot, reemplazar el ejemplo de la sección 4 por el suyo.
+
+## Reescritura del historial (2026-10-24, pedida por Pablo)
+
+Pablo pidió eliminar de forma definitiva `Taller1/` y `Actividad_2/` y que en su carpeta de trabajo quedara solo `PROYECTO_FINAL/`. Se aplicó así:
+
+1. **Respaldo** completo con `git bundle` (verificado, todas las ramas) en `~/Escritorio/TallerDeProgramacion-respaldo-git-2026-10-24.bundle`.
+2. Con `git filter-repo` 2.47.0 (instalado en un entorno virtual temporal, no en el sistema), en un clon aparte, sobre `master` y `mecatrack-final`: se conservó solo `PROYECTO_FINAL/` (que pasó a ser la **raíz del repositorio**) y el workflow. En el historial ya no queda ningún archivo de `Taller1/` ni de `Actividad_2/`. La rama `feature/add-dip-and-tests-pr` no se tocó.
+3. **Verificación:** el contenido final es idéntico byte a byte (286 archivos) al `PROYECTO_FINAL/` anterior más el workflow.
+4. El workflow, el README, el ADR y los scripts se actualizaron a las rutas nuevas (`backend/**` en lugar de `PROYECTO_FINAL/backend/**`).
+
+Como cambió el identificador de cada commit, esta es la equivalencia de los citados en este documento:
+
+| Antes | Ahora | Commit |
+|---|---|---|
+| `45b5a4f` | `7cca398` | Guía 5: ajustes manuales (base de la Guía 6) |
+| `0a2c6f3` | `66a0977` | Fase 1 |
+| `4c69d37` | `63c197c` | Fase 2 |
+| `4433138` | `103ed7e` | Fase 3 |
+| `04843b5` | `e53c462` | Fase 4 |
+| `4eb6286` | `9ba8a46` | Fase 5 (CI run 40154151261) |
+| `a3a2b46` | `fc2d2a7` | Fase 6 |
+| `f688fba` | `f6226f6` | Fase 7 |
+| `caf881c` | `c7c6027` | Fase 8 |
+| `1efeec5` | `7804214` | Fase 9 (CI run 40155508580) |
+| `afcdb84` | `b7f2ebc` | Evidencia final |
+| `ff35401` | — | Borrado de las carpetas: quedó vacío y se descartó |
+
+Los runs de GitHub Actions anteriores quedan registrados sobre los commits viejos. La evidencia y el informe se regeneraron después con el CI de los commits nuevos.

@@ -7,7 +7,7 @@ cumpliendo el requerimiento de reutilización de código: la app Flask y
 este microservicio comparten exactamente la misma capa de persistencia.
 
 Uso:
-    cd PROYECTO_FINAL/python-services
+    cd python-services
     python reportes.py
 """
 

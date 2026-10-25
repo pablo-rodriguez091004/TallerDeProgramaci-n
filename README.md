@@ -111,7 +111,7 @@ Sírvelo con un servidor estático en el **puerto 5500 o 5501** (`127.0.0.1` o `
 cd frontend && python3 -m http.server 5500 --bind 127.0.0.1
 ```
 
-Abre `http://127.0.0.1:5500/index.html` en Firefox o Chrome. Con Live Server de VSCode: clic derecho en `PROYECTO_FINAL/frontend/index.html` → *Open with Live Server* (si el 5500 está ocupado usa el 5501, p. ej. `http://127.0.0.1:5501/PROYECTO_FINAL/frontend/index.html`).
+Abre `http://127.0.0.1:5500/index.html` en Firefox o Chrome. Con Live Server de VSCode: clic derecho en `frontend/index.html` → *Open with Live Server* (si el 5500 está ocupado usa el 5501, p. ej. `http://127.0.0.1:5501/frontend/index.html`, abriendo `PROYECTO_FINAL` como carpeta en VS Code).
 
 ### Usuarios de prueba (contraseña `test1234`)
 
@@ -148,7 +148,7 @@ Las pruebas están en dos carpetas:
 | `unit/test_appointment_service.py`, `unit/test_payment_service.py` | DI por constructor: agendar, cancelar y pagar con repositorios, unit of work y reloj simulados |
 | `unit/test_architecture.py` | reglas de dependencias: `domain` solo usa la librería estándar, `application` no usa Flask/SQLAlchemy/IO, `api` no importa `infrastructure` |
 
-GitHub Actions ejecuta las pruebas con un servicio PostgreSQL en cada push o PR que toque `PROYECTO_FINAL/backend/**` (ver `.github/workflows/mecatrack-tests.yml` en la raíz del repositorio).
+GitHub Actions ejecuta las pruebas con un servicio PostgreSQL en cada push o PR que toque `backend/**` (ver `.github/workflows/mecatrack-tests.yml`).
 
 ## Migraciones (Flask-Migrate)
 

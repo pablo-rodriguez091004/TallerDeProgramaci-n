@@ -100,7 +100,7 @@ def stage_terminal(browser):
         name='02b_pytest_unitarias')
     run('venv/bin/python -m pytest tests/integration -q -p no:warnings', cwd=os.path.join(ROOT, 'backend'),
         name='02c_pytest_integracion')
-    run('git log --format="%h %ad %s" --date=short 45b5a4f..HEAD', name='commits_guia6')
+    run('git log --format="%h %ad %s" --date=short 7cca398..HEAD', name='commits_guia6')
 
     # 03. Puerto en domain + adaptador en infrastructure
     port = 'backend/domain/scheduling/ports.py'
@@ -256,7 +256,7 @@ def stage_ui_breaker(browser):
 # ------------------------------------------------------------------------------------------ web
 
 # Rutas que disparan el workflow (ver .github/workflows/mecatrack-tests.yml).
-CI_PATHS = 'backend scripts/export_openapi.py docs/openapi.json ../.github/workflows/mecatrack-tests.yml'
+CI_PATHS = 'backend scripts/export_openapi.py docs/openapi.json .github/workflows/mecatrack-tests.yml'
 
 
 def stage_web(browser):
@@ -284,7 +284,7 @@ def stage_web(browser):
     page.screenshot(path=os.path.join(OUT, '15_ci_verde.png'))
     print(f"  15_ci_verde.png  (run {latest['id']}, commit {latest['head_sha'][:7]}) {note}")
 
-    page.goto(f'https://github.com/{REPO}/blob/{BRANCH}/PROYECTO_FINAL/docs/adr/0001-hexagonal-architecture.md')
+    page.goto(f'https://github.com/{REPO}/blob/{BRANCH}/docs/adr/0001-hexagonal-architecture.md')
     article = page.locator('article.markdown-body').first
     article.wait_for(timeout=30_000)
     # Desde el titulo hasta el final de la tabla de bounded contexts (seccion 2.1).

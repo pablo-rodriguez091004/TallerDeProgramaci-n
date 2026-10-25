@@ -2,7 +2,7 @@
 Pruebas de caracterizacion de las rutas antiguas que no tenian cobertura
 (negocio, mecanicos, repuestos, servicios, vehiculos, seguimiento y estado
 de citas). Se escribieron durante el refactor hexagonal (Guia 6) y se
-corrieron primero contra el codigo ORIGINAL (commit 45b5a4f, 7/7 verdes):
+corrieron primero contra el codigo ORIGINAL (commit 7cca398, 7/7 verdes):
 fijan el contrato HTTP que el frontend usa y prueban que no cambio.
 """
 

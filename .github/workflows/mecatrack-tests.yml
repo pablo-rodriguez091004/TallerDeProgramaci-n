@@ -3,15 +3,15 @@ name: MecaTrack - pruebas de integracion
 on:
   push:
     paths:
-      - 'PROYECTO_FINAL/backend/**'
-      - 'PROYECTO_FINAL/scripts/export_openapi.py'
-      - 'PROYECTO_FINAL/docs/openapi.json'
+      - 'backend/**'
+      - 'scripts/export_openapi.py'
+      - 'docs/openapi.json'
       - '.github/workflows/mecatrack-tests.yml'
   pull_request:
     paths:
-      - 'PROYECTO_FINAL/backend/**'
-      - 'PROYECTO_FINAL/scripts/export_openapi.py'
-      - 'PROYECTO_FINAL/docs/openapi.json'
+      - 'backend/**'
+      - 'scripts/export_openapi.py'
+      - 'docs/openapi.json'
       - '.github/workflows/mecatrack-tests.yml'
   workflow_dispatch:
 
@@ -39,7 +39,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: PROYECTO_FINAL/backend
+        working-directory: backend
 
     env:
       # Las pruebas usan SIEMPRE la base *_test (conftest.py aborta si no).
@@ -58,7 +58,7 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-          cache-dependency-path: PROYECTO_FINAL/backend/requirements*.txt
+          cache-dependency-path: backend/requirements*.txt
 
       - name: Instalar dependencias
         run: pip install -r requirements-dev.txt
@@ -76,4 +76,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pytest-report
-          path: PROYECTO_FINAL/backend/pytest-report.xml
+          path: backend/pytest-report.xml
