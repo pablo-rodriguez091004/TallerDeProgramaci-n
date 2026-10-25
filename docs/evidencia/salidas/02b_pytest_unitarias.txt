@@ -1,5 +1,5 @@
 # venv/bin/python -m pytest tests/unit -q -p no:warnings
-# cwd: backend | 2026-10-24 21:44 -05 | exit 0
+# cwd: backend | 2026-10-24 22:03 -05 | exit 0
 
 ================================================ test session starts =================================================
 platform linux -- Python 3.14.8, pytest-9.1.1, pluggy-1.7.0
@@ -22,4 +22,4 @@ tests/unit/test_resource_allocator.py ...                                       
 tests/unit/test_retry.py .....                                                                                 [ 97%]
 tests/unit/test_tracking_service.py ..                                                                         [100%]
 
-================================================= 73 passed in 1.02s =================================================
+================================================= 73 passed in 1.15s =================================================

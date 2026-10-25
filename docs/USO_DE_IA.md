@@ -252,3 +252,5 @@ Como cambió el identificador de cada commit, esta es la equivalencia de los cit
 | `ff35401` | — | Borrado de las carpetas: quedó vacío y se descartó |
 
 Los runs de GitHub Actions anteriores quedan registrados sobre los commits viejos. La evidencia y el informe se regeneraron después con el CI de los commits nuevos.
+
+**CI después de la reescritura.** El *force push* no disparó el workflow, así que no había un run sobre los commits nuevos. En lugar de un commit vacío se hizo un cambio útil: las actions se actualizaron a versiones con Node 24 (`checkout@v7.0.1`, `setup-python@v7.0.0`, `upload-artifact@v7.0.2`), con versiones fijas verificadas y sin usar la `setup-python` v7.1.0, publicada 2 días antes. Eso eliminó el aviso de deprecación de Node.js 20. Resultado: run `40156647221` del commit `7c3e54a` → **success**. La evidencia y el informe se regeneraron con ese run.

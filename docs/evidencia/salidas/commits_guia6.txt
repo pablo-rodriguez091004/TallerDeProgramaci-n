@@ -1,12 +1,15 @@
-# git log --format="%h %ad %s" --date=short 45b5a4f..HEAD
-# cwd: . | 2026-10-24 21:44 -05 | exit 0
+# git log --format="%h %ad %s" --date=short 7cca398..HEAD
+# cwd: . | 2026-10-24 22:03 -05 | exit 0
 
-1efeec5 2026-10-24 Guia 6 fase 9: guion del video en ingles y scripts/demo.sh
-caf881c 2026-10-24 Guia 6 fase 8: informe Word APA 7 generado desde la evidencia real
-f688fba 2026-10-24 Guia 6 fase 7: evidencia real (18 capturas) y generar_evidencia.sh
-a3a2b46 2026-10-24 Guia 6 fase 6: CI verificado en GitHub Actions (run 40154151261, verde)
-4eb6286 2026-10-24 Guia 6 fase 5: ADR 0001 en ingles (arquitectura hexagonal y bounded contexts)
-04843b5 2026-10-24 Guia 6 fase 4: analisis con DuckDB, endpoints /api/v1/market y vista vanilla
-4433138 2026-10-24 Guia 6 fase 3: APIs colombianas con circuit breaker y retry con backoff
-4c69d37 2026-10-24 Guia 6 fase 2: pruebas unitarias con mocks de los servicios con DI
-0a2c6f3 2026-10-24 Guia 6 fase 1: refactor a arquitectura hexagonal por bounded contexts
+7c3e54a 2026-10-24 CI: actions con Node 24 (checkout v7.0.1, setup-python v7.0.0, upload-artifact v7.0.2)
+630a393 2026-10-24 PROYECTO_FINAL pasa a ser la raiz del repositorio
+b7f2ebc 2026-10-24 Guia 6: evidencia e informe finales (CI del run 40155508580) y README
+7804214 2026-10-24 Guia 6 fase 9: guion del video en ingles y scripts/demo.sh
+c7c6027 2026-10-24 Guia 6 fase 8: informe Word APA 7 generado desde la evidencia real
+f6226f6 2026-10-24 Guia 6 fase 7: evidencia real (18 capturas) y generar_evidencia.sh
+fc2d2a7 2026-10-24 Guia 6 fase 6: CI verificado en GitHub Actions (run 40154151261, verde)
+9ba8a46 2026-10-24 Guia 6 fase 5: ADR 0001 en ingles (arquitectura hexagonal y bounded contexts)
+e53c462 2026-10-24 Guia 6 fase 4: analisis con DuckDB, endpoints /api/v1/market y vista vanilla
+103ed7e 2026-10-24 Guia 6 fase 3: APIs colombianas con circuit breaker y retry con backoff
+63c197c 2026-10-24 Guia 6 fase 2: pruebas unitarias con mocks de los servicios con DI
+66a0977 2026-10-24 Guia 6 fase 1: refactor a arquitectura hexagonal por bounded contexts
