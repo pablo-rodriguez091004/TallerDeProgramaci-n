@@ -1,0 +1,7 @@
+{
+ "note": "Respuestas REALES recortadas (filtros por departamento) para pruebas sin red",
+ "captured_at": "2026-10-25T01:50:59+00:00",
+ "runt_fleet_sample.json": "datos.gov.co u3vn-bdcy, AMAZONAS y BOGOTA D.C., 3 clases",
+ "divipola_sample.json": "datos.gov.co gdxc-w37w, cod_dpto 91 y 11",
+ "dane_population_sample.json": "geoportal.dane.gov.co CNPV 2018 capa 4, DPTO 91 y 11"
+}

@@ -91,6 +91,51 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
+## Fase 3 – APIs colombianas, circuit breaker y retry
+
+### Verificación previa de las APIs (llamadas reales del 2026-10-24, antes de escribir código)
+
+| Fuente | Endpoint | Resultado real |
+|---|---|---|
+| RUNT, parque automotor (MinTransporte) | `datos.gov.co/resource/u3vn-bdcy.json` | 191 922 filas, 22 655 040 vehículos, publicación de octubre de 2026; 28 007 filas agregadas por departamento, clase y año |
+| DIVIPOLA (DANE) | `datos.gov.co/resource/gdxc-w37w.json` | 1 122 municipios, 33 departamentos |
+| Población CNPV 2018 (DANE) | `geoportal.dane.gov.co/.../Serv_Mpios_DistribucionPoblacionTotalCen_2018/MapServer/4/query` | 1 122 municipios, 44 164 417 personas censadas |
+| Descartadas | precios de combustible `x6id-4v3g` (2018), IPC del geoportal (2012–2013) | Desactualizadas |
+
+**Primer error de la IA en esta fase:** la primera consulta SoQL codificó toda la cadena (incluidos los `&`) en un solo parámetro y Socrata respondió `400 query.compiler.malformed`. Se corrigió pasando cada parámetro por separado. El error se detectó por la respuesta HTTP real.
+
+**Hallazgo de datos:** en el cruce RUNT ↔ DIVIPOLA, "BOGOTA D.C." no coincide con "BOGOTA, D.C." y San Andrés aparece truncado en RUNT. Se resolverá normalizando a solo letras y uniendo por prefijo (Fase 4).
+
+### Código generado por la IA
+
+| Archivo | Contenido |
+|---|---|
+| `infrastructure/resilience/circuit_breaker.py` | Breaker de 3 estados, umbral de fallos, timeout de recuperación, una sola prueba en HALF_OPEN, historial de transiciones, reloj inyectable y lock entre hilos |
+| `infrastructure/resilience/retry.py` | `RetryPolicy` + `retry_call`: backoff exponencial con *equal jitter*, tope `max_delay` y lista de excepciones reintentables |
+| `infrastructure/resilience/http_client.py` | httpx con retry por fuera y breaker por dentro; clasifica los errores en transitorios (timeout, conexión, 429, 5xx) y permanentes (otros 4xx) |
+| `infrastructure/market_data/clients.py` | Adaptadores Socrata (paginación `$limit/$offset`) y ArcGIS (paginación `resultOffset` y errores dentro de un HTTP 200) |
+| `domain/market_data/`, `application/market_data/` | Puertos y caso de uso `MarketDataService` (una fuente caída no detiene a las demás) |
+| `scripts/demo_resilience.py` | **Demostración controlada** con red real |
+| `tests/fixtures/market/` | Respuestas **reales** recortadas de las 3 fuentes, para pruebas sin red |
+
+### Verificación
+
+- 23 pruebas nuevas (breaker, retry, cliente HTTP con `httpx.MockTransport`, fuentes y caso de uso): 104 en verde en total.
+- **Mutación:** con `>` en lugar de `>=` en el umbral del breaker fallan 4 pruebas. Luego se revirtió.
+- Adaptadores contra las APIs reales: RUNT 28 007 filas (1,1 s), DIVIPOLA 1 122 (0,27 s), DANE 1 122 (1,1 s).
+- `demo_resilience.py` con red real: separación entre intentos de 0,317 / 0,607 / 1,101 / 3,416 s; transiciones CLOSED→OPEN→HALF_OPEN→OPEN→HALF_OPEN→CLOSED; rechazo en ~35 µs con el circuito abierto.
+
+### Decisiones a defender
+
+- **Un breaker por host** (datos.gov.co y geoportal.dane.gov.co): la caída de uno no bloquea al otro.
+- **Retry por fuera y breaker por dentro**, y `CircuitOpenError` no se reintenta: no tiene sentido esperar un backoff si ya se sabe que la dependencia está caída.
+- **Un 4xx no abre el circuito**: indica un error de la petición, no de la salud de la dependencia.
+- **RUNT se agrega en el servidor** (SoQL `group by`): 3 MB en vez de ~27 MB, porque el detalle por municipio no se usa.
+
+**[COMPLETAR]** Opinión de Pablo sobre las decisiones anteriores.
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*

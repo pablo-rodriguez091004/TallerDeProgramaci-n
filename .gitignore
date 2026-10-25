@@ -24,3 +24,6 @@ cookies.txt
 
 # Reporte JUnit que genera el CI
 pytest-report.xml
+
+# Descargas de datos abiertos (se regeneran con POST /api/v1/market/refresh)
+backend/var/

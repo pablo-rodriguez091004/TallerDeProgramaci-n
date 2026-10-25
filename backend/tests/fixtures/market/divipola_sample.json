@@ -1,0 +1,86 @@
+[
+ {
+  "cod_dpto": "11",
+  "dpto": "BOGOTÁ, D.C.",
+  "cod_mpio": "11001",
+  "nom_mpio": "BOGOTÁ, D.C.",
+  "tipo_municipio": "Municipio"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91001",
+  "nom_mpio": "LETICIA",
+  "tipo_municipio": "Municipio"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91263",
+  "nom_mpio": "EL ENCANTO",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91405",
+  "nom_mpio": "LA CHORRERA",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91407",
+  "nom_mpio": "LA PEDRERA",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91430",
+  "nom_mpio": "LA VICTORIA",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91460",
+  "nom_mpio": "MIRITÍ - PARANÁ",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91530",
+  "nom_mpio": "PUERTO ALEGRÍA",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91536",
+  "nom_mpio": "PUERTO ARICA",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91540",
+  "nom_mpio": "PUERTO NARIÑO",
+  "tipo_municipio": "Municipio"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91669",
+  "nom_mpio": "PUERTO SANTANDER",
+  "tipo_municipio": "Área no municipalizada"
+ },
+ {
+  "cod_dpto": "91",
+  "dpto": "AMAZONAS",
+  "cod_mpio": "91798",
+  "nom_mpio": "TARAPACÁ",
+  "tipo_municipio": "Área no municipalizada"
+ }
+]

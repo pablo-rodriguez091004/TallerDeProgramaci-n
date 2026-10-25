@@ -39,6 +39,18 @@ class Config:
     AI_RETRY_BASE_SECONDS = float(os.environ.get('AI_RETRY_BASE_SECONDS', 1))
     AI_MAX_CALLS_PER_HOUR = int(os.environ.get('AI_MAX_CALLS_PER_HOUR', 20))
 
+    # Datos abiertos (datos.gov.co y geoportal del DANE): resiliencia y almacenamiento.
+    MARKET_DATA_DIR = os.environ.get('MARKET_DATA_DIR',
+                                     os.path.join(os.path.dirname(os.path.abspath(__file__)), 'var', 'market_data'))
+    MARKET_HTTP_TIMEOUT_SECONDS = float(os.environ.get('MARKET_HTTP_TIMEOUT_SECONDS', 30))
+    MARKET_MAX_RETRIES = int(os.environ.get('MARKET_MAX_RETRIES', 3))
+    MARKET_RETRY_BASE_SECONDS = float(os.environ.get('MARKET_RETRY_BASE_SECONDS', 0.5))
+    MARKET_RETRY_MAX_SECONDS = float(os.environ.get('MARKET_RETRY_MAX_SECONDS', 8))
+    CIRCUIT_FAILURE_THRESHOLD = int(os.environ.get('CIRCUIT_FAILURE_THRESHOLD', 3))
+    CIRCUIT_RECOVERY_SECONDS = float(os.environ.get('CIRCUIT_RECOVERY_SECONDS', 30))
+    # Opcional: token de Socrata (sube el limite de peticiones). Sin token tambien funciona.
+    SOCRATA_APP_TOKEN = os.environ.get('SOCRATA_APP_TOKEN') or None
+
 
 def _default_test_database_url():
     """
@@ -64,4 +76,5 @@ class TestConfig(Config):
     GEMINI_API_KEY = 'test-key'
     GEMINI_MODEL = 'test-model'
     AI_RETRY_BASE_SECONDS = 0
+    MARKET_RETRY_BASE_SECONDS = 0
     SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or _default_test_database_url()

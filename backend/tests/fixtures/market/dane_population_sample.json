@@ -1,0 +1,132 @@
+{
+ "displayFieldName": "DPTO_CCDGO",
+ "fieldAliases": {
+  "DPTO_CCDGO": "Código de departamento",
+  "MPIO_CCDGO": "Código de municipio",
+  "MPIO_CNMBR": "Municipio",
+  "CL0_TT_PERSN": "Total de personas"
+ },
+ "fields": [
+  {
+   "name": "DPTO_CCDGO",
+   "type": "esriFieldTypeString",
+   "alias": "Código de departamento",
+   "length": 2
+  },
+  {
+   "name": "MPIO_CCDGO",
+   "type": "esriFieldTypeString",
+   "alias": "Código de municipio",
+   "length": 5
+  },
+  {
+   "name": "MPIO_CNMBR",
+   "type": "esriFieldTypeString",
+   "alias": "Municipio",
+   "length": 60
+  },
+  {
+   "name": "CL0_TT_PERSN",
+   "type": "esriFieldTypeDouble",
+   "alias": "Total de personas"
+  }
+ ],
+ "features": [
+  {
+   "attributes": {
+    "DPTO_CCDGO": "11",
+    "MPIO_CCDGO": "11001",
+    "MPIO_CNMBR": "BOGOTÁ, D.C.",
+    "CL0_TT_PERSN": 7181469
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91001",
+    "MPIO_CNMBR": "LETICIA",
+    "CL0_TT_PERSN": 42844
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91263",
+    "MPIO_CNMBR": "EL ENCANTO",
+    "CL0_TT_PERSN": 1885
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91405",
+    "MPIO_CNMBR": "LA CHORRERA",
+    "CL0_TT_PERSN": 2357
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91407",
+    "MPIO_CNMBR": "LA PEDRERA",
+    "CL0_TT_PERSN": 3781
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91430",
+    "MPIO_CNMBR": "LA VICTORIA (Pacoa)",
+    "CL0_TT_PERSN": 166
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91460",
+    "MPIO_CNMBR": "MIRITÍ-PARANÁ (Campoamor)",
+    "CL0_TT_PERSN": 1023
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91530",
+    "MPIO_CNMBR": "PUERTO ALEGRÍA",
+    "CL0_TT_PERSN": 681
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91536",
+    "MPIO_CNMBR": "PUERTO ARICA",
+    "CL0_TT_PERSN": 794
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91540",
+    "MPIO_CNMBR": "PUERTO NARIÑO",
+    "CL0_TT_PERSN": 7896
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91669",
+    "MPIO_CNMBR": "SANTANDER (Araracuara)",
+    "CL0_TT_PERSN": 1450
+   }
+  },
+  {
+   "attributes": {
+    "DPTO_CCDGO": "91",
+    "MPIO_CCDGO": "91798",
+    "MPIO_CNMBR": "TARAPACÁ",
+    "CL0_TT_PERSN": 3179
+   }
+  }
+ ]
+}

@@ -1,0 +1,3002 @@
+[
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1988",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1993",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1996",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1997",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1998",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1999",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2000",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2002",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2003",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2005",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2006",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2007",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2008",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2009",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2010",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2011",
+  "vehiculos": "11",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2012",
+  "vehiculos": "9",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2013",
+  "vehiculos": "11",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2014",
+  "vehiculos": "18",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2015",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2016",
+  "vehiculos": "13",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2017",
+  "vehiculos": "7",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2018",
+  "vehiculos": "11",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2019",
+  "vehiculos": "13",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2020",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2021",
+  "vehiculos": "10",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2022",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2023",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2024",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2025",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2026",
+  "vehiculos": "17",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1975",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1985",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1994",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1996",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1997",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1998",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2000",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2001",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2004",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2006",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2007",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2008",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2009",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2010",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2011",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2012",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2013",
+  "vehiculos": "5",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2014",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2015",
+  "vehiculos": "10",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2016",
+  "vehiculos": "9",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2017",
+  "vehiculos": "20",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2018",
+  "vehiculos": "26",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2019",
+  "vehiculos": "17",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2020",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2021",
+  "vehiculos": "15",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2022",
+  "vehiculos": "19",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2023",
+  "vehiculos": "9",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2024",
+  "vehiculos": "13",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2025",
+  "vehiculos": "28",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2026",
+  "vehiculos": "40",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1981",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1983",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1984",
+  "vehiculos": "5",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1985",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1986",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1987",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1988",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1990",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1991",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1992",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1993",
+  "vehiculos": "5",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1994",
+  "vehiculos": "11",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1995",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1996",
+  "vehiculos": "7",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1997",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1998",
+  "vehiculos": "88",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1999",
+  "vehiculos": "67",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2000",
+  "vehiculos": "53",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2001",
+  "vehiculos": "22",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2002",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2003",
+  "vehiculos": "318",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2004",
+  "vehiculos": "231",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2005",
+  "vehiculos": "210",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2006",
+  "vehiculos": "913",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2007",
+  "vehiculos": "2357",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2008",
+  "vehiculos": "1529",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2009",
+  "vehiculos": "671",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2010",
+  "vehiculos": "247",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2011",
+  "vehiculos": "2218",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2012",
+  "vehiculos": "1217",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2013",
+  "vehiculos": "1298",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2014",
+  "vehiculos": "656",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2015",
+  "vehiculos": "540",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2016",
+  "vehiculos": "829",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2017",
+  "vehiculos": "1278",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2018",
+  "vehiculos": "1008",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2019",
+  "vehiculos": "1250",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2020",
+  "vehiculos": "877",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2021",
+  "vehiculos": "864",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2022",
+  "vehiculos": "1408",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2023",
+  "vehiculos": "1253",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2024",
+  "vehiculos": "1075",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2025",
+  "vehiculos": "1612",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "AMAZONAS",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2026",
+  "vehiculos": "1552",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1900",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1927",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1928",
+  "vehiculos": "6",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1929",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1930",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1931",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1932",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1934",
+  "vehiculos": "31",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1935",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1936",
+  "vehiculos": "28",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1937",
+  "vehiculos": "51",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1938",
+  "vehiculos": "53",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1939",
+  "vehiculos": "187",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1940",
+  "vehiculos": "182",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1941",
+  "vehiculos": "248",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1942",
+  "vehiculos": "116",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1945",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1946",
+  "vehiculos": "496",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1947",
+  "vehiculos": "735",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1948",
+  "vehiculos": "1054",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1949",
+  "vehiculos": "267",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1950",
+  "vehiculos": "1365",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1951",
+  "vehiculos": "242",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1952",
+  "vehiculos": "743",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1953",
+  "vehiculos": "2568",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1954",
+  "vehiculos": "3350",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1955",
+  "vehiculos": "2658",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1956",
+  "vehiculos": "1086",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1957",
+  "vehiculos": "726",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1958",
+  "vehiculos": "403",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1959",
+  "vehiculos": "293",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1960",
+  "vehiculos": "1008",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1961",
+  "vehiculos": "3247",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1962",
+  "vehiculos": "1014",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1963",
+  "vehiculos": "398",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1964",
+  "vehiculos": "494",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1965",
+  "vehiculos": "561",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1966",
+  "vehiculos": "2357",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1967",
+  "vehiculos": "1702",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1968",
+  "vehiculos": "1390",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1969",
+  "vehiculos": "844",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1970",
+  "vehiculos": "1084",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1971",
+  "vehiculos": "2721",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1972",
+  "vehiculos": "4382",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1973",
+  "vehiculos": "4325",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1974",
+  "vehiculos": "5565",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1975",
+  "vehiculos": "4551",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1976",
+  "vehiculos": "4765",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1977",
+  "vehiculos": "5372",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1978",
+  "vehiculos": "5802",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1979",
+  "vehiculos": "4845",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1980",
+  "vehiculos": "5169",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1981",
+  "vehiculos": "6046",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1982",
+  "vehiculos": "6008",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1983",
+  "vehiculos": "7297",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1984",
+  "vehiculos": "8426",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1985",
+  "vehiculos": "8868",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1986",
+  "vehiculos": "9406",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1987",
+  "vehiculos": "8928",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1988",
+  "vehiculos": "9617",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1989",
+  "vehiculos": "9054",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1990",
+  "vehiculos": "6650",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1991",
+  "vehiculos": "6808",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1992",
+  "vehiculos": "10194",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1993",
+  "vehiculos": "24767",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1994",
+  "vehiculos": "25752",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1995",
+  "vehiculos": "18609",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1996",
+  "vehiculos": "22709",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1997",
+  "vehiculos": "26012",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1998",
+  "vehiculos": "16362",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "1999",
+  "vehiculos": "9523",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2000",
+  "vehiculos": "8754",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2001",
+  "vehiculos": "12140",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2002",
+  "vehiculos": "21784",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2003",
+  "vehiculos": "22720",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2004",
+  "vehiculos": "29131",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2005",
+  "vehiculos": "38926",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2006",
+  "vehiculos": "47487",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2007",
+  "vehiculos": "58357",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2008",
+  "vehiculos": "55166",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2009",
+  "vehiculos": "46384",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2010",
+  "vehiculos": "64079",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2011",
+  "vehiculos": "82265",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2012",
+  "vehiculos": "71910",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2013",
+  "vehiculos": "64408",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2014",
+  "vehiculos": "67183",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2015",
+  "vehiculos": "56516",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2016",
+  "vehiculos": "49969",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2017",
+  "vehiculos": "44917",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2018",
+  "vehiculos": "43981",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2019",
+  "vehiculos": "38535",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2020",
+  "vehiculos": "21508",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2021",
+  "vehiculos": "24116",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2022",
+  "vehiculos": "20631",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2023",
+  "vehiculos": "11885",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2024",
+  "vehiculos": "12558",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2025",
+  "vehiculos": "14015",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "AUTOMOVIL",
+  "fecha_de_registro": "2026",
+  "vehiculos": "14464",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1928",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1929",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1934",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1935",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1936",
+  "vehiculos": "6",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1937",
+  "vehiculos": "13",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1938",
+  "vehiculos": "14",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1939",
+  "vehiculos": "44",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1940",
+  "vehiculos": "41",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1941",
+  "vehiculos": "53",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1942",
+  "vehiculos": "37",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1945",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1946",
+  "vehiculos": "264",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1947",
+  "vehiculos": "136",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1948",
+  "vehiculos": "240",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1949",
+  "vehiculos": "123",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1950",
+  "vehiculos": "570",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1951",
+  "vehiculos": "439",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1952",
+  "vehiculos": "585",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1953",
+  "vehiculos": "902",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1954",
+  "vehiculos": "1201",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1955",
+  "vehiculos": "1457",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1956",
+  "vehiculos": "1253",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1957",
+  "vehiculos": "483",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1958",
+  "vehiculos": "310",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1959",
+  "vehiculos": "495",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1960",
+  "vehiculos": "563",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1961",
+  "vehiculos": "307",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1962",
+  "vehiculos": "282",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1963",
+  "vehiculos": "395",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1964",
+  "vehiculos": "435",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1965",
+  "vehiculos": "371",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1966",
+  "vehiculos": "602",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1967",
+  "vehiculos": "512",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1968",
+  "vehiculos": "318",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1969",
+  "vehiculos": "276",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1970",
+  "vehiculos": "309",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1971",
+  "vehiculos": "374",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1972",
+  "vehiculos": "347",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1973",
+  "vehiculos": "325",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1974",
+  "vehiculos": "621",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1975",
+  "vehiculos": "929",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1976",
+  "vehiculos": "1089",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1977",
+  "vehiculos": "1329",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1978",
+  "vehiculos": "1648",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1979",
+  "vehiculos": "1429",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1980",
+  "vehiculos": "1612",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1981",
+  "vehiculos": "1725",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1982",
+  "vehiculos": "1734",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1983",
+  "vehiculos": "1930",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1984",
+  "vehiculos": "2211",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1985",
+  "vehiculos": "1906",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1986",
+  "vehiculos": "2090",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1987",
+  "vehiculos": "1276",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1988",
+  "vehiculos": "1446",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1989",
+  "vehiculos": "1375",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1990",
+  "vehiculos": "1150",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1991",
+  "vehiculos": "1703",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1992",
+  "vehiculos": "2137",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1993",
+  "vehiculos": "5323",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1994",
+  "vehiculos": "5514",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1995",
+  "vehiculos": "4342",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1996",
+  "vehiculos": "5637",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1997",
+  "vehiculos": "7018",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1998",
+  "vehiculos": "4915",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "1999",
+  "vehiculos": "2034",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2000",
+  "vehiculos": "1620",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2001",
+  "vehiculos": "1451",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2002",
+  "vehiculos": "1982",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2003",
+  "vehiculos": "2338",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2004",
+  "vehiculos": "4506",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2005",
+  "vehiculos": "4760",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2006",
+  "vehiculos": "7483",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2007",
+  "vehiculos": "10204",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2008",
+  "vehiculos": "9932",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2009",
+  "vehiculos": "10663",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2010",
+  "vehiculos": "17317",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2011",
+  "vehiculos": "19562",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2012",
+  "vehiculos": "22200",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2013",
+  "vehiculos": "28841",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2014",
+  "vehiculos": "32780",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2015",
+  "vehiculos": "26627",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2016",
+  "vehiculos": "25196",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2017",
+  "vehiculos": "26773",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2018",
+  "vehiculos": "31046",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2019",
+  "vehiculos": "29630",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2020",
+  "vehiculos": "20520",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2021",
+  "vehiculos": "27664",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2022",
+  "vehiculos": "24517",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2023",
+  "vehiculos": "20957",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2024",
+  "vehiculos": "27795",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2025",
+  "vehiculos": "42888",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "CAMIONETA",
+  "fecha_de_registro": "2026",
+  "vehiculos": "52973",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1942",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1947",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1949",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1951",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1952",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1953",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1954",
+  "vehiculos": "11",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1955",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1956",
+  "vehiculos": "5",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1957",
+  "vehiculos": "5",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1958",
+  "vehiculos": "1",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1959",
+  "vehiculos": "2",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1960",
+  "vehiculos": "3",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1961",
+  "vehiculos": "4",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1962",
+  "vehiculos": "17",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1963",
+  "vehiculos": "46",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1964",
+  "vehiculos": "34",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1965",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1966",
+  "vehiculos": "14",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1967",
+  "vehiculos": "8",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1968",
+  "vehiculos": "21",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1969",
+  "vehiculos": "35",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1970",
+  "vehiculos": "25",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1971",
+  "vehiculos": "37",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1972",
+  "vehiculos": "55",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1973",
+  "vehiculos": "43",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1974",
+  "vehiculos": "119",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1975",
+  "vehiculos": "107",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1976",
+  "vehiculos": "302",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1977",
+  "vehiculos": "875",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1978",
+  "vehiculos": "2856",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1979",
+  "vehiculos": "3456",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1980",
+  "vehiculos": "3247",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1981",
+  "vehiculos": "3712",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1982",
+  "vehiculos": "1397",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1983",
+  "vehiculos": "844",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1984",
+  "vehiculos": "744",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1985",
+  "vehiculos": "564",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1986",
+  "vehiculos": "624",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1987",
+  "vehiculos": "499",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1988",
+  "vehiculos": "353",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1989",
+  "vehiculos": "235",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1990",
+  "vehiculos": "217",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1991",
+  "vehiculos": "468",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1992",
+  "vehiculos": "546",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1993",
+  "vehiculos": "760",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1994",
+  "vehiculos": "758",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1995",
+  "vehiculos": "668",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1996",
+  "vehiculos": "645",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1997",
+  "vehiculos": "412",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1998",
+  "vehiculos": "604",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "1999",
+  "vehiculos": "393",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2000",
+  "vehiculos": "412",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2001",
+  "vehiculos": "346",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2002",
+  "vehiculos": "907",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2003",
+  "vehiculos": "1489",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2004",
+  "vehiculos": "3095",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2005",
+  "vehiculos": "13178",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2006",
+  "vehiculos": "32848",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2007",
+  "vehiculos": "31713",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2008",
+  "vehiculos": "27910",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2009",
+  "vehiculos": "24633",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2010",
+  "vehiculos": "43449",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2011",
+  "vehiculos": "62911",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2012",
+  "vehiculos": "58285",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2013",
+  "vehiculos": "52344",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2014",
+  "vehiculos": "43334",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2015",
+  "vehiculos": "37608",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2016",
+  "vehiculos": "14262",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2017",
+  "vehiculos": "10233",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2018",
+  "vehiculos": "6249",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2019",
+  "vehiculos": "5375",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2020",
+  "vehiculos": "2247",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2021",
+  "vehiculos": "2718",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2022",
+  "vehiculos": "2932",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2023",
+  "vehiculos": "2096",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2024",
+  "vehiculos": "3208",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2025",
+  "vehiculos": "3147",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ },
+ {
+  "nombre_departamento": "BOGOTA D.C.",
+  "nombre_de_la_clase": "MOTOCICLETA",
+  "fecha_de_registro": "2026",
+  "vehiculos": "2693",
+  "mes_publicacion": "OCTUBRE",
+  "anio_publicacion": "2026"
+ }
+]
