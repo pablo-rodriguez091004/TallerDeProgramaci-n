@@ -21,7 +21,7 @@ REST API of **MecaTrack**, a booking and vehicle-tracking system for a car repai
   (for example with `carlos.owner@tallermecanico.com` / `test1234`, the test owner listed in the README);
   the browser keeps the cookie and sends it on the following requests.
 * **Roles**: reading the catalog is public; creating, replacing or deleting services
-  requires the `owner` or `admin` role.
+  requires the `owner` or `admin` role, and so does the open-data market panel (`/api/v1/market`).
 """.strip()
 
 # /auth/login y /auth/logout son rutas antiguas (no smorest). Se documentan a
@@ -116,7 +116,9 @@ def init_api(app):
         api.spec.path(rule=rules[path], operations=operations)
 
     from api.v1.ai import blp as ai_blp
+    from api.v1.market import blp as market_blp
     from api.v1.services import blp as services_blp
 
     api.register_blueprint(services_blp, url_prefix='/api/v1/services')
     api.register_blueprint(ai_blp, url_prefix='/api/v1/ai')
+    api.register_blueprint(market_blp, url_prefix='/api/v1/market')

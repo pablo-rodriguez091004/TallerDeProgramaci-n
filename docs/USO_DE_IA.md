@@ -136,6 +136,43 @@ Se usó `create_autospec(Puerto, instance=True)` en lugar de `Mock()`. Un `Mock(
 
 ---
 
+## Fase 4 – DuckDB, endpoints y visualización
+
+### Código generado por la IA
+
+| Archivo | Contenido |
+|---|---|
+| `infrastructure/analytics/queries.py` | 3 consultas SQL: antigüedad del parque por clase (estadísticas **ponderadas**: media, desviación, P25, mediana, P75, P90, mín./máx.), motorización por departamento (RUNT ⋈ DIVIPOLA ⋈ CNPV con resumen entre departamentos) y distribución por rangos |
+| `infrastructure/analytics/duckdb_analytics.py` | Adaptador `MarketAnalytics`: `read_json` + `unnest` sobre los snapshots, una conexión en memoria por consulta |
+| `api/v1/market.py`, `api/v1/schemas/market_schema.py` | 5 endpoints documentados en OpenAPI (owner/admin) |
+| `frontend/pages/mercado.html`, `js/mercado.js`, `js/graficos.js` | Vista vanilla: estado de los breakers, tablas, KPIs y 2 gráficos en Canvas (barras horizontales con referencia nacional y apiladas al 100 %) con tooltip |
+
+**Dependencia nueva:** `duckdb==1.5.6`. Se descartó la 2.0.0 porque era una versión mayor publicada 3 días antes (2026-10-21); la 1.5.6 es del 2026-09-28 y tiene wheels para Python 3.12 (CI) y 3.14 (local).
+
+### Errores de la IA detectados en esta fase
+
+| Error | Cómo se detectó | Corrección |
+|---|---|---|
+| `CREATE VIEW ... read_json(?)` con parámetro preparado: DuckDB lo rechaza (`Unexpected prepared parameter`) | Ejecución real | Literal SQL escapado; el path sale de la configuración |
+| `LEFT JOIN` con `NOT EXISTS` correlacionado: `Cannot perform non-inner join on subquery` | Ejecución real | Se resuelve primero la clave DIVIPOLA (exacta o por prefijo) y luego un join simple |
+| Una línea absurda en `api/v1/market.py` (`... if False else decorate`) | Revisión del código | Eliminada |
+| Código del tooltip duplicado en `graficos.js` | Revisión del código | Unificado en `canvas._buscar` |
+| Capturas de Playwright: tabla de fuentes desbordada, columna cortada, valores tapados por la línea nacional y el "100 %" del eje recortado | Revisión visual de la captura | CSS de tablas compactas, halo en las etiquetas, margen derecho |
+| La prueba de interacción falló dos veces, por errores **de la prueba** y no de la app: el canvas estaba fuera del viewport y hubo una carrera al leer la tabla | Depuración con `page.evaluate` | `scroll_into_view_if_needed()` y esperar a la insignia |
+
+### Verificación con datos reales (snapshot del 2026-10-24)
+
+- **Q1:** 22 054 289 vehículos, 9 clases; mediana de 9 años en motos y de 16 en automóviles; 8 864 excluidos por calidad (registro < 1950). 89,5 ms.
+- **Q2:** 33 departamentos (Vaupés sin registros en RUNT); 499,4 vehículos por 1 000 hab. a nivel nacional; media 514,8, mediana 446,5, desviación 343,9. ~100 ms.
+- **Validación cruzada:** las estadísticas ponderadas coinciden **exactamente** con `quantile_disc`/`stddev_pop` de DuckDB sobre los datos expandidos a una fila por vehículo (22 M filas, 1,1 s), en las 9 clases. El total de la Q2 es igual al de la Q1: el cruce no pierde ni duplica vehículos.
+- **Interpretación (advertencia en la UI):** RUNT ubica el vehículo donde se matriculó. Por eso Guaviare (2 021, 99 % motos) y Cundinamarca (1 000) superan a Bogotá (387).
+- **Pruebas:** 11 nuevas (adaptador DuckDB con fixtures reales, regla del cruce por prefijo y endpoints con red simulada, incluido un corte de datos.gov.co que abre su breaker mientras el del DANE sigue CLOSED). Total: 115 en verde.
+- **Gráficos:** colores verificados con el validador de paletas (rampa ordinal de un solo tono, luminosidad monótona, paso más claro ≥ 2:1). Se comprobaron en Playwright el tooltip, el botón de actualizar (descarga real: 1 632 / 274 / 880 ms) y la vista móvil de 390 px sin scroll horizontal.
+
+**[COMPLETAR]** Qué conclusiones saca Pablo para el negocio del taller.
+
+---
+
 ## Fases siguientes
 
 *(Se completan al terminar cada fase.)*

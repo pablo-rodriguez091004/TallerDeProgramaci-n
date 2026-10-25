@@ -13,6 +13,7 @@ const ENLACES_POR_ROL = {
   ],
   owner: [
     { href: 'dashboard-admin.html', texto: 'Panel del taller', icon: 'panel' },
+    { href: 'mercado.html', texto: 'Mercado', icon: 'grafico' },
     { href: 'catalogo.html', texto: 'Catálogo', icon: 'grid' },
   ],
 };

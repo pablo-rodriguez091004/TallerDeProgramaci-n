@@ -5,8 +5,8 @@ from unittest.mock import create_autospec
 
 from application.market_data.services import MarketDataService
 from domain.market_data.errors import DataSourceUnavailable
-from domain.market_data.ports import (DataSource, HealthMonitor, PopulationSource, Snapshot, SnapshotStore,
-                                      SourceInfo, VehicleFleetSource)
+from domain.market_data.ports import (DataSource, HealthMonitor, MarketAnalytics, PopulationSource, Snapshot,
+                                      SnapshotStore, SourceInfo, VehicleFleetSource)
 from domain.shared.ports import Clock
 
 
@@ -26,7 +26,8 @@ def test_one_failing_source_does_not_stop_the_others(fixed_now):
     clock.now.return_value = fixed_now
     ticks = iter([0.0, 1.25, 2.0, 2.01])
 
-    results = MarketDataService([fleet, population], store, create_autospec(HealthMonitor, instance=True), clock,
+    results = MarketDataService([fleet, population], store, create_autospec(HealthMonitor, instance=True),
+                                create_autospec(MarketAnalytics, instance=True), clock,
                                 timer=lambda: next(ticks)).refresh()
 
     assert [(r.source, r.ok, r.rows, r.elapsed_ms) for r in results] == [
@@ -41,6 +42,9 @@ def test_snapshots_and_health_are_read_from_the_ports():
     store.latest.return_value = Snapshot('runt_fleet', datetime(2030, 1, 1), 10, '/tmp/x.json')
     health = create_autospec(HealthMonitor, instance=True)
     health.health.return_value = []
-    service = MarketDataService([fleet], store, health, create_autospec(Clock, instance=True))
+    analytics = create_autospec(MarketAnalytics, instance=True)
+    service = MarketDataService([fleet], store, health, analytics, create_autospec(Clock, instance=True))
     assert service.snapshots()['runt_fleet'].rows == 10
     assert service.health() == []
+    service.motorization()
+    analytics.motorization_by_department.assert_called_once_with()

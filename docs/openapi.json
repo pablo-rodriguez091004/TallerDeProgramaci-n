@@ -1,6 +1,6 @@
 {
   "info": {
-    "description": "REST API of **MecaTrack**, a booking and vehicle-tracking system for a car repair workshop.\n\n* **Errors** always use the same JSON body: `{\"code\": \"...\", \"message\": \"...\", \"details\": ...}`.\n* **Authentication** is a session cookie. In Swagger UI, call `POST /auth/login` first\n  (for example with `carlos.owner@tallermecanico.com` / `test1234`, the test owner listed in the README);\n  the browser keeps the cookie and sends it on the following requests.\n* **Roles**: reading the catalog is public; creating, replacing or deleting services\n  requires the `owner` or `admin` role.",
+    "description": "REST API of **MecaTrack**, a booking and vehicle-tracking system for a car repair workshop.\n\n* **Errors** always use the same JSON body: `{\"code\": \"...\", \"message\": \"...\", \"details\": ...}`.\n* **Authentication** is a session cookie. In Swagger UI, call `POST /auth/login` first\n  (for example with `carlos.owner@tallermecanico.com` / `test1234`, the test owner listed in the README);\n  the browser keeps the cookie and sends it on the following requests.\n* **Roles**: reading the catalog is public; creating, replacing or deleting services\n  requires the `owner` or `admin` role, and so does the open-data market panel (`/api/v1/market`).",
     "contact": {
       "name": "MecaTrack team - Universidad Manuela Beltran"
     },
@@ -355,6 +355,374 @@
                 "$ref": "#/components/schemas/Usage"
               }
             ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourceStatus": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Short name of the source.",
+            "example": "runt_fleet"
+          },
+          "title": {
+            "type": "string",
+            "description": "Dataset title.",
+            "example": "Crecimiento del parque automotor RUNT 2.0"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publishing entity and platform.",
+            "example": "Ministerio de Transporte (datos.gov.co)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Endpoint queried.",
+            "example": "https://www.datos.gov.co/resource/u3vn-bdcy.json"
+          },
+          "fetched_at": {
+            "type": "string",
+            "description": "Last successful download (UTC), null if never downloaded.",
+            "example": "2026-10-25T01:59:11.703291",
+            "nullable": true
+          },
+          "rows": {
+            "type": "integer",
+            "description": "Records in the last download.",
+            "example": 28007,
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Transition": {
+        "type": "object",
+        "properties": {
+          "at": {
+            "type": "string",
+            "description": "When the transition happened (ISO 8601, UTC).",
+            "example": "2026-10-25T01:53:28.416+00:00"
+          },
+          "from": {
+            "type": "string",
+            "description": "Previous state.",
+            "example": "CLOSED"
+          },
+          "to": {
+            "type": "string",
+            "description": "New state.",
+            "example": "OPEN"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why the breaker changed state.",
+            "example": "3 consecutive failures (last: TransientHttpError: timeout calling ...)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Circuit": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "External dependency (host) protected by the breaker.",
+            "example": "datos.gov.co"
+          },
+          "state": {
+            "type": "string",
+            "description": "CLOSED (calls pass), OPEN (calls rejected) or HALF_OPEN (one trial call allowed).",
+            "example": "CLOSED"
+          },
+          "consecutive_failures": {
+            "type": "integer",
+            "description": "Failures in a row counted by the breaker.",
+            "example": 0
+          },
+          "failure_threshold": {
+            "type": "integer",
+            "description": "Failures in a row that open the circuit.",
+            "example": 3
+          },
+          "recovery_timeout_s": {
+            "type": "number",
+            "description": "Seconds OPEN before allowing a trial call.",
+            "example": 30.0
+          },
+          "retry_in_s": {
+            "type": "number",
+            "description": "Seconds until the next trial call (only when OPEN).",
+            "example": null,
+            "nullable": true
+          },
+          "transitions": {
+            "type": "array",
+            "description": "Last state changes, oldest first.",
+            "example": [
+              {
+                "at": "2026-10-25T01:53:28.416+00:00",
+                "from": "CLOSED",
+                "to": "OPEN",
+                "reason": "3 consecutive failures (last: TransientHttpError: timeout calling ...)"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Transition"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "SourcesResponse": {
+        "type": "object",
+        "properties": {
+          "sources": {
+            "type": "array",
+            "description": "Open-data sources and their last snapshot.",
+            "example": [
+              {
+                "key": "runt_fleet",
+                "title": "Crecimiento del parque automotor RUNT 2.0",
+                "publisher": "Ministerio de Transporte (datos.gov.co)",
+                "url": "https://www.datos.gov.co/resource/u3vn-bdcy.json",
+                "fetched_at": "2026-10-25T01:59:11.703291",
+                "rows": 28007
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/SourceStatus"
+            }
+          },
+          "circuits": {
+            "type": "array",
+            "description": "Circuit breaker of each external host.",
+            "example": [
+              {
+                "name": "datos.gov.co",
+                "state": "CLOSED",
+                "consecutive_failures": 0,
+                "failure_threshold": 3,
+                "recovery_timeout_s": 30.0,
+                "retry_in_s": null,
+                "transitions": []
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Circuit"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshResult": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "description": "Short name of the source.",
+            "example": "runt_fleet"
+          },
+          "title": {
+            "type": "string",
+            "description": "Dataset title.",
+            "example": "Crecimiento del parque automotor RUNT 2.0"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publishing entity.",
+            "example": "Ministerio de Transporte (datos.gov.co)"
+          },
+          "url": {
+            "type": "string",
+            "description": "Endpoint queried.",
+            "example": "https://www.datos.gov.co/resource/u3vn-bdcy.json"
+          },
+          "ok": {
+            "type": "boolean",
+            "description": "Whether the download succeeded.",
+            "example": true
+          },
+          "rows": {
+            "type": "integer",
+            "description": "Records downloaded.",
+            "example": 28007,
+            "nullable": true
+          },
+          "elapsed_ms": {
+            "type": "integer",
+            "description": "Time spent, retries included.",
+            "example": 1372,
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "description": "Failure reason, null on success.",
+            "example": null,
+            "nullable": true
+          },
+          "circuit_open": {
+            "type": "boolean",
+            "description": "True if rejected because the circuit is OPEN.",
+            "example": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "RefreshResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "description": "One result per source; a failing source does not stop the others.",
+            "example": [
+              {
+                "source": "runt_fleet",
+                "title": "Crecimiento del parque automotor RUNT 2.0",
+                "publisher": "Ministerio de Transporte (datos.gov.co)",
+                "url": "https://www.datos.gov.co/resource/u3vn-bdcy.json",
+                "ok": true,
+                "rows": 28007,
+                "elapsed_ms": 1372,
+                "error": null,
+                "circuit_open": false
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/RefreshResult"
+            }
+          },
+          "circuits": {
+            "type": "array",
+            "description": "Circuit breakers after the refresh.",
+            "example": [
+              {
+                "name": "datos.gov.co",
+                "state": "CLOSED",
+                "consecutive_failures": 0,
+                "failure_threshold": 3,
+                "recovery_timeout_s": 30.0,
+                "retry_in_s": null,
+                "transitions": []
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Circuit"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "Column": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Key of the value inside each row.",
+            "example": "mediana"
+          },
+          "label": {
+            "type": "string",
+            "description": "Column header to display (Spanish).",
+            "example": "Mediana"
+          },
+          "type": {
+            "type": "string",
+            "description": "'number' or 'text', to align and format the cell.",
+            "example": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AnalyticsResult": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Identifier of the analytical query.",
+            "example": "fleet_age_by_class"
+          },
+          "title": {
+            "type": "string",
+            "description": "Human-readable title (Spanish).",
+            "example": "Antigüedad del parque automotor activo por clase"
+          },
+          "description": {
+            "type": "string",
+            "description": "What the numbers mean and their caveats.",
+            "example": "Años desde el registro (corte RUNT OCTUBRE 2026), ponderado por número de vehículos."
+          },
+          "columns": {
+            "type": "array",
+            "description": "Ordered columns of `rows`.",
+            "example": [
+              {
+                "key": "clase",
+                "label": "Clase",
+                "type": "text"
+              },
+              {
+                "key": "mediana",
+                "label": "Mediana",
+                "type": "number"
+              }
+            ],
+            "items": {
+              "$ref": "#/components/schemas/Column"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "description": "Result rows computed by DuckDB.",
+            "example": [
+              {
+                "clase": "MOTOCICLETA",
+                "tipo_taller": "motorcycle",
+                "vehiculos": 14512606,
+                "media": 10.85,
+                "desviacion": 9.23,
+                "minimo": 0,
+                "p25": 4,
+                "mediana": 9,
+                "p75": 16,
+                "p90": 22,
+                "maximo": 76,
+                "pct_10_anios_o_mas": 49.8
+              }
+            ],
+            "items": {
+              "type": "object",
+              "additionalProperties": {}
+            }
+          },
+          "summary": {
+            "type": "object",
+            "description": "Aggregated descriptive statistics of the result.",
+            "example": {
+              "vehiculos_analizados": 22054289,
+              "antiguedad_media_ponderada": 13.38,
+              "excluidos_por_calidad": 8864
+            },
+            "additionalProperties": {}
+          },
+          "sql": {
+            "type": "string",
+            "description": "Exact DuckDB SQL that produced the rows (for transparency).",
+            "example": "WITH clases_taller(clase, tipo_taller) AS (VALUES ...) SELECT ..."
+          },
+          "elapsed_ms": {
+            "type": "number",
+            "description": "DuckDB execution time of the main query, in ms.",
+            "example": 89.5
+          },
+          "snapshots": {
+            "type": "object",
+            "description": "Download time (UTC) of each open-data snapshot used.",
+            "example": {
+              "runt_fleet": "2026-10-25T01:59:11.703291"
+            },
+            "additionalProperties": {}
           }
         },
         "additionalProperties": false
@@ -1219,6 +1587,530 @@
         "description": "The customer describes a vehicle problem in free text and the\nassistant suggests up to 3 services of the workshop catalog.\nRetrieval-augmented generation: the API first retrieves the relevant\ncatalog services by keyword, injects them into the prompt and asks the\nmodel to choose ONLY among them. Prices and durations come from the\ndatabase, never from the model. Every call is stored in `ai_calls`.\nAny logged-in user can call it, up to `AI_MAX_CALLS_PER_HOUR` times per hour.",
         "tags": [
           "AI"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/market/sources": {
+      "get": {
+        "responses": {
+          "401": {
+            "description": "No active session. Log in with POST /auth/login first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "unauthorized",
+                  "message": "Authentication required: log in via POST /auth/login",
+                  "details": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The session role is not `owner` or `admin`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "forbidden",
+                  "message": "Your role is not allowed to perform this action",
+                  "details": {
+                    "required_roles": [
+                      "owner",
+                      "admin"
+                    ],
+                    "your_role": "client"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Sources, last snapshots and circuit breaker states.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourcesResponse"
+                },
+                "example": {
+                  "sources": [
+                    {
+                      "key": "runt_fleet",
+                      "title": "Crecimiento del parque automotor RUNT 2.0",
+                      "publisher": "Ministerio de Transporte (datos.gov.co)",
+                      "url": "https://www.datos.gov.co/resource/u3vn-bdcy.json",
+                      "fetched_at": "2026-10-25T01:59:11.703291",
+                      "rows": 28007
+                    }
+                  ],
+                  "circuits": [
+                    {
+                      "name": "datos.gov.co",
+                      "state": "CLOSED",
+                      "consecutive_failures": 0,
+                      "failure_threshold": 3,
+                      "recovery_timeout_s": 30.0,
+                      "retry_in_s": null,
+                      "transitions": []
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "List open-data sources and circuit states",
+        "description": "Returns each Colombian open-data source (RUNT vehicle fleet and DIVIPOLA\nfrom datos.gov.co, CNPV 2018 population from the DANE geoportal) with\nits last downloaded snapshot, plus the state of the circuit breaker\nthat protects each external host. Requires an `owner` or `admin` session.",
+        "tags": [
+          "Market"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/market/refresh": {
+      "post": {
+        "responses": {
+          "401": {
+            "description": "No active session. Log in with POST /auth/login first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "unauthorized",
+                  "message": "Authentication required: log in via POST /auth/login",
+                  "details": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The session role is not `owner` or `admin`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "forbidden",
+                  "message": "Your role is not allowed to perform this action",
+                  "details": {
+                    "required_roles": [
+                      "owner",
+                      "admin"
+                    ],
+                    "your_role": "client"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Result per source and circuit states after the refresh.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RefreshResponse"
+                },
+                "example": {
+                  "results": [
+                    {
+                      "source": "runt_fleet",
+                      "title": "Crecimiento del parque automotor RUNT 2.0",
+                      "publisher": "Ministerio de Transporte (datos.gov.co)",
+                      "url": "https://www.datos.gov.co/resource/u3vn-bdcy.json",
+                      "ok": true,
+                      "rows": 28007,
+                      "elapsed_ms": 1372,
+                      "error": null,
+                      "circuit_open": false
+                    }
+                  ],
+                  "circuits": [
+                    {
+                      "name": "datos.gov.co",
+                      "state": "CLOSED",
+                      "consecutive_failures": 0,
+                      "failure_threshold": 3,
+                      "recovery_timeout_s": 30.0,
+                      "retry_in_s": null,
+                      "transitions": []
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "summary": "Download the open data again",
+        "description": "Calls every source through the resilient HTTP client: transient\nfailures (timeouts, connection errors, HTTP 429/5xx) are retried with\nexponential backoff and jitter, and each host has a circuit breaker\n(3 consecutive failures open it for 30 s). A failing source does not\nstop the others and keeps its previous snapshot. Always answers 200;\ncheck `ok` per source. Requires an `owner` or `admin` session.",
+        "tags": [
+          "Market"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/market/analytics/fleet-age": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Columns, rows, summary and the SQL used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResult"
+                },
+                "example": {
+                  "name": "...",
+                  "title": "...",
+                  "description": "...",
+                  "columns": [
+                    {
+                      "key": "clase",
+                      "label": "Clase",
+                      "type": "text"
+                    }
+                  ],
+                  "rows": [
+                    {
+                      "clase": "MOTOCICLETA",
+                      "tipo_taller": "motorcycle",
+                      "vehiculos": 14512606,
+                      "media": 10.85,
+                      "desviacion": 9.23,
+                      "minimo": 0,
+                      "p25": 4,
+                      "mediana": 9,
+                      "p75": 16,
+                      "p90": 22,
+                      "maximo": 76,
+                      "pct_10_anios_o_mas": 49.8
+                    }
+                  ],
+                  "summary": {
+                    "vehiculos_analizados": 22054289,
+                    "antiguedad_media_ponderada": 13.38,
+                    "excluidos_por_calidad": 8864
+                  },
+                  "sql": "WITH ... SELECT ...",
+                  "elapsed_ms": 89.5,
+                  "snapshots": {
+                    "runt_fleet": "2026-10-25T01:59:11.703291"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No active session. Log in with POST /auth/login first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "unauthorized",
+                  "message": "Authentication required: log in via POST /auth/login",
+                  "details": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The session role is not `owner` or `admin`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "forbidden",
+                  "message": "Your role is not allowed to perform this action",
+                  "details": {
+                    "required_roles": [
+                      "owner",
+                      "admin"
+                    ],
+                    "your_role": "client"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The open data has not been downloaded yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "market_data_not_loaded",
+                  "message": "Open data not downloaded yet: runt_fleet. Run POST /api/v1/market/refresh first.",
+                  "details": {
+                    "missing_sources": [
+                      "runt_fleet"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Fleet age by vehicle class",
+        "description": "DuckDB query over the RUNT snapshot: years since registration of the\nactive fleet per class (cars, motorcycles, trucks, vans), with\ndescriptive statistics weighted by number of vehicles: mean, standard\ndeviation, min, P25, median, P75, P90, max and share of vehicles with\n10+ years. Registrations before 1950 are excluded as data errors.",
+        "tags": [
+          "Market"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/market/analytics/motorization": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Columns, rows, summary and the SQL used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResult"
+                },
+                "example": {
+                  "name": "...",
+                  "title": "...",
+                  "description": "...",
+                  "columns": [
+                    {
+                      "key": "clase",
+                      "label": "Clase",
+                      "type": "text"
+                    }
+                  ],
+                  "rows": [
+                    {
+                      "puesto": 21,
+                      "cod_dpto": "11",
+                      "departamento": "BOGOTÁ, D.C.",
+                      "poblacion_2018": 7181469,
+                      "vehiculos": 2777337,
+                      "vehiculos_por_1000_hab": 386.7,
+                      "carros_por_1000_hab": 310.1,
+                      "pct_motos": 18.6
+                    }
+                  ],
+                  "summary": {
+                    "departamentos": 33,
+                    "media": 514.8,
+                    "mediana": 446.5,
+                    "desviacion": 343.9,
+                    "nacional_por_1000_hab": 499.4
+                  },
+                  "sql": "WITH ... SELECT ...",
+                  "elapsed_ms": 89.5,
+                  "snapshots": {
+                    "runt_fleet": "2026-10-25T01:59:11.703291"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No active session. Log in with POST /auth/login first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "unauthorized",
+                  "message": "Authentication required: log in via POST /auth/login",
+                  "details": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The session role is not `owner` or `admin`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "forbidden",
+                  "message": "Your role is not allowed to perform this action",
+                  "details": {
+                    "required_roles": [
+                      "owner",
+                      "admin"
+                    ],
+                    "your_role": "client"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The open data has not been downloaded yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "market_data_not_loaded",
+                  "message": "Open data not downloaded yet: runt_fleet. Run POST /api/v1/market/refresh first.",
+                  "details": {
+                    "missing_sources": [
+                      "runt_fleet"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Motorization by department",
+        "description": "DuckDB join of three open datasets: RUNT active vehicles\n(MinTransporte) and CNPV 2018 population (DANE geoportal), linked by\nthe DANE DIVIPOLA codes. Returns vehicles per 1,000 inhabitants per\ndepartment and descriptive statistics across departments (mean,\nmedian, standard deviation, quartiles, min, max and national ratio).",
+        "tags": [
+          "Market"
+        ],
+        "security": [
+          {
+            "cookieAuth": []
+          }
+        ]
+      }
+    },
+    "/api/v1/market/analytics/age-distribution": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Columns, rows, summary and the SQL used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalyticsResult"
+                },
+                "example": {
+                  "name": "...",
+                  "title": "...",
+                  "description": "...",
+                  "columns": [
+                    {
+                      "key": "clase",
+                      "label": "Clase",
+                      "type": "text"
+                    }
+                  ],
+                  "rows": [
+                    {
+                      "tipo_taller": "car",
+                      "rango": "20+",
+                      "vehiculos": 2344330,
+                      "pct_del_tipo": 33.6
+                    }
+                  ],
+                  "summary": {
+                    "rangos": [
+                      "0-4",
+                      "5-9",
+                      "10-14",
+                      "15-19",
+                      "20+"
+                    ]
+                  },
+                  "sql": "WITH ... SELECT ...",
+                  "elapsed_ms": 89.5,
+                  "snapshots": {
+                    "runt_fleet": "2026-10-25T01:59:11.703291"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No active session. Log in with POST /auth/login first.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "unauthorized",
+                  "message": "Authentication required: log in via POST /auth/login",
+                  "details": null
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The session role is not `owner` or `admin`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "forbidden",
+                  "message": "Your role is not allowed to perform this action",
+                  "details": {
+                    "required_roles": [
+                      "owner",
+                      "admin"
+                    ],
+                    "your_role": "client"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The open data has not been downloaded yet.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                },
+                "example": {
+                  "code": "market_data_not_loaded",
+                  "message": "Open data not downloaded yet: runt_fleet. Run POST /api/v1/market/refresh first.",
+                  "details": {
+                    "missing_sources": [
+                      "runt_fleet"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Fleet age distribution",
+        "description": "Share of the active fleet of each MecaTrack vehicle type (car,\nmotorcycle, truck, van) in each age range (0-4, 5-9, 10-14, 15-19,\n20+ years since registration). Used by the chart of the owner panel.",
+        "tags": [
+          "Market"
         ],
         "security": [
           {

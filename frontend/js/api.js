@@ -43,10 +43,11 @@ async function apiRequest(endpoint, options = {}) {
   }
 
   if (!response.ok) {
-    // data.error viene del formato { error: '...' } que confirmaste
-    const mensaje = data?.error || `Error ${response.status}`;
+    // Rutas antiguas: { error: '...' }. API v1: { code, message, details }.
+    const mensaje = data?.error || data?.message || `Error ${response.status}`;
     const error = new Error(mensaje);
     error.status = response.status; // guardamos el código por si cada página quiere reaccionar distinto
+    error.code = data?.code;
     throw error;
   }
 

@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from domain.market_data.errors import DataSourceUnavailable
-from domain.market_data.ports import DataSource, HealthMonitor, SnapshotStore
+from domain.market_data.ports import DataSource, HealthMonitor, MarketAnalytics, SnapshotStore
 from domain.shared.ports import Clock
 
 
@@ -24,11 +24,12 @@ class RefreshResult:
 
 class MarketDataService:
 
-    def __init__(self, sources: list[DataSource], store: SnapshotStore, health: HealthMonitor, clock: Clock,
-                 timer=time.perf_counter):
+    def __init__(self, sources: list[DataSource], store: SnapshotStore, health: HealthMonitor,
+                 analytics: MarketAnalytics, clock: Clock, timer=time.perf_counter):
         self._sources = sources
         self._store = store
         self._health = health
+        self._analytics = analytics
         self._clock = clock
         self._timer = timer
 
@@ -61,3 +62,14 @@ class MarketDataService:
 
     def health(self):
         return self._health.health()
+
+    # --- analisis (DuckDB) -------------------------------------------------------------
+
+    def fleet_age(self):
+        return self._analytics.fleet_age_by_class()
+
+    def motorization(self):
+        return self._analytics.motorization_by_department()
+
+    def age_distribution(self):
+        return self._analytics.age_distribution()

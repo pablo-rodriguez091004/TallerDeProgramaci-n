@@ -177,5 +177,15 @@ venv/bin/flask --app app db downgrade                  # revertir la última
 | Citas | `GET/POST /appointments`, `GET/DELETE /appointments/<id>`, `PUT /appointments/<id>/status` |
 | Pagos | `GET /payments/appointment/<id>`, `POST /payments/<id>/pay` |
 | Seguimiento | `GET/POST /tracking/appointment/<id>` |
+| Mercado (v1) | `GET /api/v1/market/sources`, `POST /api/v1/market/refresh`, `GET /api/v1/market/analytics/{fleet-age,motorization,age-distribution}` |
 
-Los errores siempre responden `{"error": "mensaje"}` con el código HTTP correspondiente (400, 401, 403, 404, 409).
+Las rutas antiguas responden los errores como `{"error": "mensaje"}`; las de `/api/v1` (documentadas en `/docs`) como `{"code", "message", "details"}`.
+
+### Datos abiertos y DuckDB (Guía 6)
+
+El panel **Mercado** (dueño/admin, `frontend/pages/mercado.html`) descarga datos abiertos de Colombia y los analiza con DuckDB:
+
+- **RUNT, parque automotor** (MinTransporte, datos.gov.co `u3vn-bdcy`), **DIVIPOLA** (DANE, `gdxc-w37w`) y **población CNPV 2018** (geoportal ArcGIS del DANE).
+- Cada host tiene un **circuit breaker** (CLOSED → OPEN → HALF_OPEN) y las fallas transitorias se reintentan con **backoff exponencial + jitter** (`backend/infrastructure/resilience/`).
+- Las descargas quedan en `backend/var/market_data/` (no se versionan). La primera vez pulsa **Actualizar datos**, o llama a `POST /api/v1/market/refresh`.
+- Demo controlada de la resiliencia con red real: `backend/venv/bin/python scripts/demo_resilience.py`.

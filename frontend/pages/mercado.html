@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MecaTrack - Mercado automotor</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232952cc'/%3E%3Cpath d='M19.6 8.4a5.3 5.3 0 0 0-7.2 7.2L4 24l4 4 8.4-8.4a5.3 5.3 0 0 0 7.2-7.2l-3.3 3.3-3.2-.8-.8-3.2z' fill='none' stroke='white' stroke-width='2.4' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <header id="app-nav" class="navbar"></header>
+
+  <main class="pagina-contenido pagina-mercado">
+    <div class="page-header">
+      <div>
+        <h1>Mercado automotor</h1>
+        <p>Datos abiertos de Colombia (MinTransporte · DANE) analizados con DuckDB</p>
+      </div>
+      <button type="button" id="btn-actualizar" class="btn">
+        <span class="btn-icono"></span><span>Actualizar datos</span>
+      </button>
+    </div>
+
+    <p id="mercado-error" class="mensaje-error" role="alert"></p>
+    <p id="mercado-info" class="mensaje-info" role="status"></p>
+
+    <!-- Fuentes y circuit breakers -->
+    <section class="card mercado-bloque" aria-labelledby="titulo-fuentes">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title" id="titulo-fuentes">Fuentes y resiliencia</h2>
+          <p class="card-subtitle">Cada host externo tiene su circuit breaker (3 fallos seguidos lo abren 30 s) y reintentos con backoff exponencial.</p>
+        </div>
+      </div>
+      <div id="circuitos" class="circuitos"></div>
+      <div class="tabla-scroll">
+        <table class="tabla tabla-fuentes">
+          <thead><tr><th>Fuente</th><th>Publica</th><th class="num">Registros</th><th>Última descarga</th><th>Último intento</th></tr></thead>
+          <tbody id="tabla-fuentes"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="kpis" class="kpis" aria-live="polite"></div>
+
+    <!-- Q2: motorizacion -->
+    <section class="card mercado-bloque" aria-labelledby="titulo-motorizacion">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title" id="titulo-motorizacion">Vehículos por cada 1.000 habitantes</h2>
+          <p class="card-subtitle" id="desc-motorizacion"></p>
+        </div>
+      </div>
+      <div class="grafico-contenedor grafico-alto">
+        <canvas id="grafico-motorizacion" role="img" aria-label="Barras horizontales: vehículos por cada 1.000 habitantes por departamento"></canvas>
+        <div class="grafico-tooltip" role="tooltip" hidden></div>
+      </div>
+      <div id="resumen-motorizacion" class="estadisticas"></div>
+      <details class="tabla-detalle">
+        <summary>Ver tabla por departamento</summary>
+        <div class="tabla-scroll"><table class="tabla tabla-compacta" id="tabla-motorizacion"></table></div>
+      </details>
+      <details class="sql-detalle"><summary>SQL ejecutado en DuckDB</summary><pre id="sql-motorizacion"></pre></details>
+    </section>
+
+    <!-- Q1 + Q3: antiguedad -->
+    <section class="card mercado-bloque" aria-labelledby="titulo-antiguedad">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title" id="titulo-antiguedad">Antigüedad del parque por clase</h2>
+          <p class="card-subtitle" id="desc-antiguedad"></p>
+        </div>
+      </div>
+      <div class="tabla-scroll"><table class="tabla tabla-compacta" id="tabla-antiguedad"></table></div>
+      <details class="sql-detalle"><summary>SQL ejecutado en DuckDB</summary><pre id="sql-antiguedad"></pre></details>
+
+      <h3 class="subtitulo-grafico">Distribución por rango de antigüedad (% del tipo de vehículo)</h3>
+      <div id="leyenda-distribucion" class="leyenda"></div>
+      <div class="grafico-contenedor">
+        <canvas id="grafico-distribucion" role="img" aria-label="Barras apiladas al 100 %: porcentaje de vehículos por rango de antigüedad para cada tipo"></canvas>
+        <div class="grafico-tooltip" role="tooltip" hidden></div>
+      </div>
+      <details class="sql-detalle"><summary>SQL ejecutado en DuckDB</summary><pre id="sql-distribucion"></pre></details>
+    </section>
+
+    <p class="nota-fuentes">Fuentes: Ministerio de Transporte, «Crecimiento del parque automotor RUNT 2.0» (datos.gov.co, u3vn-bdcy);
+      DANE, DIVIPOLA (datos.gov.co, gdxc-w37w) y población total censada CNPV 2018 (geoportal.dane.gov.co). Licencia CC BY-SA 4.0.</p>
+  </main>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/graficos.js"></script>
+  <script src="../js/mercado.js"></script>
+</body>
+</html>

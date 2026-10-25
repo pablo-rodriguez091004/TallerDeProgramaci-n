@@ -22,6 +22,7 @@ from application.payments.services import PaymentService
 from application.scheduling.services import AppointmentService
 from application.tracking.services import TrackingService
 from domain.scheduling.allocation import ResourceAllocator
+from infrastructure.analytics.duckdb_analytics import DuckDbMarketAnalytics
 from infrastructure.llm.gemini_gateway import GeminiGateway
 from infrastructure.market_data.clients import DanePopulationSource, DivipolaSource, RuntFleetSource, SocrataClient
 from infrastructure.market_data.health import BreakerHealthMonitor
@@ -82,7 +83,8 @@ def build_market_data(config, clock, transport=None):
     socrata = SocrataClient(datos_gov, app_token=config.get('SOCRATA_APP_TOKEN'))
     sources = [RuntFleetSource(socrata), DivipolaSource(socrata), DanePopulationSource(dane)]
     return MarketDataService(sources, JsonFileSnapshotStore(config['MARKET_DATA_DIR']),
-                             BreakerHealthMonitor([datos_gov.breaker, dane.breaker]), clock)
+                             BreakerHealthMonitor([datos_gov.breaker, dane.breaker]),
+                             DuckDbMarketAnalytics(config['MARKET_DATA_DIR']), clock)
 
 
 def build_container(app):

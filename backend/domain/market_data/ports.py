@@ -70,3 +70,30 @@ class SnapshotStore(ABC):
 class HealthMonitor(ABC):
     @abstractmethod
     def health(self) -> list[SourceHealth]: ...
+
+
+@dataclass
+class AnalyticsResult:
+    """Resultado tabular de una consulta analitica, listo para tabla y grafico."""
+    name: str
+    title: str
+    description: str
+    columns: list[dict]             # [{'key', 'label', 'type'}]
+    rows: list[dict]
+    summary: dict
+    sql: str
+    elapsed_ms: float
+    snapshots: dict                 # fuente -> fecha de descarga (ISO)
+
+
+class MarketAnalytics(ABC):
+    """Motor analitico sobre los snapshots descargados (DuckDB en infraestructura)."""
+
+    @abstractmethod
+    def fleet_age_by_class(self) -> AnalyticsResult: ...
+
+    @abstractmethod
+    def motorization_by_department(self) -> AnalyticsResult: ...
+
+    @abstractmethod
+    def age_distribution(self) -> AnalyticsResult: ...
