@@ -2,14 +2,14 @@
 // Todas las cifras se LEEN de docs/evidencia/salidas/ (ejecuciones reales); las figuras son
 // las capturas de docs/evidencia/. Regenerar con ./scripts/generar_evidencia.sh o `node build_informe_guia6.js`.
 //
-// Los campos que debe completar el estudiante van resaltados en amarillo: [[COMPLETAR ...]].
+// Los únicos campos pendientes (códigos estudiantiles) van resaltados en amarillo: [[COMPLETAR ...]].
 
 const fs = require('fs');
 const path = require('path');
 const { Packer } = require('docx');
 const A = require('./apa');
 
-const { p, plain, center, h1, h2, h3, bullet, pageBreak, code, reference, Paragraph, TextRun, AlignmentType } = A;
+const { p, plain, center, h1, h2, h3, bullet, link, pageBreak, code, reference, Paragraph, TextRun, AlignmentType } = A;
 const ROOT = path.resolve(__dirname, '..');
 const EVID = path.join(ROOT, 'docs', 'evidencia');
 const OUT_TXT = path.join(EVID, 'salidas');
@@ -63,6 +63,9 @@ const COMMITS = read('commits_guia6.txt').split('\n').filter((l) => /^[0-9a-f]{7
 // ------------------------------------------------------------------ contenido
 const N = A.numbering();
 const { table, figure, tab, fig } = N;
+const AUTHORS = ['Pablo Alejandro Rodriguez Suarez', 'Daniel Steven Londoño Vanegas', 'Omar David Gutierrez Torrez'];
+const REPO_URL = 'https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n';
+const VIDEO_URL = 'https://youtu.be/MchkTFUkQmU?feature=shared';
 const TITLE = 'Guía de Laboratorio 6: Arquitectura Hexagonal, DDD y APIs de Datos Abiertos Colombianos en MecaTrack';
 
 function buildContent() {
@@ -74,10 +77,10 @@ function buildContent() {
   add(
     ...Array.from({ length: 3 }, () => new Paragraph({ spacing: { line: A.DOUBLE }, children: [] })),
     new Paragraph({ alignment: AlignmentType.CENTER, spacing: { line: A.DOUBLE, after: 480 }, children: [new TextRun({ text: TITLE, bold: true })] }),
-    center('Pablo Alejandro Rodríguez Suarez — Código [[COMPLETAR: código]]'),
+    ...AUTHORS.map((a) => center(`${a} — Código [[COMPLETAR: código]]`)),
     center('Facultad de Ingeniería, Universidad Manuela Beltrán (UMB)'),
     center('Taller de Programación — Sesiones 11 y 12'),
-    center('24 de octubre de 2026'),
+    center('26 de octubre de 2026'),
     pageBreak(),
   );
 
@@ -238,7 +241,7 @@ function buildContent() {
     bullet('**Nombres que no coinciden entre fuentes.** RUNT y la DIVIPOLA escriben distinto Bogotá y San Andrés; se normalizaron los nombres y una prueba verifica que el total de vehículos se conserva en el cruce.'),
     bullet('**Consulta SoQL mal codificada.** La primera prueba contra Socrata respondió `400 query.compiler.malformed` porque toda la consulta viajaba en un solo parámetro; se detectó por la respuesta real y se corrigió.'),
     bullet('**Evidencia fiel.** Las primeras capturas mostraban `->` y `!=` como símbolos (ligaduras de la fuente) y partían líneas de pytest; se corrigió la presentación sin alterar la salida real de los comandos.'),
-    p('En lo personal, la dificultad principal fue **entender la arquitectura hexagonal lo suficiente para explicarla**: al principio no era evidente por qué separar puertos y adaptadores, ni por qué un servicio debe recibir sus dependencias en lugar de crearlas. La estrategia fue seguir una petición completa a través de las capas —`POST /appointments` en `api/`, `AppointmentService.book` en `application/`, el `ResourceAllocator` y los puertos en `domain/`, y el repositorio SQLAlchemy en `infrastructure/`—, apoyarse en el ADR para entender el porqué de cada decisión y leer las pruebas con mocks, que muestran de qué depende cada servicio sin necesidad de la base de datos. La prueba de arquitectura ayudó a fijar la regla: si el dominio importa Flask, la prueba falla.'),
+    p('Para el equipo, la dificultad conceptual principal fue **entender la arquitectura hexagonal lo suficiente para explicarla**: al principio no era evidente por qué separar puertos y adaptadores, ni por qué un servicio debe recibir sus dependencias en lugar de crearlas. La estrategia fue seguir una petición completa a través de las capas —`POST /appointments` en `api/`, `AppointmentService.book` en `application/`, el `ResourceAllocator` y los puertos en `domain/`, y el repositorio SQLAlchemy en `infrastructure/`—, apoyarse en el ADR para entender el porqué de cada decisión y leer las pruebas con mocks, que muestran de qué depende cada servicio sin necesidad de la base de datos. La prueba de arquitectura ayudó a fijar la regla: si el dominio importa Flask, la prueba falla.'),
     h2('3. Evidencia técnica de los entregables'),
     ...table('Entregables y evidencia', ['Entregable de la guía', 'Evidencia'], [
       ['Arquitectura hexagonal de 4 capas', `\`backend/{domain,application,api,infrastructure}\`, \`bootstrap.py\`, \`tests/unit/test_architecture.py\`; Figuras ${fig('01_estructura_hexagonal.png')} y ${fig('03_puerto_y_adaptador.png')}`],
@@ -251,7 +254,7 @@ function buildContent() {
       ['Trazabilidad del uso de IA', '`docs/USO_DE_IA.md`'],
     ], [3200, 6160], { notes: 'Commits de la rama `mecatrack-final` para esta guía: ' + COMMITS.map((c) => c.split(' ')[0]).join(', ') + '. Toda la evidencia se regenera con `./scripts/generar_evidencia.sh`.' }),
     h2('4. Ventajas y errores de la IA como asistente de programación'),
-    p('En esta práctica se usó Claude Code (Anthropic, 2026), un agente que trabaja en la terminal: lee el repositorio, ejecuta comandos y pruebas y aplica cambios que el estudiante aprueba fase por fase. El detalle de qué generó la IA y qué se verificó está en `docs/USO_DE_IA.md`.'),
+    p('En esta práctica se usó Claude Code (Anthropic, 2026), un agente que trabaja en la terminal: lee el repositorio, ejecuta comandos y pruebas y aplica cambios que el equipo aprueba fase por fase. El detalle de qué generó la IA y qué se verificó está en `docs/USO_DE_IA.md`.'),
     p('**Ventajas observadas.** Consultó las APIs reales antes de escribir los clientes, en lugar de suponer URLs o campos; escribió pruebas junto con cada cambio y propuso verificaciones independientes (pruebas de caracterización contra el código original, mutaciones para comprobar que las pruebas fallan, validación cruzada de las estadísticas ponderadas); y automatizó la evidencia y este informe a partir de ejecuciones reales.'),
     p('**Errores reales de la IA y cómo se detectaron.** Dejó líneas sin sentido en dos archivos (una llamada a un método inexistente y un `if False else`), que se detectaron al revisar el código antes de las pruebas; codificó mal una consulta SoQL (respuesta 400 de la API); usó construcciones SQL que DuckDB no soporta (errores en la ejecución real); escribió en un docstring que unas pruebas se habían hecho "antes del refactor" cuando no era cierto, y en el ADR contó 11 servicios cuando eran 12 (ambos detectados al releer contra los hechos); y generó capturas con ligaduras tipográficas que cambiaban la apariencia del código (detectado al revisar cada imagen). Todo se corrigió antes del commit de cada fase. La lección es la misma de la guía anterior: la IA acelera el trabajo, pero cada salida necesita una verificación independiente.'),
     p('**Sobre GitHub Copilot.** En esta guía no se usó GitHub Copilot; toda la asistencia de IA fue con Claude Code. La evaluación crítica que pide la guía se hizo sobre una sugerencia real de ese asistente: para cruzar los departamentos de RUNT con los de la DIVIPOLA propuso un `LEFT JOIN` con una subconsulta correlacionada (`NOT EXISTS`) dentro de la condición del join. La idea era correcta —aceptar la coincidencia por prefijo solo cuando no hay coincidencia exacta—, pero la sugerencia no funcionaba: DuckDB la rechazó al ejecutarla con el error *Cannot perform non-inner join on subquery*. Se detectó en la ejecución real contra los datos descargados y se corrigió calculando primero la clave de cruce en una expresión aparte (`clave_resuelta`) y haciendo luego un join simple. Para verificar la corrección se agregó una prueba que comprueba que el total de vehículos no se pierde ni se duplica en el cruce.'),
@@ -260,9 +263,9 @@ function buildContent() {
   // Enlaces
   add(
     h1('Enlaces'),
-    plain('**Repositorio:** https://github.com/pablo-rodriguez091004/TallerDeProgramaci-n (ramas `master` y `mecatrack-final`).'),
-    plain(`**Pipeline CI/CD:** ${CI.html_url}`),
-    plain('**Video en inglés (YouTube):** [[COMPLETAR: enlace del video]]'),
+    link('Repositorio', REPO_URL, ' (ramas `master` y `mecatrack-final`).'),
+    link('Pipeline CI/CD', CI.html_url, ` (ejecución ${CI.id}, resultado *${CI.conclusion}*).`),
+    link('Video en inglés (YouTube)', VIDEO_URL),
   );
 
   // Referencias (APA 7, orden alfabético, sangría francesa)
@@ -270,9 +273,9 @@ function buildContent() {
     'Anthropic. (2026). *Claude Code* [Software]. https://claude.com/claude-code',
     'Brooker, M. (2015, 4 de marzo). *Exponential backoff and jitter*. AWS Architecture Blog. https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/',
     'Cockburn, A. (2005). *Hexagonal architecture*. https://alistair.cockburn.us/hexagonal-architecture/',
-    'Departamento Administrativo Nacional de Estadística [DANE]. (2025). *DIVIPOLA - Códigos municipios* [Conjunto de datos]. datos.gov.co. Recuperado el 24 de octubre de 2026, de https://www.datos.gov.co/d/gdxc-w37w',
     'Departamento Administrativo Nacional de Estadística [DANE]. (s. f.-a). *Censo Nacional de Población y Vivienda 2018*. Recuperado el 24 de octubre de 2026, de https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/censo-nacional-de-poblacion-y-vivenda-2018',
     'Departamento Administrativo Nacional de Estadística [DANE]. (s. f.-b). *Distribución de la población total censada CNPV 2018 por municipio* [Servicio de mapas ArcGIS REST]. Geoportal DANE. Recuperado el 24 de octubre de 2026, de https://geoportal.dane.gov.co/',
+    'Departamento Administrativo Nacional de Estadística [DANE]. (2025). *DIVIPOLA - Códigos municipios* [Conjunto de datos]. datos.gov.co. Recuperado el 24 de octubre de 2026, de https://www.datos.gov.co/d/gdxc-w37w',
     'DuckDB Foundation. (s. f.). *DuckDB documentation: Loading JSON*. Recuperado el 24 de octubre de 2026, de https://duckdb.org/docs/stable/data/json/overview',
     'Eastlake, D., & Panitz, A. (1999). *Reserved top level DNS names* (RFC 2606). Internet Engineering Task Force. https://doi.org/10.17487/RFC2606',
     'Esri. (s. f.). *Query (Map Service/Layer)*. ArcGIS REST APIs. Recuperado el 24 de octubre de 2026, de https://developers.arcgis.com/rest/services-reference/enterprise/query-map-service-layer/',
@@ -284,9 +287,9 @@ function buildContent() {
     'Nygard, M. T. (2011, 15 de noviembre). *Documenting architecture decisions*. Cognitect. https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions',
     'Nygard, M. T. (2018). *Release it! Design and deploy production-ready software* (2.ª ed.). Pragmatic Bookshelf.',
     'Pallets Projects. (s. f.). *Flask documentation (3.1.x)*. Recuperado el 24 de octubre de 2026, de https://flask.palletsprojects.com/en/stable/',
+    'pytest-dev. (s. f.). *pytest documentation*. Recuperado el 24 de octubre de 2026, de https://docs.pytest.org/en/stable/',
     'Python Software Foundation. (s. f.-a). *abc — Abstract base classes*. Python 3 documentation. Recuperado el 24 de octubre de 2026, de https://docs.python.org/3/library/abc.html',
     'Python Software Foundation. (s. f.-b). *unittest.mock — mock object library*. Python 3 documentation. Recuperado el 24 de octubre de 2026, de https://docs.python.org/3/library/unittest.mock.html',
-    'pytest-dev. (s. f.). *pytest documentation*. Recuperado el 24 de octubre de 2026, de https://docs.pytest.org/en/stable/',
     'SQLAlchemy. (s. f.). *SQLAlchemy 2.0 documentation*. Recuperado el 24 de octubre de 2026, de https://docs.sqlalchemy.org/en/20/',
     'Tyler Technologies. (s. f.). *Queries using SODA*. Socrata Developer Portal. Recuperado el 24 de octubre de 2026, de https://dev.socrata.com/docs/queries/',
   ];
@@ -299,9 +302,9 @@ function buildContent() {
   // Declaración de uso de IA
   add(
     h1('Declaración de Uso de Inteligencia Artificial'),
-    p('En este trabajo se utilizó Claude Code (Anthropic, 2026) como asistente de programación. A partir de las instrucciones del estudiante y por fases aprobadas una a una, la IA generó: el refactor a arquitectura hexagonal, los casos de uso y adaptadores, las pruebas unitarias y de integración, los clientes de las APIs con circuit breaker y reintentos, las consultas de DuckDB, la vista Mercado, el ADR, los scripts de evidencia y el borrador de este informe, que se genera a partir de las evidencias.'),
-    p('El estudiante definió los requisitos y las reglas de trabajo (no inventar datos, un commit por fase, no publicar sin autorización), aprobó el plan y cada fase y autorizó la publicación en GitHub. Las cifras de pruebas, tiempos, respuestas de las APIs y resultados analíticos provienen de ejecuciones reales y no se editaron a mano. El registro detallado está en `docs/USO_DE_IA.md`.'),
-    p('Personalmente, el estudiante revisó y aprobó el diagnóstico y el plan por fases, decidió migrar las nueve rutas del backend a la arquitectura nueva, aprobó los conjuntos de datos elegidos, autorizó cada publicación en GitHub, pidió eliminar del repositorio las actividades anteriores (`Taller1` y `Actividad_2`) y dejar el proyecto como raíz, y solicitó el rol de administrador con la recepción de clientes. No se usó GitHub Copilot ni otra herramienta de IA distinta de Claude Code.'),
+    p('En este trabajo se utilizó Claude Code (Anthropic, 2026) como asistente de programación. A partir de las instrucciones del equipo y por fases aprobadas una a una, la IA generó: el refactor a arquitectura hexagonal, los casos de uso y adaptadores, las pruebas unitarias y de integración, los clientes de las APIs con circuit breaker y reintentos, las consultas de DuckDB, la vista Mercado, el ADR, los scripts de evidencia y el borrador de este informe, que se genera a partir de las evidencias.'),
+    p('El equipo definió los requisitos y las reglas de trabajo (no inventar datos, un commit por fase, no publicar sin autorización), aprobó el plan y cada fase y autorizó la publicación en GitHub. Las cifras de pruebas, tiempos, respuestas de las APIs y resultados analíticos provienen de ejecuciones reales y no se editaron a mano. El registro detallado está en `docs/USO_DE_IA.md`.'),
+    p('El equipo revisó y aprobó el diagnóstico y el plan por fases, decidió migrar las nueve rutas del backend a la arquitectura nueva, aprobó los conjuntos de datos elegidos, autorizó cada publicación en GitHub, pidió eliminar del repositorio las actividades anteriores (`Taller1` y `Actividad_2`) y dejar el proyecto como raíz, y solicitó el rol de administrador con la recepción de clientes. No se usó GitHub Copilot ni otra herramienta de IA distinta de Claude Code.'),
   );
 
   // Anexo A: SQL real ejecutado

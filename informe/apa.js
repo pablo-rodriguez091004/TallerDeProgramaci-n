@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const {
-  AlignmentType, BorderStyle, Document, Footer, Header, HeadingLevel, ImageRun, LevelFormat,
+  AlignmentType, BorderStyle, Document, ExternalHyperlink, Footer, Header, HeadingLevel, ImageRun, LevelFormat,
   PageBreak, PageNumber, Paragraph, ShadingType, Table, TableCell, TableRow, TextRun, WidthType,
 } = require('docx');
 
@@ -51,6 +51,15 @@ const bullet = (text) => new Paragraph({
 });
 const numbered = (text, ref = 'numbers') => new Paragraph({
   children: runs(text), numbering: { reference: ref, level: 0 }, spacing: { line: DOUBLE },
+});
+// Línea "**Etiqueta:** URL" con la URL como hipervínculo activo.
+const link = (label, url, after = '') => new Paragraph({
+  spacing: { line: DOUBLE },
+  children: [
+    ...runs(`**${label}:** `),
+    new ExternalHyperlink({ link: url, children: [new TextRun({ text: url, style: 'Hyperlink' })] }),
+    ...(after ? runs(after) : []),
+  ],
 });
 const pageBreak = () => new Paragraph({ children: [new PageBreak()] });
 
@@ -182,6 +191,6 @@ function apaDocument({ title, description, children }) {
 const reference = (text) => new Paragraph({ children: runs(text), spacing: { line: DOUBLE }, indent: { left: 720, hanging: 720 } });
 
 module.exports = {
-  CONTENT_W, DOUBLE, runs, p, plain, center, h1, h2, h3, bullet, numbered, pageBreak, code,
+  CONTENT_W, DOUBLE, runs, p, plain, center, h1, h2, h3, bullet, numbered, link, pageBreak, code,
   numbering, apaDocument, reference, Paragraph, TextRun, AlignmentType,
 };
